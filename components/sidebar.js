@@ -9,16 +9,24 @@ const Navbar = () => {
   goToProfile = () => {
     navigation.navigate('Profile')
     }
+  goToLeaderboard = () => {
+    navigation.navigate('Leaderboard')
+    }
+  goToHome = () => {
+    navigation.navigate('Home')
+    }
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+        onPress={goToHome}>
         <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}
         onPress={goToProfile}>
         <Text style={styles.buttonText}>Profile</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+        onPress={goToLeaderboard}>
         <Text style={styles.buttonText}>Leaderboard</Text>
       </TouchableOpacity>
     </View>

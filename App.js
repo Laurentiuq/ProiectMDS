@@ -8,6 +8,7 @@ import WelcomScreen from './screens/WelcomScreen';
 import ForgotPassword from './screens/ForgotPassword';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
+import LeaderboardScreen from './screens/LeaderboardScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{db:db}}/>
+        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{db:db}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

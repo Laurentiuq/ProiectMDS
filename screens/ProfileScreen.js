@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Button} from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Button, TouchableWithoutFeedback} from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from "firebase/auth";
@@ -41,9 +41,6 @@ export default function ProfileScreen(props) {
         const displayName = userData.data().displayName;
         const points = userData.data().points;
         const description = userData.data().description;
-        console.log(email);
-        console.log(displayName);
-        console.log(points);
         setEmail(email);
         setDisplayName(displayName);
         setPoints(points);
@@ -53,6 +50,7 @@ export default function ProfileScreen(props) {
     // Il folosim ca sa apelam functia anteriora pentru a obtine datele
     React.useEffect(() => {
         fetchData();
+        console.log("useEffect");
     }, []);
 
 
@@ -61,8 +59,18 @@ export default function ProfileScreen(props) {
         if(editing){
             return (
                 <View>
-                    <TextInput style = {styles.input} value={displayName} onChangeText={setDisplayName} placeholder={displayName}></TextInput>
-                    <TextInput style = {styles.input} value={description} onChangeText={setDescription} placeholder={description}></TextInput>
+                    <TextInput 
+                        style = {styles.input}
+                        defaultValue={displayName}
+                        onChangeText={setDisplayName}
+                        placeholder={displayName}>
+                    </TextInput>
+                    <TextInput
+                        style = {styles.input} 
+                        defaultValue={description} 
+                        onChangeText={setDescription} 
+                        placeholder={description}></TextInput>
+                    
                 </View>
             )
         }
@@ -76,30 +84,44 @@ export default function ProfileScreen(props) {
         }
     }
 
+    handleEditing = () => {
+        setEditing(true);
+        console.log("editing");
+    }
 
-  return (
-    <View>
-        {/* Edit form for profile info */}
-        
-        <Text>Nr. points: {points}</Text>
-        <Text>Email address: {email}</Text>
 
-        <Button title="Edit" onPress={() => setEditing(true)}></Button>
-        <EditInfo></EditInfo>
-        <TouchableOpacity onPress={handleUpdateProfile}>
-            <Text>Save Changes</Text>
-        </TouchableOpacity>
-        
-    </View>
-  )
+    return (
+        <View>
+            {/* Edit form for profile info */}
+            
+            <Text>Nr. points: {points}</Text>
+            <Text>Email address: {email}</Text>
+
+            <Button title="Edit" onPress={handleEditing}></Button>
+
+            <EditInfo></EditInfo>
+
+
+            <TouchableOpacity onPress={handleUpdateProfile}>
+                <Text>Save Changes</Text>
+            </TouchableOpacity>
+            
+        </View>
+    )
 }
 
 
 const styles = StyleSheet.create({
     input: {
+        // flex: 1,
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
-        width: 200
+        width: 200,
+        margin: 10,
+        backgroundColor: 'red',
+    },
+    editButton: {
+        backgroundColor: 'blue',
     }
 })
