@@ -40,6 +40,11 @@ export default function LoginScreen() {
         });
     }
 
+    // GO to register screen when press register button
+    const goToRegister = () => {
+        navigation.navigate('Register');
+    }
+
 
 
     // This is used in onpress event of login button
@@ -104,7 +109,7 @@ export default function LoginScreen() {
     </View>
     <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress = {handleSignUp}
+          onPress = {goToRegister}
           style = {[styles.button, styles.buttonOutline]}>
             <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
