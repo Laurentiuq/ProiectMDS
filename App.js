@@ -7,10 +7,15 @@ import HomeScreen from './screens/HomeScreen';
 import WelcomScreen from './screens/WelcomScreen';
 import ForgotPassword from './screens/ForgotPassword';
 import RegisterScreen from './screens/RegisterScreen';
+import ProfileScreen from './screens/ProfileScreen.js';
+import firebase from 'firebase/compat';
+import 'firebase/compat/firestore';
 
 const Stack = createNativeStackNavigator();
+const db = firebase.firestore();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -19,6 +24,7 @@ export default function App() {
         <Stack.Screen options = {{headerShown: false }} name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{db:db}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

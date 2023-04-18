@@ -2,7 +2,8 @@ import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-nativ
 import React from 'react'
 import { getAuth } from 'firebase/auth'
 import { useNavigation } from '@react-navigation/native';
-
+// import Sidebar from '../components/Sidebar.js';
+import Sidebar from '../components/sidebar.js';
 
 export default function HomeScreen() {
 
@@ -17,6 +18,7 @@ export default function HomeScreen() {
 
   return (
     <View>
+      <Sidebar />
       <Text>Email: {getAuth().currentUser?.email}</Text>
       <TouchableOpacity
         onPress={handleLogout} >

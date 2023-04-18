@@ -1,9 +1,10 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import auth from '../firebase'
+import {auth} from '../firebase'
 import { useNavigation } from '@react-navigation/native';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 
 export default function RegisterScreen() {
@@ -11,7 +12,8 @@ export default function RegisterScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
+    // const firebase = require('firebase');
+    const db = firebase.firestore();
 
     // This is used in onpress event of signup button
     const handleSignUp = () => {
@@ -24,6 +26,25 @@ export default function RegisterScreen() {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log('Registered with', user.email);
+
+            // Create a profile for the user
+            const userRef = db.collection('users');
+            console.log("ceva")
+            const userDoc = userRef.doc(user.uid);
+            userDoc.set({
+                email: user.email,
+                displayName: user.email.split('@')[0],
+                points: 0,
+                // photoURL: 'https://firebasestorage.googleapis.com/v0/b/fmi-quiz.appspot.com/o/avatars%2Fdefault.png?alt=media&token=2b2b0b0f-0b5a-4b0f-9b0f-2b2b0b0f0b5a',
+                description: "Hi there!"
+            }).then(() => {
+                console.log('Profile created successfully');
+            }).catch((error) => {
+                console.log('Error creating profile', error);
+            });
+
+
+
         })
         .catch((error) => {
             const errorCode = error.code;
