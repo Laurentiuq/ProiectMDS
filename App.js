@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -18,15 +18,15 @@ const db = firebase.firestore();
 export default function App() {
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator>
         <Stack.Screen options = {{headerShown: false }} name="Login" component={LoginScreen} />
         <Stack.Screen options = {{headerShown: false }} name="Welcome" component={WelcomScreen} />
         <Stack.Screen options = {{headerShown: false }} name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{db:db}}/>
-        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{db:db}}/>
+        <Stack.Screen name="Home" component={HomeScreen} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{db:db}} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
+        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{db:db}} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

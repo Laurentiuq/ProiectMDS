@@ -39,20 +39,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 60,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(225, 105, 86)',
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: 'rgb(249, 224, 221)',
   },
   button: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 5,
-    backgroundColor: '#ddd',
+    backgroundColor: 'rgb(249, 224, 221)',
   },
   buttonText: {
     fontWeight: 'bold',
+    color: 'rgb(241, 105, 86)',
   },
 });
+
 
 export default Navbar;

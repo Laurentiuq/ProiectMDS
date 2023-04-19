@@ -12,6 +12,32 @@ export default function RegisterScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+
+    const [isValid, setIsValid] = useState(false);
+
+
+    useEffect(() => {
+        if (!email) {
+            setIsValid(false);
+            return;
+        }
+
+        if (!password) {
+            setIsValid(false);
+            return;
+        }
+
+        if (!confirmPassword || confirmPassword !== password) {
+            setIsValid(false);
+            return;
+        }
+
+
+
+        setIsValid(true);
+
+        
+    }, [email, password, confirmPassword])
     // const firebase = require('firebase');
     const db = firebase.firestore();
 
@@ -72,6 +98,15 @@ export default function RegisterScreen() {
                 value = {password}
                 // This is used to update the state of password
                 onChangeText = {text => setPassword(text)} 
+                // verify if the password is strong enough
+                 onBlur = {() => {
+                     if (password.length < 8) {
+                            alert("Password must be at least 8 characters long.")
+                     }
+                     else if  (!password.match(/[^a-zA-Z0-9!@#$%^&*]/)) {
+                            alert("Password must contain only letters, numbers and special characters.")
+                    }}
+                }
                 style={styles.input}
                 secureTextEntry
             />
@@ -83,6 +118,18 @@ a numeric case and a special character.</Text>
                 value = {confirmPassword}
                 // This is used to update the state of password
                 onChangeText = {text => setConfirmPassword(text)}
+                onBlur = {() => {
+                    if (password.length < 8) {
+                           alert("Password must be at least 8 characters long.")
+                    }
+                    else if  (!password.match(/[^a-zA-Z0-9!@#$%^&*]/)) {
+                           alert("Password must contain only letters, numbers and special characters.")
+                   }
+                   if (password !== confirmPassword) {
+                    alert("Passwords don't match.")
+                   }
+                }
+                }
                 style={styles.input}
                 secureTextEntry
             />
@@ -92,7 +139,8 @@ a numeric case and a special character.</Text>
         <View style={styles.buttonContainer}>
             <TouchableOpacity
                 onPress = {handleSignUp}
-                style = {[styles.button, styles.buttonOutline]}>
+                disabled={!isValid}
+                style = {isValid ? [styles.button, styles.buttonOutline]: styles.buttonDisabled}>
                 <Text style={styles.buttonOutlineText}>Register</Text>
             </TouchableOpacity>
         </View>
@@ -130,7 +178,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '60%',
         justifyContent: 'center',
-        alignItmes: 'center',
+        alignItems: 'center',
         marginTop: 40,
         color : 'rgb(241, 105, 86)'
 
@@ -157,6 +205,15 @@ const styles = StyleSheet.create({
         color:'white',
         fontWeight: '800',
         fontSize: 16,
+    },
+
+    buttonDisabled: {
+        backgroundColor: 'rgb(241, 105, 86)',
+        opacity: 0.5,
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center'
     },
     
 })
