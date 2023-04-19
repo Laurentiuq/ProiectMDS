@@ -47,6 +47,7 @@ export default function LoginScreen() {
     style={styles.container}
     behavior="padding">
     <View style={styles.inputContainer}>
+    <Text style={{fontSize: 14, color: 'rgb(249, 224, 221)', marginBottom: 5, fontWeight:'bold'}}>Introduce your email address:</Text>
         <TextInput
             placeholder="Email"
             value = {email}
@@ -59,7 +60,7 @@ export default function LoginScreen() {
         <TouchableOpacity
           onPress = {handlePasswordReset2}
           style = {styles.button}>
-            <Text style={styles.buttonText}>Reset password</Text>
+            <Text style={styles.buttonText}>Send resetation link</Text>
         </TouchableOpacity>
     </View>
     </View>
@@ -72,44 +73,48 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(227, 150, 150)'
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
+        color : 'rgb(241, 105, 86)'
     },
     input: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(249, 224, 221)',
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 10,
         marginTop:5
     },
     buttonContainer: {
-        width: '60%',
+        width: '80%',
         justifyContent: 'center',
         alignItmes: 'center',
         marginTop: 40,
+       
 
     },
     button: {
-        backgroundColor: '#2C6BED',
+        backgroundColor: 'rgb(241, 105, 86)',
         width: '100%',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
     },
     buttonOutline: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(241, 105, 86)',
         marginTop: 5,
-        borderColor: '#2C6BED',
+        borderColor: 'rgb(241, 105, 86)',
         borderWidth: 2,
     },
     buttonText:  {
         color:'white',
         fontWeight: '800',
         fontSize: 16,
+        textAlign: 'center'
     },
     buttonOutlineText: {
-        color:'#2C6BED',
+        color:'white',
         fontWeight: '800',
         fontSize: 16,
     },

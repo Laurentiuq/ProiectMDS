@@ -127,16 +127,16 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        // position: 'absolute',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(227, 150, 150)'
     },
     inputContainer: {
         width: '80%'
     },
     input: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(249, 224, 221)',
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 10,
@@ -146,11 +146,11 @@ const styles = StyleSheet.create({
         width: '60%',
         justifyContent: 'center',
         alignItmes: 'center',
-        marginTop: 40,
+        marginTop: 20,
 
     },
     button: {
-        backgroundColor: '#2C6BED',
+        backgroundColor: 'rgb(241, 105, 86)',
         width: '100%',
         padding: 15,
         borderRadius: 10,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     buttonOutline: {
         backgroundColor: 'white',
         marginTop: 5,
-        borderColor: '#2C6BED',
+        borderColor: 'rgb(241, 105, 86)',
         borderWidth: 2,
     },
     buttonText:  {
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     buttonOutlineText: {
-        color:'#2C6BED',
+        color:'rgb(241, 105, 86)',
         fontWeight: '800',
         fontSize: 16,
     },

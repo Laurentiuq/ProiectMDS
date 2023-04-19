@@ -57,24 +57,29 @@ export default function RegisterScreen() {
     <View
         style={styles.container}
         behavior="padding">
-        <View style={styles.inputContainer}>
-            <TextInput
+        <View style={styles.inputContainer} >
+         <Text style={{fontSize: 14, color: 'rgb(249, 224, 221)', marginBottom: 5, fontWeight:'bold'}}>Introduce your email address:</Text>
+            <TextInput 
                 placeholder="Email"
                 value = {email}
                 // This is used to update the state of email so that when user types in email, it is updated in state
                 onChangeText = {text => setEmail(text)}
                 style={styles.input}
             />
+          <Text style={{fontSize: 14, color: 'rgb(249, 224, 221)', marginTop: 5, marginBottom: 5, fontWeight:'bold'}}>Introduce your password:</Text>
             <TextInput
-                placeholder="Pasword"
+                placeholder="Password"
                 value = {password}
                 // This is used to update the state of password
                 onChangeText = {text => setPassword(text)} 
                 style={styles.input}
                 secureTextEntry
             />
+            <Text style={{fontSize: 10, color: 'rgb(225, 105, 86)', marginTop: 5, marginBottom: 10, fontWeight:'bold', textAlign: 'left'}}>Must contain at least 8 characters, one upper case, 
+a numeric case and a special character.</Text> 
+          <Text style={{fontSize: 14, color: 'rgb(249, 224, 221)', marginTop: 5, marginBottom: 5, fontWeight:'bold'}}>Confirm your password:</Text>
             <TextInput
-                placeholder="Confirm Pasword"
+                placeholder="Confirm Password"
                 value = {confirmPassword}
                 // This is used to update the state of password
                 onChangeText = {text => setConfirmPassword(text)}
@@ -82,6 +87,8 @@ export default function RegisterScreen() {
                 secureTextEntry
             />
         </View>
+    
+
         <View style={styles.buttonContainer}>
             <TouchableOpacity
                 onPress = {handleSignUp}
@@ -97,19 +104,24 @@ export default function RegisterScreen() {
 
 
 
-
 const styles = StyleSheet.create({
     container: {
         // position: 'absolute',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(227, 150, 150)'
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
+        marginTop: 10,
+        marginBottom: 10
+
+
     },
+
     input: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(249, 224, 221)',
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 10,
@@ -120,19 +132,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItmes: 'center',
         marginTop: 40,
+        color : 'rgb(241, 105, 86)'
 
     },
     button: {
-        backgroundColor: '#2C6BED',
+        backgroundColor: 'rgb(241, 105, 86)',
         width: '100%',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
     },
     buttonOutline: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(241, 105, 86)',
         marginTop: 5,
-        borderColor: '#2C6BED',
+        borderColor: 'rgb(241, 105, 86)',
         borderWidth: 2,
     },
     buttonText:  {
@@ -141,7 +154,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     buttonOutlineText: {
-        color:'#2C6BED',
+        color:'white',
         fontWeight: '800',
         fontSize: 16,
     },
