@@ -263,6 +263,9 @@ export default function LoginScreen() {
         const unsubcribe =
             auth.onAuthStateChanged((user) => {
                 if (user) {
+                    // navigation.reset();
+                    while (navigation.canGoBack())
+                        navigation.pop();
                     navigation.replace('Home');
                 }
             })
