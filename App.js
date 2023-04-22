@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import LoginOrSignupScreen from './screens/LoginOrSignupScreen';
+import SettingsScreen from './screens/SettingsScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
@@ -21,6 +22,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
         <Stack.Screen options={{ headerShown: false }} name="LoginOrSignupScreen" component={LoginOrSignupScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
