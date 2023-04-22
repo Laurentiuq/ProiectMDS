@@ -9,6 +9,7 @@ import ForgotPassword from './screens/ForgotPassword';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 import LeaderboardScreen from './screens/LeaderboardScreen';
+import CreateScreen from './screens/CreateScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{db:db}} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
         <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{db:db}} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
+        <Stack.Screen name="CreateQuiz" component={CreateScreen} initialParams={{db:db}} options = {{headerStyle: {backgroundColor:'rgb(241, 105, 86)'},headerTintColor:'rgb(249, 224, 221)'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
