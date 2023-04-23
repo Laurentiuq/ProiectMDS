@@ -38,7 +38,9 @@ export default function HomeScreen() {
 
       <View style={styles.buttonContainer}>
       <TouchableOpacity
-        onPress = {() => {}}
+        onPress = {() => {
+          navigation.navigate('CreateQuiz')
+        }}
         style = {[styles.button, styles.buttonOutline]}>
         <Text style={styles.buttonOutlineText}>Create a quiz</Text>
         </TouchableOpacity>
