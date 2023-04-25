@@ -207,7 +207,7 @@ export default function ProfileScreen(props) {
                     {isLoading ? (
                         <ActivityIndicator size="large" color={styles.loader.color} />
                     ) : (
-                        <Text>Save Changes</Text>
+                        <Text style = {{color: '#F16956', fontWeight: 'bold'}}>Save Changes</Text>
                     )}
 
 
@@ -254,11 +254,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#F16956',
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: 12,
+        paddingRight: 12,
     },
     profileImageContainer: {
-        marginTop: 20,
+        marginTop: 10,
         position: 'relative',
     },
     profileImage: {
@@ -283,10 +283,11 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     title: {
-        fontSize: 16,
-        fontWeight: '400',
+        fontSize: 12,
+        fontWeight: 'bold',
         color: 'white',
-        marginTop: 16,
+        marginTop: 12,
+
     },
     input: {
         height: 40,

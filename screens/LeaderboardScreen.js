@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
 import Sidebar from '../components/sidebar.js';
 
@@ -35,17 +35,45 @@ export default function LeaderboardScreen(props) {
         return users.map((user, index) => {
             return(
                 <View key={index}>
-                    <Text>{index + 1}.{user.displayName}: {user.points}</Text>
+                    <Text  style = {styles.text}>{index + 1}.  {user.displayName}: {user.points}</Text>
                 </View>
             )
         })
     }
     return (
-        <View>
-            {/* <Text>LeaderboardScreen</Text> */}
-            <Sidebar />
-            <RenderUsers />
+        <View style = {{backgroundColor: '#F16956', flex:1,  height: 100}}>
+
+            <View style = {styles.textContainer}>
+            <Text style = {styles.textLeaderboard}>  {String.fromCodePoint(0x1F3C6)} Quizzez Leaderboard  {String.fromCodePoint(0x1F3C6)}</Text> 
+           
+              <RenderUsers />
+            </View>
         </View>
     )
 }
 
+const styles = StyleSheet.create({
+   
+    textContainer: {
+        backgroundColor: '#F16956',
+        padding: 10,
+        margin: 5,
+        borderRadius: 5,
+    },
+
+    text: {
+        color: '#F9E0DD',
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 10,
+    },
+
+    textLeaderboard: 
+    {
+        textAlign:'center',
+         color:'#F9E0DD', 
+         fontWeight:'bold', 
+         fontSize: 20, 
+         margin:10}
+})
