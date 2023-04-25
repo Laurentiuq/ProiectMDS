@@ -41,7 +41,7 @@ export default function LeaderboardScreen(props) {
         })
     }
     return (
-        <View style = {{backgroundColor: '#F16956'}}>
+        <View style = {{backgroundColor: '#F16956', flex:1,  height: 100}}>
 
             <View style = {styles.textContainer}>
             <Text style = {styles.textLeaderboard}>  {String.fromCodePoint(0x1F3C6)} Quizzez Leaderboard  {String.fromCodePoint(0x1F3C6)}</Text> 
