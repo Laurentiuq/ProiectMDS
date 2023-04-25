@@ -140,8 +140,8 @@ export default function ProfileScreen(props) {
                 </View>
                 <View style={{ height: 16 }} ></View>
                 <Text style={{
-                    textAlign: 'left', width: '100%'
-                }}>Nr. points: {points}</Text>
+                    textAlign: 'left', width: '100%', color: 'white', fontWeight : 'bold'
+                }}>Number of points: {points}</Text>
                 <View style={{ height: 8 }} ></View>
 
                 {/* Edit form for profile info */}
@@ -186,7 +186,7 @@ export default function ProfileScreen(props) {
                     }]}
                     disabled={editing}
                     onPress={handleEditing}>
-                    <Text>Edit</Text>
+                    <Text style = {{color: 'white', fontWeight:'bold'}}>Edit</Text>
 
                 </TouchableOpacity>
 
@@ -204,7 +204,7 @@ export default function ProfileScreen(props) {
                     style={styles.save}
                     disabled={!editing}
                     onPress={handleUpdateProfile}>
-                    <Text>Save Changes</Text>
+                    <Text style = {{color:'#F16956', fontWeight:'bold'}}>Save Changes</Text>
 
                 </TouchableOpacity>
             </View>
