@@ -1,19 +1,80 @@
-import { View, Text, TextInput, TouchableOpacity, Button, TouchableWithoutFeedback} from 'react-native'
-import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { getAuth } from "firebase/auth";
-import { StyleSheet } from 'react-native';
-
+import ImagePicker from 'react-native-image-picker';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    Button,
+    StyleSheet,
+} from 'react-native';
+import React, { useState } from 'react';
+import { getAuth } from 'firebase/auth';
 
 export default function ProfileScreen(props) {
     const db = props.route.params.db;
     const [email, setEmail] = React.useState('');
     const [displayName, setDisplayName] = React.useState('');
+    // const [displayNameResult, setDisplayNameResult] = React.useState('');
     const [points, setPoints] = React.useState('');
     const [description, setDescription] = React.useState('');
+    // const [descriptionResult, setDescriptionResult] = React.useState('');
     // pentru a trece din modul de vizualizare in modul de editare
     const [editing, setEditing] = React.useState(false);
 
+    const placeholderProfileImage = 'https://via.placeholder.com/150';
+
+    const [profileImage, setProfileImage] = useState(placeholderProfileImage);
+
+    const handleProfileImagePicker = () => {
+        var options = {
+            title: 'Select Image',
+            customButtons: [
+                {
+                    name: 'customOptionKey',
+                    title: 'Choose Photo from Custom Option'
+                },
+            ],
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+        // ImagePicker.showImagePicker(options, response => {
+        //     console.log('Response = ', response);
+        //     if (response.didCancel) {
+        //         console.log('User cancelled image picker');
+        //     } else if (response.error) {
+        //         console.log('ImagePicker Error: ', response.error);
+        //     } else if (response.customButton) {
+        //         console.log(
+        //             'User tapped custom button: ',
+        //             response.customButton
+        //         );
+        //         alert(response.customButton);
+        //     } else {
+        //         setFilePath(response);
+        //     }
+        // });
+        // const options = {
+        //     title: 'Select Profile Image',
+        //     storageOptions: {
+        //         skipBackup: true,
+        //         path: 'images',
+        //     },
+        // };
+
+        // ImagePicker.showImagePicker(options, response => {
+        //     if (response.didCancel) {
+        //         console.log('User cancelled image picker');
+        //     } else if (response.error) {
+        //         console.log('ImagePicker Error: ', response.error);
+        //     } else {
+        //         setProfileImage(response.uri);
+        //     }
+        // });
+    };
     // Pentru a modifica datele profilului in baza de date
     const handleUpdateProfile = () => {
         const auth = getAuth();
@@ -45,7 +106,7 @@ export default function ProfileScreen(props) {
         setDisplayName(displayName);
         setPoints(points);
         setDescription(description);
-        
+
     }
     // Il folosim ca sa apelam functia anteriora pentru a obtine datele
     React.useEffect(() => {
@@ -53,75 +114,205 @@ export default function ProfileScreen(props) {
         console.log("useEffect");
     }, []);
 
-
-    // afiseaza datele fie in modul de vizualizare, fie in modul de editare
-    const EditInfo = () => {
-        if(editing){
-            return (
-                <View>
-                    <TextInput 
-                        style = {styles.input}
-                        defaultValue={displayName}
-                        onChangeText={setDisplayName}
-                        placeholder={displayName}>
-                    </TextInput>
-                    <TextInput
-                        style = {styles.input} 
-                        defaultValue={description} 
-                        onChangeText={setDescription} 
-                        placeholder={description}></TextInput>
-                    
-                </View>
-            )
-        }
-        else{
-            return (
-                <View>
-                    <Text>Display name: {displayName}</Text>
-                    <Text>Description: {description}</Text>
-                </View>
-            )
-        }
-    }
-
-    handleEditing = () => {
+    const handleEditing = () => {
         setEditing(true);
         console.log("editing");
     }
 
+    // afiseaza datele fie in modul de vizualizare, fie in modul de editare
+    const EditInfo = () => {
+        return (
+            <View style={styles.container}>
+                <View style={styles.profileImageContainer}>
+                    <Image
+                        style={styles.profileImage}
+                        source={{ uri: profileImage }}
+                    />
+                    {/* <Image
+                        style={styles.profileImage}
+                        source={{ uri: placeholderProfileImage }}
+                    /> */}
+                    <TouchableOpacity
+                        style={styles.editProfileImageButton}
+                        onPress={handleProfileImagePicker}>
+                        <Text style={styles.editProfileImageText}>Edit</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ height: 16 }} ></View>
+                <Text style={{
+                    textAlign: 'left', width: '100%'
+                }}>Nr. points: {points}</Text>
+                <View style={{ height: 8 }} ></View>
 
-    return (
-        <View>
-            {/* Edit form for profile info */}
-            
-            <Text>Nr. points: {points}</Text>
-            <Text>Email address: {email}</Text>
+                {/* Edit form for profile info */}
+                <View style={styles.formContainer}>
+                    <Text style={styles.title}>Display Name</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={displayName}
+                        onChangeText={text => setDisplayName(text)}
+                        // placeholder={displayName}
+                        editable={editing}
+                    />
 
-            <Button title="Edit" onPress={handleEditing}></Button>
+                    <Text style={styles.title}>Email Address</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={email}
+                        placeholder="Email"
+                        editable={false}
+                    />
 
-            <EditInfo></EditInfo>
+                    <Text style={styles.title}>Description</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={description}
+                        onChangeText={text => setDescription(text)}
+                        // placeholder={description}
+                        editable={editing}
+                    />
+                </View>
 
 
-            <TouchableOpacity onPress={handleUpdateProfile}>
-                <Text>Save Changes</Text>
-            </TouchableOpacity>
-            
-        </View>
-    )
+                <View style={{ height: 16 }} ></View>
+
+                <TouchableOpacity
+                    style={[styles.save, {
+                        borderColor: 'white',
+                        backgroundColor: '#F16956',
+                        borderWidth: 3,
+                        borderRadius: 20,
+                        color: '#F16956',
+                    }]}
+                    disabled={editing}
+                    onPress={handleEditing}>
+                    <Text>Edit</Text>
+
+                </TouchableOpacity>
+
+
+                <View style={{ height: 32 }} ></View>
+
+                {/* <TouchableOpacity 
+                disabled={!editing}
+                style={{backgroundColor:'red'}}
+                onPress={handleUpdateProfile}>
+                    <Text>Save Changes</Text>
+                </TouchableOpacity> */}
+
+                <TouchableOpacity
+                    style={styles.save}
+                    disabled={!editing}
+                    onPress={handleUpdateProfile}>
+                    <Text>Save Changes</Text>
+
+                </TouchableOpacity>
+            </View>
+        );
+
+        // if(editing){
+        //     return (
+        //         <View>
+        //             <TextInput 
+        //                 style = {styles.input}
+        //                 defaultValue={displayName}
+        //                 onChangeText={setDisplayNameResult}
+        //                 placeholder={displayName}>
+        //             </TextInput>
+        //             <TextInput
+        //                 style = {styles.input} 
+        //                 defaultValue={description} 
+        //                 onChangeText={setDescription} 
+        //                 placeholder={description}></TextInput>
+
+        //         </View>
+        //     )
+        // }
+        // else{
+        //     return (
+        //         <View>
+        //             <Text>Display name: {displayName}</Text>
+        //             <Text>Description: {description}</Text>
+        //         </View>
+        //     )
+        // }
+    }
+
+
+
+    return (<EditInfo></EditInfo>)
 }
 
-
 const styles = StyleSheet.create({
-    input: {
-        // flex: 1,
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        width: 200,
-        margin: 10,
-        backgroundColor: 'red',
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#F16956',
+        paddingLeft: 16,
+        paddingRight: 16,
     },
-    editButton: {
+    profileImageContainer: {
+        marginTop: 20,
+        position: 'relative',
+    },
+    profileImage: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+    },
+    editProfileImageButton: {
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
         backgroundColor: 'blue',
-    }
-})
+        borderRadius: 15,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+    },
+    editProfileImageText: {
+        color: 'white',
+        fontSize: 12,
+    },
+    formContainer: {
+        width: '100%',
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: '400',
+        color: 'white',
+        marginTop: 16,
+    },
+    input: {
+        height: 40,
+        borderColor: '#F9E0DD',
+        backgroundColor: '#F9E0DD',
+        borderWidth: 1,
+        borderRadius: 20,
+        paddingHorizontal: 16,
+        width: '100%',
+        marginVertical: 8,
+
+    },
+    save: {
+        backgroundColor: '#F9E0DD',
+        borderRadius: 20,
+        padding: 10,
+        width: '100%',
+        alignItems: 'center',
+
+    },
+});
+// const styles = StyleSheet.create({
+//     input: {
+//         // flex: 1,
+//         height: 40,
+//         borderColor: 'gray',
+//         borderWidth: 1,
+//         width: 200,
+//         margin: 10,
+//         backgroundColor: 'red',
+//     },
+//     editButton: {
+//         backgroundColor: 'blue',
+//     }
+// })

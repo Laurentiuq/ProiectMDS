@@ -1,17 +1,67 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } from 'react-native';
-import  {  useState } from 'react'
+import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
+
+import TileItem from './components/TileItem.js';
 
 export default function SettingsScreen() {
   const [darkMode, setDarkMode] = useState(false);
+  const navigation = useNavigation();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+
+
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () =>
+  //       <View style={{ flex: 1, alignItems: 'flex-end' }}>
+  //         <Text style={styles.title}>Account Settings</Text>
+  //       </View>,
+  //   });
+  // }, [navigation]);
+
+  const handleIconPress = (item) => {
+    navigation.push(item)
+    console.log(`Icon pressed on ${item}`);
+  };
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
+
+      <View style={styles.container2}>
+        <Text style={styles.headerTitle}>Settings</Text>
+        <Text style={styles.title}>Account Settings</Text>
+        <TileItem
+          mainText="Update account details"
+          subtitle="Username, Location etc"
+          iconImage={require('../assets/arrowRight.png')}
+          onIconPress={() => handleIconPress('Profile')}
+        />
+        <TileItem
+          mainText="Change login details"
+          subtitle="Email, password"
+          iconImage={require('../assets/arrowRight.png')}
+          onIconPress={() => handleIconPress('UpdateLogin')}
+        />
+        <Text style={styles.title}>Others</Text>
+        <TileItem
+          mainText="Change quiz details"
+          subtitle="Easy, medium, hard"
+          iconImage={require('../assets/arrowRight.png')}
+          onIconPress={() => handleIconPress('QuizSettings')}
+        />
+        <TileItem
+          mainText="FAQ"
+          subtitle="Frequently asked questions"
+          iconImage={require('../assets/arrowRight.png')}
+          onIconPress={() => handleIconPress('FAQ')}
+        />
+      </View>
+
+      {/* <View style={styles.header}>
         <Text style={styles.title}>Settings</Text>
       </View>
 
@@ -56,7 +106,7 @@ export default function SettingsScreen() {
         <TouchableOpacity style={styles.logoutButton}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </ScrollView>
   );
 }
@@ -64,18 +114,13 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F16956',
   },
   header: {
     paddingTop: 60,
     paddingBottom: 20,
     paddingHorizontal: 20,
     backgroundColor: '#F16956',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
   },
   section: {
     paddingHorizontal: 20,
@@ -114,4 +159,27 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  container2: {
+    flex: 1,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'black',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginTop: 50,
+    marginStart: 16,
+    color: 'white',
+  },
+    loginButton: {
+        backgroundColor: '#F16956',
+        borderRadius: 20,
+        padding: 15,
+        alignItems: 'center',
+    },
 });
