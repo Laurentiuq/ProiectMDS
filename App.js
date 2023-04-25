@@ -21,17 +21,18 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
-        <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
         <Stack.Screen options={{ headerShown: false }} name="LoginOrSignupScreen" component={LoginOrSignupScreen} />
-        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{headerTitle: '',   headerShadowVisible: false,headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{ db: db }} options={{headerShadowVisible: false, headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="CreateQuiz" component={CreateScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
-      </Stack.Navigator>
+
+</Stack.Navigator>
     </NavigationContainer>
   );
 }

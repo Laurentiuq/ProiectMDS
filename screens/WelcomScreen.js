@@ -7,7 +7,7 @@ export default function WelcomScreen() {
     const navigation = useNavigation()
     const goToLogin = () => {
         setTimeout(() => {
-            navigation.replace('Settings');
+            navigation.replace('LoginOrSignupScreen');
         }, 2500)
     }
     goToLogin()
