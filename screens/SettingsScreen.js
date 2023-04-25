@@ -1,13 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } from 'react-native';
 import  {  useState } from 'react'
+import { getAuth } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SettingsScreen() {
   const [darkMode, setDarkMode] = useState(false);
+  const navigation = useNavigation();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    auth.signOut().then(() => {
+        navigation.replace('Login');
+        console.log('Logged out');
+    })
+} 
  
   const styles = StyleSheet.create({
     container: {
@@ -117,8 +128,10 @@ export default function SettingsScreen() {
       </View>
 
       <View style={styles.section}>
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={[styles.logoutButtonText, styles.textDark]}>Logout</Text>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+
+        <Text style={[styles.logoutButtonText]}>Logout</Text> 
+
         </TouchableOpacity>
       </View>
     </ScrollView>
