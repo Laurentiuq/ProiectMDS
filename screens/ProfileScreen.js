@@ -3,6 +3,8 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from "firebase/auth";
 import { StyleSheet } from 'react-native';
+import Sidebar from '../components/sidebar.js';
+
 
 
 export default function ProfileScreen(props) {
@@ -93,6 +95,7 @@ export default function ProfileScreen(props) {
     return (
         <View>
             {/* Edit form for profile info */}
+            <Sidebar />
             
             <Text>Nr. points: {points}</Text>
             <Text>Email address: {email}</Text>
