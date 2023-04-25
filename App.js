@@ -10,6 +10,8 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import LoginOrSignupScreen from './screens/LoginOrSignupScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import CreateScreen from './screens/CreateScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
