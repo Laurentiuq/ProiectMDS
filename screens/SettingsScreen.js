@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } f
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
-import TileItem from './components/TileItem.js';
+import TileItem from '../components/TileItem.js';
 
 export default function SettingsScreen() {
   const [darkMode, setDarkMode] = useState(false);

@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
+import storage from '@react-native-firebase/storage';
+
 import {
     View,
+    ActivityIndicator,
     Text,
     TextInput,
     TouchableOpacity,
@@ -22,67 +25,60 @@ export default function ProfileScreen(props) {
     // const [descriptionResult, setDescriptionResult] = React.useState('');
     // pentru a trece din modul de vizualizare in modul de editare
     const [editing, setEditing] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const placeholderProfileImage = 'https://via.placeholder.com/150';
 
     const [profileImage, setProfileImage] = useState(placeholderProfileImage);
 
-    const handleProfileImagePicker = () => {
-        var options = {
-            title: 'Select Image',
-            customButtons: [
-                {
-                    name: 'customOptionKey',
-                    title: 'Choose Photo from Custom Option'
-                },
-            ],
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
-        // ImagePicker.showImagePicker(options, response => {
-        //     console.log('Response = ', response);
-        //     if (response.didCancel) {
-        //         console.log('User cancelled image picker');
-        //     } else if (response.error) {
-        //         console.log('ImagePicker Error: ', response.error);
-        //     } else if (response.customButton) {
-        //         console.log(
-        //             'User tapped custom button: ',
-        //             response.customButton
-        //         );
-        //         alert(response.customButton);
-        //     } else {
-        //         setFilePath(response);
-        //     }
-        // });
-        // const options = {
-        //     title: 'Select Profile Image',
-        //     storageOptions: {
-        //         skipBackup: true,
-        //         path: 'images',
-        //     },
-        // };
 
-        // ImagePicker.showImagePicker(options, response => {
-        //     if (response.didCancel) {
-        //         console.log('User cancelled image picker');
-        //     } else if (response.error) {
-        //         console.log('ImagePicker Error: ', response.error);
-        //     } else {
-        //         setProfileImage(response.uri);
-        //     }
-        // });
+    const handlePhoto = async () => {
+        const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+        if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+        } else {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+            if (!result.cancelled) {
+                handleEditing();
+                setProfileImage(result.uri);
+            }
+        }
+    }
+    const uploadProfileImage = async (uri) => {
+        // Get the current user's UID
+        const auth = getAuth();
+        const uid = auth.currentUser.uid;
+
+        // Create a reference to the user's profile image in Firebase Storage
+        const profileImageRef = storage().ref(`profileImages/${uid}`);
+
+        // Upload the image to Firebase Storage
+        await profileImageRef.putFile(uri);
+
+        // Get the uploaded image URL
+        const profileImageUrl = await profileImageRef.getDownloadURL();
+
+        return profileImageUrl;
     };
     // Pentru a modifica datele profilului in baza de date
-    const handleUpdateProfile = () => {
+    const handleUpdateProfile = async () => {
+        setIsLoading(true);
         const auth = getAuth();
         const uid = auth.currentUser.uid;
         const userRef = db.collection('users').doc(uid);
+        // const imageResult = await uploadProfileImage(profileImage).then(e => {
+        //     console.log('uploadProfileImage ', e)
+        // });
+
         userRef.update({
             displayName: displayName,
-            description: description
+            description: description,
+            // profileImage: imageResult,
         }).then(() => {
             // setam inapoi editingul la false pentru a nu mai putea modifica datele
             setEditing(false);
@@ -90,6 +86,7 @@ export default function ProfileScreen(props) {
         }).catch((error) => {
             console.error("Error updating document: ", error);
         });
+        setIsLoading(false);
     }
 
     // Functia care cauta datele despre utilizator in baza de date
@@ -102,10 +99,13 @@ export default function ProfileScreen(props) {
         const displayName = userData.data().displayName;
         const points = userData.data().points;
         const description = userData.data().description;
+        const profileImage = userData.data().profileImage;
         setEmail(email);
         setDisplayName(displayName);
         setPoints(points);
         setDescription(description);
+        if (profileImage)
+            setProfileImage(profileImage);
 
     }
     // Il folosim ca sa apelam functia anteriora pentru a obtine datele
@@ -134,7 +134,7 @@ export default function ProfileScreen(props) {
                     /> */}
                     <TouchableOpacity
                         style={styles.editProfileImageButton}
-                        onPress={handleProfileImagePicker}>
+                        onPress={handlePhoto}>
                         <Text style={styles.editProfileImageText}>Edit</Text>
                     </TouchableOpacity>
                 </View>
@@ -204,7 +204,13 @@ export default function ProfileScreen(props) {
                     style={styles.save}
                     disabled={!editing}
                     onPress={handleUpdateProfile}>
-                    <Text style = {{color:'#F16956', fontWeight:'bold'}}>Save Changes</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size="large" color={styles.loader.color} />
+                    ) : (
+                        <Text>Save Changes</Text>
+                    )}
+
+
 
                 </TouchableOpacity>
             </View>
@@ -300,6 +306,9 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
 
+    },
+    loader: {
+        color: '#FFFFFF'
     },
 });
 // const styles = StyleSheet.create({
