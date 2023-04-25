@@ -10,7 +10,6 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import LoginOrSignupScreen from './screens/LoginOrSignupScreen';
-import CreateScreen from './screens/CreateScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
@@ -22,6 +21,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="Settings" component={SettingsScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
