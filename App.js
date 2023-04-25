@@ -47,3 +47,5 @@ export default function App() {
 //     justifyContent: 'center',
 //   },
 // });
+
+// npm install --legacy-peer-deps
