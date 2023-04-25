@@ -10,7 +10,6 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import LoginOrSignupScreen from './screens/LoginOrSignupScreen';
-import SettingsScreen from './screens/SettingsScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 
@@ -22,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomScreen} />
         <Stack.Screen options={{ headerShown: false }} name="LoginOrSignupScreen" component={LoginOrSignupScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} options={{headerTitle: '',   headerShadowVisible: false,headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
@@ -31,7 +30,9 @@ export default function App() {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{ db: db }} options={{headerShadowVisible: false, headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
-      </Stack.Navigator>
+        <Stack.Screen name="CreateQuiz" component={CreateScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+
+</Stack.Navigator>
     </NavigationContainer>
   );
 }

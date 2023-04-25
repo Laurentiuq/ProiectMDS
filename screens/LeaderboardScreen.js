@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import Sidebar from '../components/sidebar.js';
 
 export default function LeaderboardScreen(props) {
     const db = props.route.params.db;
@@ -42,6 +43,7 @@ export default function LeaderboardScreen(props) {
     return (
         <View>
             {/* <Text>LeaderboardScreen</Text> */}
+            <Sidebar />
             <RenderUsers />
         </View>
     )

@@ -35,7 +35,7 @@ export default function HomeScreen(props) {
   const handleLogout = () => {
     const auth = getAuth();
     auth.signOut().then(() => {
-      navigation.replace('Login');
+      navigation.replace('LoginOrSignupScreen');
       console.log('Logged out');
     })
   }
@@ -85,29 +85,29 @@ export default function HomeScreen(props) {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('CreateQuiz')
-                }}
-                style={[styles.button, styles.buttonOutline]}>
-                <Text style={styles.buttonOutlineText}>Create a quiz</Text>
-              </TouchableOpacity>
-
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                  onPress={handleLogout}
-                  style={[styles.button, styles.buttonOutline]}>
-                  <Text style={styles.buttonOutlineText}>Logout</Text>
-                </TouchableOpacity>
-
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </>
-
+      <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        onPress = {() => {
+          navigation.navigate('CreateQuiz')
+        }}
+        style = {[styles.button, styles.buttonOutline]}>
+        <Text style={styles.buttonOutlineText}>Create a quiz</Text>
+        </TouchableOpacity>
+      
+      <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        onPress = {handleLogout}
+        style = {[styles.button, styles.buttonOutline]}>
+        <Text style={styles.buttonOutlineText}>Logout</Text>
+        </TouchableOpacity>
+      
+     </View>
+     </View>
+   </View>
+   </View>
+   </View>
+   </>
+   
   )
 }
 
