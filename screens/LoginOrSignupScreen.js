@@ -56,6 +56,7 @@ export default function LoginOrSignupScreen() {
                     <View style={{ height: 16 }} />
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity
+                            testID="login-button"
                             onPress={goToLogin}
                             style={styles.button}>
                             <Text style={styles.buttonText}>Login</Text>
@@ -137,11 +138,11 @@ const styles = StyleSheet.create({
     logo: {
         width: 92,
         height: 92,
-  
+
     },
     persons: {
         height: 92,
- 
+
     },
 
 

@@ -13,7 +13,6 @@ export default function WelcomScreen() {
     goToLogin()
 
     return (
-        // <View style = {styles.container}>
         <ImageBackground source={require("../assets/mainBackground.png")} resizeMode="cover" style={styles.container}>
             <Image source={require('../assets/AppLogo.png')}
                 style={styles.logo} />
@@ -21,20 +20,8 @@ export default function WelcomScreen() {
                 <Text>We quiz therfore we are</Text>
             </Text>
             <View height={16} />
-            <ActivityIndicator size="large" color={styles.loader.color} />
-            {/* <TouchableOpacity
-                // onPress={goToLogin}
-                style={styles.toLogin}>
-                <Image source={require('../assets/AppLogo.png')}
-                    style={styles.logo} />
-                <Text>
-                    <Text>We quiz therfore we are</Text>
-                </Text>
-                <View height={16} />
-                <ActivityIndicator size="large" color={styles.loader.color} />
-            </TouchableOpacity> */}
+            <ActivityIndicator testID="activity-indicator" size="large" color={styles.loader.color} />
         </ImageBackground>
-        // </View>
     )
 }
 
@@ -66,20 +53,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: '100%',
     },
-    // motto: {
-    //     // position: absolute,
-    //         flex: 1,
-    //         color: '#FFFFFF',
-    //         width: 185,
-    //         height: 24,
-    //         left: 138,
-    //         top: 176,
-    //         fontStyle: 'normal',
-    //         fontWeight: 400,
-    //         fontSize: 16,
-    //         // lineHeight: 150,
-    //         alignItems: 'center',
-    //         textAlign: 'center',
-    // }
 
 })
