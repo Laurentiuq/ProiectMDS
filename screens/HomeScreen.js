@@ -4,12 +4,31 @@ import { getAuth } from 'firebase/auth'
 import { useNavigation } from '@react-navigation/native';
 import Sidebar from '../components/sidebar.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { epilog } from 'yargs';
 
+const handleLogout = () => {
+  const auth = getAuth();
+  auth.signOut().then(() => {
+    navigation.replace('LoginOrSignupScreen');
+  })
+}
 
+const IconButton = ({ onPress }) => (
+  <TouchableOpacity testID = "settings-button" onPress={onPress} style={{ padding: 8 }}>
+    <Icon name="settings" size={24} color="#000" />
+  </TouchableOpacity>
+);
 
+const handleSettingsPress = () => {
+  navigation.push('Settings');
+  console.log('Settings pushed');
+
+};
+
+export { handleLogout, IconButton, handleSettingsPress}
 
 export default function HomeScreen(props) {
-
+  
   const db = props.route.params.db;
   const [displayName, setDisplayName] = React.useState('');
   const navigation = useNavigation();
@@ -32,26 +51,11 @@ export default function HomeScreen(props) {
   }, []);
 
 
-  const handleLogout = () => {
-    const auth = getAuth();
-    auth.signOut().then(() => {
-      navigation.replace('LoginOrSignupScreen');
-      console.log('Logged out');
-    })
-  }
-
-  const IconButton = ({ onPress }) => (
-    <TouchableOpacity onPress={onPress} style={{ padding: 8 }}>
-      <Icon name="settings" size={24} color="#000" />
-    </TouchableOpacity>
-  );
 
 
-  const handleSettingsPress = () => {
-    navigation.push('Settings');
-    console.log('Settings pushed');
 
-  };
+
+
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -86,7 +90,7 @@ export default function HomeScreen(props) {
             </View>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+      <TouchableOpacity testID='create-quiz-button'
         onPress = {() => {
           navigation.navigate('CreateQuiz')
         }}
@@ -95,7 +99,7 @@ export default function HomeScreen(props) {
         </TouchableOpacity>
       
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+      <TouchableOpacity testID='logout-button'
         onPress = {handleLogout}
         style = {[styles.button, styles.buttonOutline]}>
         <Text style={styles.buttonOutlineText}>Logout</Text>

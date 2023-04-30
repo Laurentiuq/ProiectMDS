@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import * as ImagePicker from 'expo-image-picker';
-import storage from '@react-native-firebase/storage';
+// import * as ImagePicker from 'expo-image-picker';
+// import storage from '@react-native-firebase/storage';
 
 import {
     View,

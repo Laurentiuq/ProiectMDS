@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1682814319848" clover="3.2.0">
+  <project timestamp="1682814319848" name="All files">
+    <metrics statements="100" coveredstatements="32" conditionals="8" coveredconditionals="0" methods="27" coveredmethods="10" elements="135" coveredelements="42" complexity="0" loc="100" ncloc="100" packages="2" files="3" classes="3"/>
+    <package name="components">
+      <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <file name="sidebar.js" path="C:\Users\Laurentiu\Desktop\fac\AN2SEM2\MDS\FMIQuiz\components\sidebar.js">
+        <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens">
+      <metrics statements="90" coveredstatements="25" conditionals="8" coveredconditionals="0" methods="23" coveredmethods="9"/>
+      <file name="HomeScreen.js" path="C:\Users\Laurentiu\Desktop\fac\AN2SEM2\MDS\FMIQuiz\screens\HomeScreen.js">
+        <metrics statements="28" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="9"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+      </file>
+      <file name="ProfileScreen.js" path="C:\Users\Laurentiu\Desktop\fac\AN2SEM2\MDS\FMIQuiz\screens\ProfileScreen.js">
+        <metrics statements="62" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="12" coveredmethods="0"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="107" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="118" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="249" count="0" type="stmt"/>
+        <line num="252" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
