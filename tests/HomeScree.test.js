@@ -1,44 +1,16 @@
 import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import HomeScreen from '../screens/HomeScreen';
-import { Text, useAnimatedValue } from 'react-native';
 import { IconButton, handleSettingsPress } from '../screens/HomeScreen';
 import { debug } from 'console';
-import { handleLogout } from '../screens/HomeScreen';
-import { Icon } from 'react-native-vector-icons/MaterialIcons';
 
+jest.mock('expo-image-picker');
+jest.mock('@react-native-firebase/storage');
+jest.mock('react-native-vector-icons/MaterialIcons', () => 'Icon');
+jest.mock('@react-native-firebase/storage', () => 'storage');
 jest.mock('firebase/compat/app');
 jest.mock('firebase/compat/firestore');
-// Mock the Icon component
-jest.mock('react-native-vector-icons/MaterialIcons', () => 'Icon');
-
-jest.mock('@react-navigation/native', () => {
-    return {
-        useNavigation: () => {
-            return {
-                navigate: jest.fn(),
-                setOptions: jest.fn(),
-            };
-        }
-
-    };
-});
-
-jest.mock('firebase/auth', () => {
-    return {
-        getAuth: () => {
-            return {
-                currentUser: {
-                    uid: '12345',
-                },
-                signOut: () =>{
-                    return Promise.resolve();
-                }
-            };
-        },
-        
-    };
-});
+jest.mock('@react-navigation/native');
 
 
 
