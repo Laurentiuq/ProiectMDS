@@ -4,9 +4,8 @@ import { getAuth } from 'firebase/auth'
 import { useNavigation } from '@react-navigation/native';
 import Sidebar from '../components/sidebar.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { epilog } from 'yargs';
 
-const handleLogout = () => {
+const handleLogout = (navigation) => {
   const auth = getAuth();
   auth.signOut().then(() => {
     navigation.replace('LoginOrSignupScreen');
@@ -19,7 +18,7 @@ const IconButton = ({ onPress }) => (
   </TouchableOpacity>
 );
 
-const handleSettingsPress = () => {
+const handleSettingsPress = (navigation) => {
   navigation.push('Settings');
   console.log('Settings pushed');
 
@@ -51,22 +50,14 @@ export default function HomeScreen(props) {
   }, []);
 
 
-
-
-
-
-
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
-
-          <IconButton onPress={handleSettingsPress} />
+        <View testID='header-right' style={{ flex: 1, alignItems: 'flex-end' }}>
+          <IconButton onPress={() => handleSettingsPress(navigation)} />
         </View>,
     });
   }, [navigation]);
-
 
 
   return (
@@ -100,7 +91,7 @@ export default function HomeScreen(props) {
       
       <View style={styles.buttonContainer}>
       <TouchableOpacity testID='logout-button'
-        onPress = {handleLogout}
+        onPress = {() => handleLogout(navigation)}
         style = {[styles.button, styles.buttonOutline]}>
         <Text style={styles.buttonOutlineText}>Logout</Text>
         </TouchableOpacity>
@@ -167,3 +158,6 @@ const styles = StyleSheet.create({
 
 
 })
+
+// test1@info.ro
+// A123456@

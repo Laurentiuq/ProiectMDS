@@ -4,6 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import { IconButton, handleSettingsPress } from '../screens/HomeScreen';
 import { debug } from 'console';
 
+
 jest.mock('expo-image-picker');
 jest.mock('@react-native-firebase/storage');
 jest.mock('react-native-vector-icons/MaterialIcons', () => 'Icon');
@@ -18,7 +19,6 @@ jest.mock('@react-navigation/native');
 describe('HomeScreen', () => {
     it('renders correctly with props', () => {
       const db = {
-       
       };
       const { getByText } = render(
         <HomeScreen
@@ -53,8 +53,7 @@ describe('HomeScreen', () => {
         const logoutButton = getByTestId('logout-button');
         fireEvent.press(logoutButton);
         const consoleLogSpy = jest.spyOn(console, 'log');
-        // handleLogout();
-        // expect(handleLogout).toHaveBeenCalled();
+
     });
 
     test('settings button works', async () => {
@@ -62,16 +61,28 @@ describe('HomeScreen', () => {
         const settingsButton = getByTestId('settings-button');
         fireEvent.press(settingsButton);
         const consoleLogSpy = jest.spyOn(console, 'log');
-        // handleSettingsPress();
-        // expect(handleSettingsPress).toHaveBeenCalled();
+
     });
 
     test('handleSettingsPress works', async () => {
         navigation = { push: jest.fn() };
-        handleSettingsPress();
+        handleSettingsPress(navigation);
         const consoleLogSpy = jest.spyOn(console, 'log');
         expect(consoleLogSpy).toHaveBeenCalledWith('Settings pushed');
 
     });
+
+    // test('render headerRight', async () => {
+    //   const mockNavigation = { push: jest.fn() };
+    //   const mockProps = {
+    //       route: { params: { db: {} } },
+    //       navigation: mockNavigation,
+    //   };
+
+    //   const { getByTestId, rerender } = render(<HomeScreen  {...mockProps} navigation={mockNavigation} />);
+    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
+    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
+    //   await waitFor(() => expect(getByTestId('header-right')).toBeTruthy(), { timeout: 10000 });
+    // });
 
   });

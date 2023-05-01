@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/sidebar.js</title>
+    <title>Code coverage report for components/TileItem.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> sidebar.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> TileItem.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
@@ -107,43 +107,11 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,6 +125,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,38 +152,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ProfileScreen from '../screens/ProfileScreen.js';
-import HomeScreen from '../screens/HomeScreen';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 &nbsp;
-const Navbar = () =&gt; {
-  const navigation = useNavigation();
-  goToProfile = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    navigation.navigate('Profile')</span>
-    }
-  goToLeaderboard = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    navigation.navigate('Leaderboard')</span>
-    }
-  goToHome = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    navigation.navigate('Home')</span>
-    }
-  return (
+const TileItem = <span class="fstat-no" title="function not covered" >({</span> mainText, subtitle, iconImage, onIconPress }) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;TouchableOpacity onPress={onIconPress}&gt;
     &lt;View style={styles.container}&gt;
-      &lt;TouchableOpacity style={styles.button}
-        onPress={goToHome}&gt;
-        &lt;Text style={styles.buttonText}&gt;Home&lt;/Text&gt;
-      &lt;/TouchableOpacity&gt;
-      &lt;TouchableOpacity style={styles.button}
-        onPress={goToProfile}&gt;
-        &lt;Text style={styles.buttonText}&gt;Profile&lt;/Text&gt;
-      &lt;/TouchableOpacity&gt;
-      &lt;TouchableOpacity style={styles.button}
-        onPress={goToLeaderboard}&gt;
-        &lt;Text style={styles.buttonText}&gt;Leaderboard&lt;/Text&gt;
-      &lt;/TouchableOpacity&gt;
+      &lt;View&gt;
+        &lt;Text style={styles.mainText}&gt;{mainText}&lt;/Text&gt;
+        &lt;Text style={styles.subtitle}&gt;{subtitle}&lt;/Text&gt;
+      &lt;/View&gt;
+        &lt;Image source={iconImage} style={styles.icon} /&gt;
     &lt;/View&gt;
-  );
+    &lt;/TouchableOpacity&gt;
+ );
 };
 &nbsp;
 const styles = StyleSheet.create({
@@ -219,25 +173,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 60,
-    backgroundColor: 'rgb(225, 105, 86)',
-    paddingHorizontal: 20,
-    borderBottomColor: 'rgb(249, 224, 221)',
+    backgroundColor: '#F9E0DD',
+    borderRadius: 20,
+    padding: 16,
+    margin: 16,
+    paddingStart:40
   },
-  button: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 5,
-    backgroundColor: 'rgb(249, 224, 221)',
-  },
-  buttonText: {
+  mainText: {
+    fontSize: 18,
     fontWeight: 'bold',
-    color: 'rgb(241, 105, 86)',
+    color:'#F16956'
+  },
+  subtitle: {
+    fontSize: 14,
+    color:'#F16951'
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });
 &nbsp;
-&nbsp;
-export default Navbar;</pre></td></tr></table></pre>
+export default TileItem;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

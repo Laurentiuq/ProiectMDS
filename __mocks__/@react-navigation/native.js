@@ -5,7 +5,8 @@ const navigation = jest.mock('@react-navigation/native', () => {
                 navigate: jest.fn(),
                 setOptions: jest.fn(),
             };
-        }
+        },
+        push: () => jest.fn(),
 
     };
 });
@@ -17,5 +18,6 @@ const useNavigation = () => {
     };
 }
 
-export { useNavigation };
+const push = () => jest.fn();
+export { useNavigation, push };
 export default navigation;
