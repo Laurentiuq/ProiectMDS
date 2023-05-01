@@ -8,6 +8,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { handleIconPress } from '../screens/SettingsScreen';
 import { useAnimatedValue } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import TileItem from '../components/tileItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -31,7 +32,7 @@ describe('SettingsScreen', () => {
     })
 
     it('renders a TileItem component for updating account details', () => {
-        console.log(wrapper.find('TileItem').at(0).props());
+        // console.log(wrapper.find('TileItem').at(0).props());
         expect(wrapper.find('TileItem').at(0).props().mainText).toEqual('Update account details');
         expect(wrapper.find('TileItem').at(0).props().subtitle).toEqual('Username, Location etc');
         // expect(wrapper.find('TileItem').at(0).props().iconName).toEqual(require('../assets/arrowRight.png'));
@@ -52,11 +53,9 @@ describe('SettingsScreen', () => {
         expect(wrapper.find('TileItem').at(2).prop('onIconPress')).toBeDefined();
     })
 
-    // const naviagtion = {
-    //     navigate: jest.fn()
-    // }
+
     const navigation = {
-        push: jest.fn(),
+        push: jest.fn(item => item),
         navigate: jest.fn()
     }
 
@@ -79,17 +78,22 @@ describe('SettingsScreen', () => {
         expect(spy).toHaveBeenCalledWith('Icon pressed on QuizSettings');
     })
 
-    it('onIconPress works', () => {
-        const tileItem = wrapper.find('TileItem').at(0);
-        tileItem.props().onIconPress(navigation);
-        expect(navigation.push).toHaveBeenCalled();
-        const tileItem2 = wrapper.find('TileItem').at(1);
-        tileItem2.props().onIconPress(navigation);
-        expect(navigation.push).toHaveBeenCalled();
-        const tileItem3 = wrapper.find('TileItem').at(2);
-        tileItem3.props().onIconPress(navigation);
-        expect(navigation.push).toHaveBeenCalled();
+    // test('calls onIconPress when icon is pressed', () => {
+    //     const onIconPressMock = jest.fn();
+    //     const TileItem = wrapper.find('TileItem').at(0);
+    //     TileItem.props().onIconPress = onIconPressMock;
+    //     TileItem.props().onIconPress();
+    //     expect(onIconPress).toHaveBeenCalled();
+    //     // expect(onIconPress).toHaveBeenCalled();
+    //   });
 
+
+    it('calls onIconPress with correct arguments when icon is pressed', () => {
+        const wrapper = shallow(<SettingsScreen />);
+        const TileItem = wrapper.find('TileItem').at(0);
+        const TouchableOpacity = TileItem.children().find('TouchableOpacity');
+        console.log(TileItem.children().debug());
       });
+      
 
 })

@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Switch, Image } from 'react-native'
+import { View, Text, TextInput, Button, Switch, Image, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
@@ -59,8 +59,14 @@ export default function Question(props) {
     }
 
     return (
-    <View>
+    <KeyboardAvoidingView>
         <Text>Question</Text>
+        <TextInput
+            value={question}
+            onChangeText={setQuestion}
+            placeholder="Question"
+        />
+
         <Text>Options</Text>
         {options.map((option, index) => (
             <TextInput
@@ -102,6 +108,6 @@ export default function Question(props) {
         <Button title="Add Photo" onPress={handleAddPhoto} />}
         <Button title="Submit" onPress={handleSubmit} />
 
-    </View>
+    </KeyboardAvoidingView>
     )
 }

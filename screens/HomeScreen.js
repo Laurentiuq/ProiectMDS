@@ -46,7 +46,7 @@ export default function HomeScreen(props) {
   // Il folosim ca sa apelam functia anteriora pentru a obtine datele
   React.useEffect(() => {
     fetchData();
-    console.log("useEffect");
+    console.log("useEffectthis?");
   }, []);
 
 

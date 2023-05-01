@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const TileItem = ({ mainText, subtitle, iconImage, onIconPress }) => {
+const TileItem = ({mainText, subtitle, iconImage, onIconPress}) => {
   return (
-    <TouchableOpacity onPress={onIconPress}>
+    <TouchableOpacity onPress={onIconPress} testID="ceva">
     <View style={styles.container}>
       <View>
         <Text style={styles.mainText}>{mainText}</Text>

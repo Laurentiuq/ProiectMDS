@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } from 'react-native';
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import TileItem from '../components/TileItem.js';
+import TileItem from '../components/tileItem.js';
 
 
 
@@ -32,27 +32,21 @@ export default function SettingsScreen() {
           mainText="Update account details"
           subtitle="Username, Location etc"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={(navigation) => handleIconPress('Profile', navigation)}
+          onIconPress={() => handleIconPress('Profile', navigation)}
         />
         <TileItem
           mainText="Change login details"
           subtitle="Email, password"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={(navigation) => handleIconPress('UpdateLogin', navigation)}
+          onIconPress={() => handleIconPress('UpdateLogin', navigation)}
         />
         <Text style={styles.title}>Others</Text>
-        <TileItem
+        <TileItem 
           mainText="Change quiz details"
           subtitle="Easy, medium, hard"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={(navigation) => handleIconPress('QuizSettings', navigation)}
+          onIconPress={() => handleIconPress('QuizSettings', navigation)}
         />
-        {/* <TileItem
-          mainText="FAQ"
-          subtitle="Frequently asked questions"
-          iconImage={require('../assets/arrowRight.png')}
-          onIconPress={() => handleIconPress('FAQ', naviagtion)}
-        /> */}
       </View>
     </ScrollView>
   );
