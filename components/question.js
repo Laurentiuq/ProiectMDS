@@ -13,7 +13,7 @@ export default function Question(props) {
 
 
     // after the add question form is completed and submitted, the isAddQuestion variable is set to false so that the form is not rendered
-    const [isAddQuestion, setIsAddQuestion] = useState(props.isAddQuestion);
+    const [isAddQuestion, setIsAddQuestion] = React.useState(props.isAddQuestion);
     const onLocalIsAddQuestion = (newValue) => {
         setIsAddQuestion(newValue);
         props.onUpdate(newValue);
@@ -53,8 +53,12 @@ export default function Question(props) {
             photo
         }
         // set the isAddQuestion variable to false so that the form is not rendered
-        onLocalIsAddQuestion(false);
+        // onLocalIsAddQuestion(false);
+        // add qurstion to the questions array
+        props.setQuestions([...props.questions, newQuestion]);
+
         //TODO: add question to the database
+        console.log(props.questions)
         console.log(newQuestion);
     }
 
