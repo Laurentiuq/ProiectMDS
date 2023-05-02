@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Switch, Image } from 'react-native'
+import { View, Text, TextInput, Button, Switch, Image, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
@@ -13,7 +13,7 @@ export default function Question(props) {
 
 
     // after the add question form is completed and submitted, the isAddQuestion variable is set to false so that the form is not rendered
-    const [isAddQuestion, setIsAddQuestion] = useState(props.isAddQuestion);
+    const [isAddQuestion, setIsAddQuestion] = React.useState(props.isAddQuestion);
     const onLocalIsAddQuestion = (newValue) => {
         setIsAddQuestion(newValue);
         props.onUpdate(newValue);
@@ -53,14 +53,24 @@ export default function Question(props) {
             photo
         }
         // set the isAddQuestion variable to false so that the form is not rendered
-        onLocalIsAddQuestion(false);
+        // onLocalIsAddQuestion(false);
+        // add qurstion to the questions array
+        props.setQuestions([...props.questions, newQuestion]);
+
         //TODO: add question to the database
+        console.log(props.questions)
         console.log(newQuestion);
     }
 
     return (
-    <View>
+    <KeyboardAvoidingView>
         <Text>Question</Text>
+        <TextInput
+            value={question}
+            onChangeText={setQuestion}
+            placeholder="Question"
+        />
+
         <Text>Options</Text>
         {options.map((option, index) => (
             <TextInput
@@ -102,6 +112,6 @@ export default function Question(props) {
         <Button title="Add Photo" onPress={handleAddPhoto} />}
         <Button title="Submit" onPress={handleSubmit} />
 
-    </View>
+    </KeyboardAvoidingView>
     )
 }

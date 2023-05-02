@@ -2,32 +2,26 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } from 'react-native';
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
+import TileItem from '../components/tileItem.js';
 
-import TileItem from '../components/TileItem.js';
+
+
+const handleIconPress = (item, navigation) => {
+  navigation.push(item)
+  console.log(`Icon pressed on ${item}`);
+};
+export { handleIconPress}
+
 
 export default function SettingsScreen() {
   const [darkMode, setDarkMode] = useState(false);
   const navigation = useNavigation();
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // const toggleDarkMode = () => {
+  //   setDarkMode(!darkMode);
+  // };
 
 
-
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () =>
-  //       <View style={{ flex: 1, alignItems: 'flex-end' }}>
-  //         <Text style={styles.title}>Account Settings</Text>
-  //       </View>,
-  //   });
-  // }, [navigation]);
-
-  const handleIconPress = (item) => {
-    navigation.push(item)
-    console.log(`Icon pressed on ${item}`);
-  };
   return (
     <ScrollView style={styles.container}>
 
@@ -38,75 +32,22 @@ export default function SettingsScreen() {
           mainText="Update account details"
           subtitle="Username, Location etc"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={() => handleIconPress('Profile')}
+          onIconPress={() => handleIconPress('Profile', navigation)}
         />
         <TileItem
           mainText="Change login details"
           subtitle="Email, password"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={() => handleIconPress('UpdateLogin')}
+          onIconPress={() => handleIconPress('UpdateLogin', navigation)}
         />
         <Text style={styles.title}>Others</Text>
-        <TileItem
+        <TileItem 
           mainText="Change quiz details"
           subtitle="Easy, medium, hard"
           iconImage={require('../assets/arrowRight.png')}
-          onIconPress={() => handleIconPress('QuizSettings')}
-        />
-        <TileItem
-          mainText="FAQ"
-          subtitle="Frequently asked questions"
-          iconImage={require('../assets/arrowRight.png')}
-          onIconPress={() => handleIconPress('FAQ')}
+          onIconPress={() => handleIconPress('QuizSettings', navigation)}
         />
       </View>
-
-      {/* <View style={styles.header}>
-        <Text style={styles.title}>Settings</Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Account</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>Edit Profile</Text>
-          <Image source={{ uri: 'your_right_arrow_icon_uri' }} style={styles.arrowIcon} />
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>Change Password</Text>
-          <Image source={{ uri: 'your_right_arrow_icon_uri' }} style={styles.arrowIcon} />
-        </View>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>App Settings</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>Dark Mode</Text>
-          <Switch
-            trackColor={{ false: '#E5E5E5', true: '#F16956' }}
-            thumbColor={darkMode ? '#FFFFFF' : '#F2F2F2'}
-            onValueChange={toggleDarkMode}
-            value={darkMode}
-          />
-        </View>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Support</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>FAQs</Text>
-          <Image source={{ uri: 'your_right_arrow_icon_uri' }} style={styles.arrowIcon} />
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionText}>Contact Us</Text>
-          <Image source={{ uri: 'your_right_arrow_icon_uri' }} style={styles.arrowIcon} />
-        </View>
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
-      </View> */}
     </ScrollView>
   );
 }

@@ -4,29 +4,38 @@ import ProfileScreen from '../screens/ProfileScreen.js';
 import HomeScreen from '../screens/HomeScreen';
 import { useNavigation } from '@react-navigation/native';
 
+
+// import Enzyme from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+// Enzyme.configure({ adapter: new Adapter() });
+
+const goToProfile = (navigation) => {
+  navigation.navigate('Profile')
+  }
+const goToLeaderboard = (navigation) => {
+  navigation.navigate('Leaderboard')
+  }
+const goToHome = (navigation) => {
+  navigation.navigate('Home')
+  }
+
+export {goToProfile, goToLeaderboard, goToHome}
+
 const Navbar = () => {
+
   const navigation = useNavigation();
-  goToProfile = () => {
-    navigation.navigate('Profile')
-    }
-  goToLeaderboard = () => {
-    navigation.navigate('Leaderboard')
-    }
-  goToHome = () => {
-    navigation.navigate('Home')
-    }
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}
-        onPress={goToHome}>
+        onPress={() => goToHome(navigation)}>
         <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}
-        onPress={goToProfile}>
+        onPress={() => goToProfile(navigation)}>
         <Text style={styles.buttonText}>Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}
-        onPress={goToLeaderboard}>
+        onPress={()=>goToLeaderboard(navigation)}>
         <Text style={styles.buttonText}>Leaderboard</Text>
       </TouchableOpacity>
     </View>

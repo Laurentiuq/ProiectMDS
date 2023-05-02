@@ -3,3 +3,4 @@ npx expo install react-native-screens react-native-safe-area-context
 npm install firebase
 npm install react-native-image-picker --save
 npx expo install expo-image-picker
+yarn add @react-native-firebase/app

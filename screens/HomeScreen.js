@@ -5,11 +5,29 @@ import { useNavigation } from '@react-navigation/native';
 import Sidebar from '../components/sidebar.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+const handleLogout = (navigation) => {
+  const auth = getAuth();
+  auth.signOut().then(() => {
+    navigation.replace('LoginOrSignupScreen');
+  })
+}
 
+const IconButton = ({ onPress }) => (
+  <TouchableOpacity testID = "settings-button" onPress={onPress} style={{ padding: 8 }}>
+    <Icon name="settings" size={24} color="#000" />
+  </TouchableOpacity>
+);
 
+const handleSettingsPress = (navigation) => {
+  navigation.push('Settings');
+  console.log('Settings pushed');
+
+};
+
+export { handleLogout, IconButton, handleSettingsPress}
 
 export default function HomeScreen(props) {
-
+  
   const db = props.route.params.db;
   const [displayName, setDisplayName] = React.useState('');
   const navigation = useNavigation();
@@ -28,41 +46,18 @@ export default function HomeScreen(props) {
   // Il folosim ca sa apelam functia anteriora pentru a obtine datele
   React.useEffect(() => {
     fetchData();
-    console.log("useEffect");
+    console.log("useEffectthis?");
   }, []);
 
-
-  const handleLogout = () => {
-    const auth = getAuth();
-    auth.signOut().then(() => {
-      navigation.replace('LoginOrSignupScreen');
-      console.log('Logged out');
-    })
-  }
-
-  const IconButton = ({ onPress }) => (
-    <TouchableOpacity onPress={onPress} style={{ padding: 8 }}>
-      <Icon name="settings" size={24} color="#000" />
-    </TouchableOpacity>
-  );
-
-
-  const handleSettingsPress = () => {
-    navigation.push('Settings');
-    console.log('Settings pushed');
-
-  };
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
-
-          <IconButton onPress={handleSettingsPress} />
+        <View testID='header-right' style={{ flex: 1, alignItems: 'flex-end' }}>
+          <IconButton onPress={() => handleSettingsPress(navigation)} />
         </View>,
     });
   }, [navigation]);
-
 
 
   return (
@@ -86,7 +81,7 @@ export default function HomeScreen(props) {
             </View>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+      <TouchableOpacity testID='create-quiz-button'
         onPress = {() => {
           navigation.navigate('CreateQuiz')
         }}
@@ -95,8 +90,8 @@ export default function HomeScreen(props) {
         </TouchableOpacity>
       
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
-        onPress = {handleLogout}
+      <TouchableOpacity testID='logout-button'
+        onPress = {() => handleLogout(navigation)}
         style = {[styles.button, styles.buttonOutline]}>
         <Text style={styles.buttonOutlineText}>Logout</Text>
         </TouchableOpacity>
@@ -163,3 +158,6 @@ const styles = StyleSheet.create({
 
 
 })
+
+// test1@info.ro
+// A123456@
