@@ -1,7 +1,7 @@
-import { View, Text, TextInput, Button, Switch, Image, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, Text, TextInput, Button, Switch, Image, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
-
+import styles from '../styles/questionStyles';
 export default function Question(props) {
     const [question, setQuestion] = React.useState('');
     const [options, setOptions] = React.useState(['', '', '', '']);
@@ -57,23 +57,22 @@ export default function Question(props) {
         // add qurstion to the questions array
         props.setQuestions([...props.questions, newQuestion]);
 
-        //TODO: add question to the database
         console.log(props.questions)
         console.log(newQuestion);
     }
 
     return (
-    <KeyboardAvoidingView>
-        <Text>Question</Text>
-        <TextInput
+    <KeyboardAvoidingView style={styles.container}>
+        <Text style={styles.labelText}>Question</Text>
+        <TextInput style={styles.inputText}
             value={question}
             onChangeText={setQuestion}
             placeholder="Question"
         />
 
-        <Text>Options</Text>
+        <Text style = {styles.labelText}>Options</Text>
         {options.map((option, index) => (
-            <TextInput
+            <TextInput style={styles.answerContainer}
                 key={index}
                 value={option}
                 onChangeText={(value) => handleOptionChange(index, value)}
@@ -81,20 +80,20 @@ export default function Question(props) {
                 placeholder={`Option ${index + 1}`}
             />
         ))}
-        <Text>Correct Answer</Text>
-        <TextInput
+        <Text style={styles.labelText}>Correct Answer</Text>
+        <TextInput style={styles.inputTextNoBorder}
             value={correctAnswer}
             onChangeText={setCorrectAnswer}
             placeholder="Correct Answer"
         />
-        <Text>Timer Enabled</Text>
+        <Text style={styles.labelText}>Timer Enabled</Text>
         <Switch
             value={timerEnabled}
             onValueChange={setTimerEnabled}
         />
         {timerEnabled && (
             <>
-                <Text>Timer</Text>
+                <Text style={styles.labelText}>Timer</Text>
                 <TextInput
                     value={timer}
                     onChangeText={setTimer}
@@ -102,15 +101,21 @@ export default function Question(props) {
                 />
             </>
         )}
-        <Text>Points</Text>
+        <Text style={styles.labelText}>Points</Text>
         <TextInput
             value={points}
             onChangeText={setPoints}
             placeholder="Points"
         />
-        {photo ? <Image source={{ uri: photo }} style={{ width: 200, height: 200 }} /> :
-        <Button title="Add Photo" onPress={handleAddPhoto} />}
-        <Button title="Submit" onPress={handleSubmit} />
+        {photo ? <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginBottom: 10 }} /> :
+            // <Button title="Add Photo" onPress={() => handleAddPhoto()} />
+            <TouchableOpacity style={styles.button} title="Submit" onPress={handleAddPhoto}>
+                <Text>Add Photo</Text>
+            </TouchableOpacity>
+        }
+        <TouchableOpacity style={styles.button} title="Submit" onPress={() => handleSubmit()}>
+            <Text>Add the question</Text>
+        </TouchableOpacity>
 
     </KeyboardAvoidingView>
     )
