@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Switch } from 'react-native';
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import TileItem from '../components/tileItem.js';
+import TileItem from '../components/TileItem.js';
 
 
 

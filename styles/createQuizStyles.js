@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native-web";
 
 const styles = StyleSheet.create({
     containerMain:{
-        // flex: 1,
         backgroundColor: '#F16956',
         width: '100%',
         height: '100%',
@@ -24,8 +23,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#E39696',
-        alignItems: 'center',
-        // justifyContent: 'center',
+        alignItems: 'center'
     },
     title: {
         fontSize: 30,
@@ -35,22 +33,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0)',
         opacity: 0.5,
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
-        color: 'black',
+        borderWidth: 2,
+        borderColor: 'white',
+        color: 'white',
         padding: 10,
         marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    input: {
+    description: {
         // flex: 1,
         backgroundColor: 'rgba(0,0,0,0)',
+        fontWeight: 'bold',
         opacity: 0.5,
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
-        color: 'black',
+        borderWidth: 2,
+        borderColor: 'white',
+        color: 'white',
         padding: 10,
         marginBottom: 10,
         alignItems: 'center',
@@ -63,10 +62,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(249,224,221)',
         // opacity: 0.5,
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
-        color: 'black',
-        // padding: 10,
+        borderWidth: 2,
+        borderColor: '#F16956',
+        color: '#F16956',
+
         marginTop: 10,
         // marginBottom: 10,
         alignItems: 'center',
@@ -77,10 +76,10 @@ const styles = StyleSheet.create({
         flex: 1,
         minWidth: '100%',
         backgroundColor: 'rgba(0,0,0,0)',
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
-        color: 'black',
+        borderRadius: 25,
+        borderWidth: 1.5,
+        borderColor: 'white',
+        color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
@@ -96,9 +95,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(249,224,221)',
         opacity: 0.5,
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'black',
-        color: 'black',
+        borderWidth: 2,
+        borderColor: '#F16956',
+        color: 'red',
         padding: 10,
         marginBottom: 10,
         marginTop: 10,
@@ -106,6 +105,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         overflow: 'scroll',
     },
+
+    answers: {
+        fontWeight: 'bold',
+        color:'white',
+    }
 
 });
 
