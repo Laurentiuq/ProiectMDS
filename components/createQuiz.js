@@ -91,10 +91,10 @@ export default function CreateQuiz() {
                     <TextInput multiline={true} style={styles.description} value={quizDescription} onChangeText={setQuizDescription} placeholder="Quiz Description" />
                     {quizPhoto ? <Image source={{ uri: quizPhoto }} style={{ width: 200, height: 200 }} /> : 
                     <TouchableOpacity style={styles.button} title="Add Photo" onPress={() => handleAddPhoto(setQuizPhoto)} >
-                        <Text>Add Photo</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Photo</Text>
                     </TouchableOpacity>}
                     <TouchableOpacity style={styles.button} title='Add Question' onPress={() => handleAddQuestion(setIsAddQuestion, isAddQuestion)} >
-                        <Text>Add Question</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Question</Text>
                     </TouchableOpacity>
                     {isAddQuestion ? <Question questions={questions} setQuestions={setQuestions} isAddQuestion = {isAddQuestion} setIsAddQuestion={setIsAddQuestion} onUpdate={() => updateIsAddQuestion(setIsAddQuestion)} /> : null}
                     
@@ -116,7 +116,7 @@ export default function CreateQuiz() {
                                     newQuestions.splice(index, 1);
                                     setQuestions(newQuestions);
                                 }}>
-                                    <Text style = {{color:'#F16956'}}>Delete Question</Text>
+                                    <Text style = {{color:'#F16956', fontWeight:'bold'}}>Delete Question</Text>
                                 </TouchableOpacity>
                             </ScrollView>
                         )
@@ -124,7 +124,7 @@ export default function CreateQuiz() {
                     )}
                 
                     <TouchableOpacity style={styles.button} title="Add Quiz" onPress={() => handleAddQuizz(quizName, quizDescription, quizPhoto, questions, allSet, allStates)} >
-                        <Text>Add Quiz</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Quiz</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView> 
