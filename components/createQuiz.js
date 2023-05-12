@@ -88,13 +88,13 @@ export default function CreateQuiz() {
                 {/* <Text>CreateScreen</Text> */}
                     <TextInput style={styles.title} value={quizName} onChangeText={setQuizName} placeholder="Quiz Name" />
 
-                    <TextInput multiline={true} style={styles.input} value={quizDescription} onChangeText={setQuizDescription} placeholder="Quiz Description" />
+                    <TextInput multiline={true} style={styles.description} value={quizDescription} onChangeText={setQuizDescription} placeholder="Quiz Description" />
                     {quizPhoto ? <Image source={{ uri: quizPhoto }} style={{ width: 200, height: 200 }} /> : 
                     <TouchableOpacity style={styles.button} title="Add Photo" onPress={() => handleAddPhoto(setQuizPhoto)} >
-                        <Text>Add Photo</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Photo</Text>
                     </TouchableOpacity>}
                     <TouchableOpacity style={styles.button} title='Add Question' onPress={() => handleAddQuestion(setIsAddQuestion, isAddQuestion)} >
-                        <Text>Add Question</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Question</Text>
                     </TouchableOpacity>
                     {isAddQuestion ? <Question questions={questions} setQuestions={setQuestions} isAddQuestion = {isAddQuestion} setIsAddQuestion={setIsAddQuestion} onUpdate={() => updateIsAddQuestion(setIsAddQuestion)} /> : null}
                     
@@ -102,21 +102,21 @@ export default function CreateQuiz() {
                         return (
                             <ScrollView contentContainerStyle={styles.questionsScroll} key={index}>
                                 <Text style={styles.questionText}>Question: {question.question}</Text>
-                                <Text>Option 1: {question.options[0]}</Text>
-                                <Text>Option 2: {question.options[1]}</Text>
-                                <Text>Option 3: {question.options[2]}</Text>
-                                <Text>Option 4: {question.options[3]}</Text>
-                                <Text>Answer: {question.correctAnswer}</Text>
-                                <Text>Timer: {question.timerEnabled}</Text>
-                                <Text>S: {question.timer}</Text>
-                                <Text>Points: {question.points}</Text>
+                                <Text style = {styles.answers}>Option 1: {question.options[0]}</Text>
+                                <Text style = {styles.answers}>Option 2: {question.options[1]}</Text>
+                                <Text style = {styles.answers}>Option 3: {question.options[2]}</Text>
+                                <Text style = {styles.answers}>Option 4: {question.options[3]}</Text>
+                                <Text style = {styles.answers}>Answer: {question.correctAnswer}</Text>
+                                <Text style = {styles.answers}>Timer: {question.timerEnabled}</Text>
+                                <Text style = {styles.answers}>S: {question.timer}</Text>
+                                <Text style = {styles.answers}>Points: {question.points}</Text>
                                 {question.photo ? <Image source={{ uri: question.photo }} style={{ width: 200, height: 200 }} /> : null}
                                 <TouchableOpacity style={styles.button} title="Delete Question" onPress={() => {
                                     const newQuestions = [...questions];
                                     newQuestions.splice(index, 1);
                                     setQuestions(newQuestions);
                                 }}>
-                                    <Text>Delete Question</Text>
+                                    <Text style = {{color:'#F16956', fontWeight:'bold'}}>Delete Question</Text>
                                 </TouchableOpacity>
                             </ScrollView>
                         )
@@ -124,7 +124,7 @@ export default function CreateQuiz() {
                     )}
                 
                     <TouchableOpacity style={styles.button} title="Add Quiz" onPress={() => handleAddQuizz(quizName, quizDescription, quizPhoto, questions, allSet, allStates)} >
-                        <Text>Add Quiz</Text>
+                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Quiz</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView> 

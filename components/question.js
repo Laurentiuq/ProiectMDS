@@ -110,11 +110,11 @@ export default function Question(props) {
         {photo ? <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginBottom: 10 }} /> :
             // <Button title="Add Photo" onPress={() => handleAddPhoto()} />
             <TouchableOpacity style={styles.button} title="Submit" onPress={handleAddPhoto}>
-                <Text>Add Photo</Text>
+                <Text style = {{color:'white', fontWeight:'bold'}}>Add Photo</Text>
             </TouchableOpacity>
         }
         <TouchableOpacity style={styles.button} title="Submit" onPress={() => handleSubmit()}>
-            <Text>Add the question</Text>
+            <Text style = {{color:'white', fontWeight:'bold'}}>Add the question</Text>
         </TouchableOpacity>
 
     </KeyboardAvoidingView>
