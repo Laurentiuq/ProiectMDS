@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import styles from '../styles/questionStyles';
 export default function Question(props) {
     const [question, setQuestion] = React.useState('');
-    const [options, setOptions] = React.useState(['', '', '', '']);
+    const [options, setOptions] = React.useState(['']);
     const [correctAnswer, setCorrectAnswer] = React.useState('');
     const [timerEnabled, setTimerEnabled] = React.useState(false);
     const [timer, setTimer] = React.useState(0);
@@ -23,6 +23,12 @@ export default function Question(props) {
         const newOptions = [...options];
         newOptions[index] = value;
         setOptions(newOptions);
+
+
+        if(index === options.length - 1 && value !== ''){
+            setOptions([...options, '']);
+        }
+
     }
 
     const handleAddPhoto = async () => {
@@ -43,6 +49,13 @@ export default function Question(props) {
     }
 
     const handleSubmit = () => {
+        // remove the last element of the options array if it is empty
+        for(let i = 0; i < options.length; i++){
+            if(options[i] === ''){
+                options.splice(i, 1);
+            }
+        }
+
         const newQuestion = {
             question,
             options,

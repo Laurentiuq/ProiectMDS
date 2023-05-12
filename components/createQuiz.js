@@ -102,13 +102,21 @@ export default function CreateQuiz() {
                         return (
                             <ScrollView contentContainerStyle={styles.questionsScroll} key={index}>
                                 <Text style={styles.questionText}>Question: {question.question}</Text>
-                                <Text style = {styles.answers}>Option 1: {question.options[0]}</Text>
+                                {
+                                    question.options.map((option, index) => {
+                                        return (
+                                            <Text style={styles.answers} key={index}>Option {index + 1}: {option}</Text>
+                                        )
+                                    }
+                                    )
+                                }
+                                {/* <Text style = {styles.answers}>Option 1: {question.options[0]}</Text>
                                 <Text style = {styles.answers}>Option 2: {question.options[1]}</Text>
                                 <Text style = {styles.answers}>Option 3: {question.options[2]}</Text>
-                                <Text style = {styles.answers}>Option 4: {question.options[3]}</Text>
+                                <Text style = {styles.answers}>Option 4: {question.options[3]}</Text> */}
                                 <Text style = {styles.answers}>Answer: {question.correctAnswer}</Text>
                                 <Text style = {styles.answers}>Timer: {question.timerEnabled}</Text>
-                                <Text style = {styles.answers}>S: {question.timer}</Text>
+                                <Text style = {styles.answers}>Sec: {question.timer}</Text>
                                 <Text style = {styles.answers}>Points: {question.points}</Text>
                                 {question.photo ? <Image source={{ uri: question.photo }} style={{ width: 200, height: 200 }} /> : null}
                                 <TouchableOpacity style={styles.button} title="Delete Question" onPress={() => {
