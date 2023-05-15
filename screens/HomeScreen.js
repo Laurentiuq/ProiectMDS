@@ -74,7 +74,9 @@ export default function HomeScreen(props) {
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                onPress={() => { }}
+                onPress={() => {
+                  navigation.navigate('JoinQuiz')
+                }}
                 style={[styles.button, styles.buttonOutline]}>
                 <Text style={styles.buttonOutlineText}>Join a quiz</Text>
               </TouchableOpacity>
