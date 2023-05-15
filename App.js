@@ -12,8 +12,10 @@ import LeaderboardScreen from './screens/LeaderboardScreen';
 import LoginOrSignupScreen from './screens/LoginOrSignupScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import CreateScreen from './screens/CreateScreen';
+import JoinQuizScreen from './screens/JoinQuizScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
+import TakeQuizScreen from './screens/TakeQuizScreen';
 
 const Stack = createNativeStackNavigator();
 const db = firebase.firestore();
@@ -33,7 +35,8 @@ export default function App() {
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={{ db: db }} options={{ headerShadowVisible: false, headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="Leaderboard" component={LeaderboardScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="CreateQuiz" component={CreateScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
-
+        <Stack.Screen name="JoinQuiz" component={JoinQuizScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen name="TakeQuiz" component={TakeQuizScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
