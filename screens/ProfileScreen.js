@@ -150,6 +150,7 @@ export default function ProfileScreen(props) {
                     <TextInput
                         style={styles.input}
                         value={displayName}
+                        testID='display-name-id'
                         onChangeText={text => setDisplayName(text)}
                         // placeholder={displayName}
                         editable={editing}
@@ -167,6 +168,7 @@ export default function ProfileScreen(props) {
                     <TextInput
                         style={styles.input}
                         value={description}
+                        testID='description-id'
                         onChangeText={text => setDescription(text)}
                         // placeholder={description}
                         editable={editing}
@@ -312,17 +314,3 @@ const styles = StyleSheet.create({
         color: '#FFFFFF'
     },
 });
-// const styles = StyleSheet.create({
-//     input: {
-//         // flex: 1,
-//         height: 40,
-//         borderColor: 'gray',
-//         borderWidth: 1,
-//         width: 200,
-//         margin: 10,
-//         backgroundColor: 'red',
-//     },
-//     editButton: {
-//         backgroundColor: 'blue',
-//     }
-// })

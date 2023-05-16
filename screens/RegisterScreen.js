@@ -27,10 +27,10 @@ export default function RegisterScreen() {
             return;
         }
 
-        if (!confirmPassword || confirmPassword !== password) {
-            setIsValid(false);
-            return;
-        }
+        // if (!confirmPassword || confirmPassword !== password) {
+        //     setIsValid(false);
+        //     return;
+        // }
 
 
 
@@ -43,11 +43,11 @@ export default function RegisterScreen() {
 
     // This is used in onpress event of signup button
     const handleSignUp = () => {
-        const auth = getAuth();
         if (password !== confirmPassword) {
             alert("Passwords don't match.")
             return;
         }
+        const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -64,9 +64,9 @@ export default function RegisterScreen() {
                 // photoURL: 'https://firebasestorage.googleapis.com/v0/b/fmi-quiz.appspot.com/o/avatars%2Fdefault.png?alt=media&token=2b2b0b0f-0b5a-4b0f-9b0f-2b2b0b0f0b5a',
                 description: "Hi there!"
             }).then(() => {
-                console.log('Profile created successfully');
+                // console.log('Profile created successfully');
             }).catch((error) => {
-                console.log('Error creating profile', error);
+                // console.log('Error creating profile', error);
             });
 
 

@@ -64,6 +64,7 @@ export default function LoginOrSignupScreen() {
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity
+                            testID="register-button"
                             onPress={goToRegister}
                             style={[styles.button, styles.buttonOutline]}>
                             <Text style={styles.buttonOutlineText}>Create an account</Text>

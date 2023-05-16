@@ -8,7 +8,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import { handleIconPress } from '../screens/SettingsScreen';
 import { useAnimatedValue } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import TileItem from '../components/tileItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
