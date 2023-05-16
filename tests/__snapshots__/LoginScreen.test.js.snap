@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreen renders correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#E39696",
+      "flex": 1,
+      "justifyContent": "center",
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontSize": 30,
+        "fontWeight": "bold",
+        "marginBottom": 40,
+        "textAlign": "center",
+      }
+    }
+  >
+    FMIQUIZ
+  </Text>
+  <Text
+    style={
+      {
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "marginBottom": 10,
+      }
+    }
+  >
+    Email Address
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#F9E0DD",
+        "borderRadius": 20,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/email.png",
+        }
+      }
+      style={
+        {
+          "height": 24,
+          "marginLeft": 32,
+          "marginRight": 10,
+          "width": 24,
+        }
+      }
+    />
+    <TextInput
+      autoCompleteType="email"
+      keyboardType="email-address"
+      onChangeText={[Function]}
+      placeholder="Introduce your email"
+      style={
+        {
+          "color": "#F16956",
+          "flex": 1,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
+        }
+      }
+      textContentType="emailAddress"
+      value=""
+    />
+  </View>
+  <View
+    style={
+      {
+        "height": 24,
+      }
+    }
+  />
+  <Text
+    style={
+      {
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "marginBottom": 10,
+      }
+    }
+  >
+    Password
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#F9E0DD",
+        "borderRadius": 20,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/password.png",
+        }
+      }
+      style={
+        {
+          "height": 24,
+          "marginLeft": 32,
+          "marginRight": 10,
+          "width": 24,
+        }
+      }
+    />
+    <TextInput
+      onChangeText={[Function]}
+      placeholder="Introduce your password"
+      secureTextEntry={true}
+      style={
+        {
+          "color": "#F16956",
+          "flex": 1,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
+        }
+      }
+      textContentType="password"
+      value=""
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "opacity": 1,
+          "padding": 10,
+          "paddingEnd": 20,
+        }
+      }
+    >
+      <Text>
+        Show
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "height": 24,
+      }
+    }
+  />
+  <View
+    accessibilityState={
+      {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#F16956",
+        "borderRadius": 20,
+        "opacity": 1,
+        "padding": 15,
+      }
+    }
+    testID="loginButton"
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Login
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "height": 24,
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "textDecorationLine": "underline",
+          }
+        }
+      >
+        Forgot password
+      </Text>
+    </View>
+  </View>
+</View>
+`;

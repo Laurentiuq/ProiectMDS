@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeScreen renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      {
+        "testUri": "../../../assets/mainBackground.png",
+      }
+    }
+    style={
+      [
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        {
+          "height": "100%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Image
+    source={
+      {
+        "testUri": "../../../assets/AppLogo.png",
+      }
+    }
+    style={
+      {
+        "left": -10,
+      }
+    }
+  />
+  <Text>
+    <Text>
+      We quiz therfore we are
+    </Text>
+  </Text>
+  <View
+    height={16}
+  />
+  <ActivityIndicator
+    color="#FFFFFF"
+    size="large"
+    testID="activity-indicator"
+  />
+</View>
+`;
