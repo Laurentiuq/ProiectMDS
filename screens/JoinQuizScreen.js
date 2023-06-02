@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
+
 
 export default function JoinQuizScreen(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -8,6 +9,7 @@ export default function JoinQuizScreen(props) {
   const db = props.route.params.db;
   const navigation = useNavigation();
 
+  // fetches all the quizzes from the database
   const fetchQuizzes = async () => {
     const quizzesRef = db.collection('quizzes');
     const snapshot = await quizzesRef.get();
@@ -22,6 +24,29 @@ export default function JoinQuizScreen(props) {
     setQuizzes(quizzes);
   };
 
+  // Used to search for quizzes (searches by name)
+  const handleSearch = async (query) => {
+    query = query.toLowerCase();
+    const quizzesRef = db.collection('quizzes');
+    const snapshot = await quizzesRef
+      .where('lowercaseName', '>=', query)
+      .where('lowercaseName', '<=', query + '\uf8ff')
+      .get();
+  
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+    }
+  
+    let quizzes = [];
+    snapshot.forEach(doc => {
+      quizzes.push(doc.data());
+    });
+  
+    setQuizzes(quizzes);
+  }
+  
+
   const handleQuizStart = (quiz) => {
     // Navigate to the QuizScreen
     const quizData = quiz;
@@ -35,17 +60,22 @@ export default function JoinQuizScreen(props) {
   const RenderQuizzes = () => {
     return quizzes.map((quiz, index) => {
       return (
-        <View key={index} style={styles.quizContainer}>
-          <Text style={styles.quizName}>{quiz.name}</Text>
-          <TouchableOpacity onPress={() => handleQuizStart(quiz)} style={styles.startButton}>
-            <Text style={styles.buttonText}>Take Quiz</Text>
-          </TouchableOpacity>
+        <View>
+          <View key={index} style={styles.quizContainer}>
+            <Text style={styles.quizName}>{quiz.name}</Text>
+            <TouchableOpacity onPress={() => handleQuizStart(quiz)} style={styles.startButton}>
+              <Text style={styles.buttonText}>Take Quiz</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       );
     });
   };
 
-  return <View style={styles.container}>{RenderQuizzes()}</View>;
+  return <ScrollView style={styles.container}>
+    <TextInput placeholder="Search..." onChangeText={text => handleSearch(text)}/>
+    {RenderQuizzes()}
+  </ScrollView>;
 }
 
 const styles = StyleSheet.create({

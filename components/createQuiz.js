@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Image, Alert, ScrollView, Touchable, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Button, Image, Alert, ScrollView, Touchable, TouchableOpacity, Switch } from 'react-native'
 import React from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import Question from './question';
@@ -42,15 +42,18 @@ const updateIsAddQuestion = (newValue, setIsAddQuestion) => {
 }
 
 // add quizz to the database
-const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, allSet, allStates) => {
+const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, timerEnabled, timer, allSet, allStates) => {
     console.log('add quizz to the database');
     const db = firebase.firestore();
     db.collection('quizzes').add({
         quizCreator: firebase.auth().currentUser.uid,
         name: quizName,
+        lowercaseName: quizName.toLowerCase(),
         description: quizDescription,
         photo: quizPhoto,
-        questions: questions
+        questions: questions,
+        timerEnabled: timerEnabled,
+        timer: timer
     })
     for (let i = 0; i < allSet.length; i++) {
         if(typeof allStates[i] === 'boolean'){
@@ -76,10 +79,13 @@ export default function CreateQuiz() {
     const [quizPhoto, setQuizPhoto] = React.useState('');
     const [isAddQuestion, setIsAddQuestion] = React.useState(false);
     const [questions, setQuestions] = React.useState([]);
+    const [timerEnabled, setTimerEnabled] = React.useState(false);
+    const [timer, setTimer] = React.useState(0);
     // am creat liste cu state-urile si functiile de setare ale acestora pentru a le putea reseta dupa ce am adaugat un quiz
     // sunt folosite ca parametrii in functia handleAddQuizz
-    const allSet = [setIsAddQuestion, setQuestions, setQuizName, setQuizDescription, setQuizPhoto];
-    const allStates = [isAddQuestion, questions, quizName, quizDescription, quizPhoto];
+    const allSet = [setIsAddQuestion, setQuestions, setQuizName, setQuizDescription, setQuizPhoto, setTimerEnabled, setTimer];
+    const allStates = [isAddQuestion, questions, quizName, quizDescription, quizPhoto, timerEnabled, timer];
+    
 
     return (
         <View style={styles.containerMain}>
@@ -96,6 +102,21 @@ export default function CreateQuiz() {
                     <TouchableOpacity style={styles.button} title='Add Question' onPress={() => handleAddQuestion(setIsAddQuestion, isAddQuestion)} >
                         <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Question</Text>
                     </TouchableOpacity>
+                    <Text style={styles.labelText}>Timer Enabled</Text>
+                    <Switch
+                        value={timerEnabled}
+                        onValueChange={setTimerEnabled}
+                    />
+                    {timerEnabled && (
+                        <>
+                            <Text style={styles.labelText}>Timer</Text>
+                            <TextInput
+                                value={timer}
+                                onChangeText={setTimer}
+                                placeholder="Timer"
+                            />
+                        </>
+                    )}
                     {isAddQuestion ? <Question questions={questions} setQuestions={setQuestions} isAddQuestion = {isAddQuestion} setIsAddQuestion={setIsAddQuestion} onUpdate={() => updateIsAddQuestion(setIsAddQuestion)} /> : null}
                     
                     {questions.map((question, index) => {
@@ -110,13 +131,9 @@ export default function CreateQuiz() {
                                     }
                                     )
                                 }
-                                {/* <Text style = {styles.answers}>Option 1: {question.options[0]}</Text>
-                                <Text style = {styles.answers}>Option 2: {question.options[1]}</Text>
-                                <Text style = {styles.answers}>Option 3: {question.options[2]}</Text>
-                                <Text style = {styles.answers}>Option 4: {question.options[3]}</Text> */}
                                 <Text style = {styles.answers}>Answer: {question.correctAnswer}</Text>
-                                <Text style = {styles.answers}>Timer: {question.timerEnabled}</Text>
-                                <Text style = {styles.answers}>Sec: {question.timer}</Text>
+                                {/* <Text style = {styles.answers}>Timer: {question.timerEnabled}</Text>
+                                <Text style = {styles.answers}>Sec: {question.timer}</Text> */}
                                 <Text style = {styles.answers}>Points: {question.points}</Text>
                                 {question.photo ? <Image source={{ uri: question.photo }} style={{ width: 200, height: 200 }} /> : null}
                                 <TouchableOpacity style={styles.button} title="Delete Question" onPress={() => {
@@ -131,7 +148,7 @@ export default function CreateQuiz() {
                     }
                     )}
                 
-                    <TouchableOpacity style={styles.button} title="Add Quiz" onPress={() => handleAddQuizz(quizName, quizDescription, quizPhoto, questions, allSet, allStates)} >
+                    <TouchableOpacity style={styles.button} title="Add Quiz" onPress={() => handleAddQuizz(quizName, quizDescription, quizPhoto, questions, timerEnabled, timer, allSet, allStates)} >
                         <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Quiz</Text>
                     </TouchableOpacity>
                 </View>

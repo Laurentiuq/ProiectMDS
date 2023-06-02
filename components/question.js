@@ -6,8 +6,7 @@ export default function Question(props) {
     const [question, setQuestion] = React.useState('');
     const [options, setOptions] = React.useState(['']);
     const [correctAnswer, setCorrectAnswer] = React.useState('');
-    const [timerEnabled, setTimerEnabled] = React.useState(false);
-    const [timer, setTimer] = React.useState(0);
+
     const [points, setPoints] = React.useState(0);
     const [photo, setPhoto] = React.useState('');
 
@@ -60,8 +59,6 @@ export default function Question(props) {
             question,
             options,
             correctAnswer,
-            timerEnabled,
-            timer,
             points,
             photo
         }
@@ -99,21 +96,7 @@ export default function Question(props) {
             onChangeText={setCorrectAnswer}
             placeholder="Correct Answer"
         />
-        <Text style={styles.labelText}>Timer Enabled</Text>
-        <Switch
-            value={timerEnabled}
-            onValueChange={setTimerEnabled}
-        />
-        {timerEnabled && (
-            <>
-                <Text style={styles.labelText}>Timer</Text>
-                <TextInput
-                    value={timer}
-                    onChangeText={setTimer}
-                    placeholder="Timer"
-                />
-            </>
-        )}
+        
         <Text style={styles.labelText}>Points</Text>
         <TextInput
             value={points}
