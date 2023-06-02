@@ -13,13 +13,14 @@ export default function JoinQuizScreen(props) {
   const fetchQuizzes = async () => {
     const quizzesRef = db.collection('quizzes');
     const snapshot = await quizzesRef.get();
+
     if (snapshot.empty) {
       console.log('No matching documents.');
       return;
     }
     let quizzes = [];
     snapshot.forEach(doc => {
-      quizzes.push(doc.data());
+      quizzes.push({ id: doc.id, ...doc.data() });
     });
     setQuizzes(quizzes);
   };
@@ -47,6 +48,18 @@ export default function JoinQuizScreen(props) {
   }
   
 
+  const handleQuizDelete = async (quizId) => {
+    try {
+      await db.collection('quizzes').doc(quizId).delete();
+      console.log('Quiz deleted successfully.', quizId);
+      // Refresh the quizzes list
+      fetchQuizzes();
+    } catch (error) {
+      console.error('Error deleting quiz:', error);
+    }
+  };
+  
+
   const handleQuizStart = (quiz) => {
     // Navigate to the QuizScreen
     const quizData = quiz;
@@ -60,17 +73,19 @@ export default function JoinQuizScreen(props) {
   const RenderQuizzes = () => {
     return quizzes.map((quiz, index) => {
       return (
-        <View>
-          <View key={index} style={styles.quizContainer}>
-            <Text style={styles.quizName}>{quiz.name}</Text>
-            <TouchableOpacity onPress={() => handleQuizStart(quiz)} style={styles.startButton}>
-              <Text style={styles.buttonText}>Take Quiz</Text>
-            </TouchableOpacity>
-          </View>
+        <View key={index} style={styles.quizContainer}>
+          <Text style={styles.quizName}>{quiz.name}</Text>
+          <TouchableOpacity onPress={() => handleQuizStart(quiz)} style={styles.startButton}>
+            <Text style={styles.buttonText}>Take Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleQuizDelete(quiz.id)} style={styles.startButton}>
+            <Text style={styles.buttonText}>Delete Quiz</Text>
+          </TouchableOpacity>
         </View>
       );
     });
   };
+  
 
   return <ScrollView style={styles.container}>
     <TextInput placeholder="Search..." onChangeText={text => handleSearch(text)}/>

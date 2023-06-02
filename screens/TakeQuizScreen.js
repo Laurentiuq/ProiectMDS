@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 
 
 const Timer = ({ duration, onTimeout }) => {
@@ -89,6 +89,7 @@ export default function TakeQuizScreen({ route }) {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <Image source={{ uri: quiz.photo }} style={{ width: 200, height: 200 }} />
         <Text style={styles.title}>{quiz.name}</Text>
         <Text style={styles.description}>{quiz.description}</Text>
 

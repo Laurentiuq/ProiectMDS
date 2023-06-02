@@ -10,7 +10,8 @@ import styles from '../styles/createQuizStyles';
 const handleAddPhoto = async (setQuizPhoto) => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     console.log(status);
-    if (status !== 'granted') {
+    // if (status !=='granted') TODO: fix this
+    if (status !== 'denied') {
         Alert.alert('Sorry, we need camera roll permissions to make this work!');
     } else {
         let result = await ImagePicker.launchImageLibraryAsync({
