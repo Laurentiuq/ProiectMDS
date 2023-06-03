@@ -16,6 +16,8 @@ import JoinQuizScreen from './screens/JoinQuizScreen';
 import firebase from 'firebase/compat';
 import 'firebase/compat/firestore';
 import TakeQuizScreen from './screens/TakeQuizScreen';
+import QuizBoard from './screens/QuizBoard';
+
 
 const Stack = createNativeStackNavigator();
 const db = firebase.firestore();
@@ -37,6 +39,7 @@ export default function App() {
         <Stack.Screen name="CreateQuiz" component={CreateScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="JoinQuiz" component={JoinQuizScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
         <Stack.Screen name="TakeQuiz" component={TakeQuizScreen} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
+        <Stack.Screen name="QuizBoard" component={QuizBoard} initialParams={{ db: db }} options={{ headerStyle: { backgroundColor: 'rgb(241, 105, 86)' }, headerTintColor: 'rgb(249, 224, 221)' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

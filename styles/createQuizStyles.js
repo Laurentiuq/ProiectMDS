@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 20,
         marginTop: 10,
+        width: '100%',
         backgroundColor: 'rgba(0,0,0,0)',
         opacity: 0.5,
         borderRadius: 20,
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     },
     description: {
         // flex: 1,
+        width: '100%',
         backgroundColor: 'rgba(0,0,0,0)',
         fontWeight: 'bold',
         opacity: 0.5,
@@ -51,9 +53,11 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         color: 'white',
         padding: 10,
+        paddingTop: 20,
         marginBottom: 10,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'center',
+        textAlignVertical:'top', 
     },
     button: {
         // flex: 1,
