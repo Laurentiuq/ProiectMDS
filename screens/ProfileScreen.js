@@ -15,6 +15,8 @@ import {
 import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 
+
+
 export default function ProfileScreen(props) {
     const db = props.route.params.db;
     const [email, setEmail] = React.useState('');
@@ -120,7 +122,7 @@ export default function ProfileScreen(props) {
     }
 
     // afiseaza datele fie in modul de vizualizare, fie in modul de editare
-    const EditInfo = () => {
+
         return (
             <View style={styles.container}>
                 <View style={styles.profileImageContainer}>
@@ -149,11 +151,13 @@ export default function ProfileScreen(props) {
                     <Text style={styles.title}>Display Name</Text>
                     <TextInput
                         style={styles.input}
-                        value={displayName}
-                        testID='display-name-id'
+                        multiline={true}
                         onChangeText={text => setDisplayName(text)}
-                        // placeholder={displayName}
+                        value={displayName}
+                        placeholder='Display Name'
+                        testID='display-name-id'
                         editable={editing}
+                        autoFocus={true}
                     />
 
                     <Text style={styles.title}>Email Address</Text>
@@ -170,7 +174,6 @@ export default function ProfileScreen(props) {
                         value={description}
                         testID='description-id'
                         onChangeText={text => setDescription(text)}
-                        // placeholder={description}
                         editable={editing}
                     />
                 </View>
@@ -195,13 +198,6 @@ export default function ProfileScreen(props) {
 
                 <View style={{ height: 32 }} ></View>
 
-                {/* <TouchableOpacity 
-                disabled={!editing}
-                style={{backgroundColor:'red'}}
-                onPress={handleUpdateProfile}>
-                    <Text>Save Changes</Text>
-                </TouchableOpacity> */}
-
                 <TouchableOpacity
                     style={styles.save}
                     disabled={!editing}
@@ -217,38 +213,6 @@ export default function ProfileScreen(props) {
                 </TouchableOpacity>
             </View>
         );
-
-        // if(editing){
-        //     return (
-        //         <View>
-        //             <TextInput 
-        //                 style = {styles.input}
-        //                 defaultValue={displayName}
-        //                 onChangeText={setDisplayNameResult}
-        //                 placeholder={displayName}>
-        //             </TextInput>
-        //             <TextInput
-        //                 style = {styles.input} 
-        //                 defaultValue={description} 
-        //                 onChangeText={setDescription} 
-        //                 placeholder={description}></TextInput>
-
-        //         </View>
-        //     )
-        // }
-        // else{
-        //     return (
-        //         <View>
-        //             <Text>Display name: {displayName}</Text>
-        //             <Text>Description: {description}</Text>
-        //         </View>
-        //     )
-        // }
-    }
-
-
-
-    return (<EditInfo></EditInfo>)
 }
 
 const styles = StyleSheet.create({
