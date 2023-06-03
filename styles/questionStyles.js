@@ -4,11 +4,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 10,
-        width: '85%',
+        width: '100%',
         borderRadius: 20,
         padding: 20,
         backgroundColor: '#F16956',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
     },
     labelText: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 5,
         marginTop: 2,
-        width: '100%',
+        width: '85%',
         alignItems: 'center',
         justifyContent: 'center',
     },

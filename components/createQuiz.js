@@ -36,40 +36,73 @@ const handleAddQuestion = (setIsAddQuestion, isAddQuestion) => {
 
 }
 
-    
+
 const updateIsAddQuestion = (newValue, setIsAddQuestion) => {
     setIsAddQuestion(newValue);
 }
 
 // add quizz to the database
-const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, allSet, allStates) => {
-    console.log('add quizz to the database');
-    const db = firebase.firestore();
-    db.collection('quizzes').add({
-        quizCreator: firebase.auth().currentUser.uid,
-        name: quizName,
-        description: quizDescription,
-        photo: quizPhoto,
-        questions: questions
-    })
-    for (let i = 0; i < allSet.length; i++) {
-        if(typeof allStates[i] === 'boolean'){
-            allSet[i](false);
-        }
-        if(typeof allStates[i] === 'string'){
-            allSet[i]('');
-        }
-        if(Array.isArray(allStates[i])){
-            allSet[i]([]);
-        }
-    }
+// const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, resetState) => {
+//     console.log('add quizz to the database ', questions);
+//     const db = firebase.firestore();
+//     db.collection('quizzes').add({
+//         quizCreator: firebase.auth().currentUser.uid,
+//         name: quizName,
+//         description: quizDescription,
+//         photo: quizPhoto,
+//         questions: questions
+//     })
+//         .then(() => {
+//             console.log("Quiz added successfully");
+//             // resetState();  // reset state after quiz is added successfully
+//         })
+//         .catch((error) => {
+//             console.error("Error adding quiz: ", error);
+//         });
 
-}
- 
+//     // for (let i = 0; i < allSet.length; i++) {
+//     //     if (typeof allStates[i] === 'boolean') {
+//     //         allSet[i](false);
+//     //     }
+//     //     if (typeof allStates[i] === 'string') {
+//     //         allSet[i]('');
+//     //     }
+//     //     if (Array.isArray(allStates[i])) {
+//     //         allSet[i]([]);
+//     //     }
+//     // }
 
-export { handleAddPhoto, handleAddQuestion, updateIsAddQuestion}
+// }
+
+
+export { handleAddPhoto, handleAddQuestion, updateIsAddQuestion }
 
 export default function CreateQuiz() {
+    const resetState = () => {
+        setIsAddQuestion(false);
+        setQuestions([]);
+        setQuizName('');
+        setQuizDescription('');
+        setQuizPhoto('');
+    };
+    const handleAddQuizz = () => {
+        console.log('add quizz to the database ', questions);
+        const db = firebase.firestore();
+        db.collection('quizzes').add({
+            quizCreator: firebase.auth().currentUser.uid,
+            name: quizName,
+            description: quizDescription,
+            photo: quizPhoto,
+            questions: questions
+        })
+            .then(() => {
+                console.log("Quiz added successfully");
+                // resetState();  // reset state after quiz is added successfully
+            })
+            .catch((error) => {
+                console.error("Error adding quiz: ", error);
+            });
+    }
 
     const [quizName, setQuizName] = React.useState('');
     const [quizDescription, setQuizDescription] = React.useState('');
@@ -85,19 +118,29 @@ export default function CreateQuiz() {
         <View style={styles.containerMain}>
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.containerQuestionForm}>
-                {/* <Text>CreateScreen</Text> */}
+                    {/* <Text>CreateScreen</Text> */}
                     <TextInput style={styles.title} value={quizName} onChangeText={setQuizName} placeholder="Quiz Name" />
 
-                    <TextInput multiline={true} style={styles.description} value={quizDescription} onChangeText={setQuizDescription} placeholder="Quiz Description" />
-                    {quizPhoto ? <Image source={{ uri: quizPhoto }} style={{ width: 200, height: 200 }} /> : 
-                    <TouchableOpacity style={styles.button} title="Add Photo" onPress={() => handleAddPhoto(setQuizPhoto)} >
-                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Photo</Text>
-                    </TouchableOpacity>}
+                    <TextInput multiline={true} numberOfLines={5} style={styles.description} value={quizDescription} onChangeText={setQuizDescription} placeholder="Quiz Description" />
+                    {quizPhoto ? <Image source={{ uri: quizPhoto }} style={{ width: 200, height: 200 }} /> :
+                        <TouchableOpacity style={styles.button} title="Add Photo" onPress={() => handleAddPhoto(setQuizPhoto)} >
+                            <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Add Photo</Text>
+                        </TouchableOpacity>}
+
                     <TouchableOpacity style={styles.button} title='Add Question' onPress={() => handleAddQuestion(setIsAddQuestion, isAddQuestion)} >
-                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Question</Text>
+                        <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Add Question</Text>
                     </TouchableOpacity>
-                    {isAddQuestion ? <Question questions={questions} setQuestions={setQuestions} isAddQuestion = {isAddQuestion} setIsAddQuestion={setIsAddQuestion} onUpdate={() => updateIsAddQuestion(setIsAddQuestion)} /> : null}
-                    
+
+                    {isAddQuestion ?
+                        <Question
+                            questions={questions}
+                            setQuestions={setQuestions}
+                            isAddQuestion={isAddQuestion}
+                            setIsAddQuestion={setIsAddQuestion}
+                            onUpdate={() => updateIsAddQuestion(setIsAddQuestion)} />
+                        : null
+                    }
+
                     {questions.map((question, index) => {
                         return (
                             <ScrollView contentContainerStyle={styles.questionsScroll} key={index}>
@@ -105,7 +148,13 @@ export default function CreateQuiz() {
                                 {
                                     question.options.map((option, index) => {
                                         return (
-                                            <Text style={styles.answers} key={index}>Option {index + 1}: {option}</Text>
+                                            <Text style={[styles.answers]}
+                                                key={index}>Option {index + 1}: {option} -
+                                                <Text style={[styles.answers, { color: question.correctAnswer[index] ? '#00FF00' : '#F16956' }]}>
+                                                    {question.correctAnswer[index] ? " Correct" : " Wrong"}
+                                                </Text>
+
+                                            </Text>
                                         )
                                     }
                                     )
@@ -114,28 +163,27 @@ export default function CreateQuiz() {
                                 <Text style = {styles.answers}>Option 2: {question.options[1]}</Text>
                                 <Text style = {styles.answers}>Option 3: {question.options[2]}</Text>
                                 <Text style = {styles.answers}>Option 4: {question.options[3]}</Text> */}
-                                <Text style = {styles.answers}>Answer: {question.correctAnswer}</Text>
-                                <Text style = {styles.answers}>Timer: {question.timerEnabled}</Text>
-                                <Text style = {styles.answers}>Sec: {question.timer}</Text>
-                                <Text style = {styles.answers}>Points: {question.points}</Text>
+                                <Text style={styles.answers}>Timer: {question.timerEnabled}</Text>
+                                <Text style={styles.answers}>Sec: {question.timer}</Text>
+                                <Text style={styles.answers}>Points: {question.points}</Text>
                                 {question.photo ? <Image source={{ uri: question.photo }} style={{ width: 200, height: 200 }} /> : null}
                                 <TouchableOpacity style={styles.button} title="Delete Question" onPress={() => {
                                     const newQuestions = [...questions];
                                     newQuestions.splice(index, 1);
                                     setQuestions(newQuestions);
                                 }}>
-                                    <Text style = {{color:'#F16956', fontWeight:'bold'}}>Delete Question</Text>
+                                    <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Delete Question</Text>
                                 </TouchableOpacity>
                             </ScrollView>
                         )
                     }
                     )}
-                
-                    <TouchableOpacity style={styles.button} title="Add Quiz" onPress={() => handleAddQuizz(quizName, quizDescription, quizPhoto, questions, allSet, allStates)} >
-                        <Text style = {{color:'#F16956', fontWeight:'bold'}}>Add Quiz</Text>
+
+                    <TouchableOpacity style={styles.button} title="Save Quiz" onPress={handleAddQuizz} >
+                        <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Save Quiz</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView> 
+            </ScrollView>
         </View>
     )
 }
