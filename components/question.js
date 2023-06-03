@@ -8,9 +8,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default function Question(props) {
     const [question, setQuestion] = React.useState('');
     const [options, setOptions] = React.useState(['']);
-    // const [correctAnswer, setCorrectAnswer] = React.useState([]);
+    const [correctAnswer, setCorrectAnswer] = React.useState([]);
     // const [timerEnabled, setTimerEnabled] = React.useState(false);
-    const [timer, setTimer] = React.useState(0);
+    // const [timer, setTimer] = React.useState(0);
     const [points, setPoints] = React.useState(0);
     const [photo, setPhoto] = React.useState('');
     const [multipleAnswers, setMultipleAnswers] = React.useState(false);
@@ -47,7 +47,7 @@ export default function Question(props) {
 
     const handleCorrectAnswerChange = (index, value) => {
         const newCorrectAnswer = [...correctAnswer];
-        newCorrectAnswer[index] = value;
+        newCorrectAnswer[index] = value ? true : false;
         setCorrectAnswer(newCorrectAnswer);
 
         if (!multipleAnswers) {
@@ -82,15 +82,12 @@ export default function Question(props) {
             }
         }
 
-        console.log('correctAnswer ----- ', correctAnswer, ' ----- ');
-     
+        
         const newQuestion = {
             question,
             options,
-            correctAnswer: correctAnswer,
-            // timerEnabled,
-            // timer,
-            points,
+            correctAnswer: correctAnswer.map(e =>  (e ? true : false) ),
+            points:Number.parseInt(points),
             photo,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
         }

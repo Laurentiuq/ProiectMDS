@@ -64,7 +64,10 @@ export default function TakeQuizScreen({ route }) {
       const selectedOptionIndexes = selectedAnswers[i];
 
       if (selectedOptionIndexes.length > 0) {
-        const correctAnswerIndexes = question.correctAnswer.split(' ');
+        const correctAnswerIndexes = question.correctAnswer.reduce(function (a, e, i) {
+          if (e === true) a.push(i.toString());
+          return a;
+        }, []);;
         const isCorrectAnswer = selectedOptionIndexes.every((index) =>
           correctAnswerIndexes.includes(index.toString())
         );
@@ -98,12 +101,15 @@ export default function TakeQuizScreen({ route }) {
 
         {/* For each question  */}
         {quiz.questions.map((question, questionIndex) => {
-          const correctAnswerIndexes = question.correctAnswer.split(' ');
+           const correctAnswerIndexes = question.correctAnswer.reduce(function (a, e, i) {
+            if (e === true) a.push(i.toString());
+            return a;
+          }, []);
 
           return (
             <View key={questionIndex} style={styles.questionContainer}>
               <Text style={styles.questionText}>Question: {question.question}</Text>
-            {/*For each option we verifiy if it's selected and create a specific output.  */}
+              {/*For each option we verifiy if it's selected and create a specific output.  */}
               {question.options.map((option, optionIndex) => {
                 // Check if the option is selected
                 const isSelected = selectedAnswers[questionIndex].includes(optionIndex);
