@@ -8,8 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default function Question(props) {
     const [question, setQuestion] = React.useState('');
     const [options, setOptions] = React.useState(['']);
-    const [correctAnswer, setCorrectAnswer] = React.useState([]);
-    const [timerEnabled, setTimerEnabled] = React.useState(false);
+    // const [correctAnswer, setCorrectAnswer] = React.useState([]);
+    // const [timerEnabled, setTimerEnabled] = React.useState(false);
     const [timer, setTimer] = React.useState(0);
     const [points, setPoints] = React.useState(0);
     const [photo, setPhoto] = React.useState('');
@@ -88,8 +88,8 @@ export default function Question(props) {
             question,
             options,
             correctAnswer: correctAnswer,
-            timerEnabled,
-            timer,
+            // timerEnabled,
+            // timer,
             points,
             photo,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
@@ -181,7 +181,7 @@ export default function Question(props) {
                 />
             ))} */}
 
-            <Text style={styles.labelText}>Timer Enabled</Text>
+            {/* <Text style={styles.labelText}>Timer Enabled</Text>
             <Switch
                 value={timerEnabled}
                 onValueChange={setTimerEnabled}
@@ -195,7 +195,7 @@ export default function Question(props) {
                         placeholder="Timer"
                     />
                 </>
-            )}
+            )} */}
             <Text style={styles.labelText}>Points</Text>
             <TextInput
                 value={points}

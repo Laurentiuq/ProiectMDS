@@ -10,7 +10,8 @@ import styles from '../styles/createQuizStyles';
 const handleAddPhoto = async (setQuizPhoto) => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     console.log(status);
-    if (status !== 'granted') {
+    // if (status !=='granted') TODO: fix this
+    if (status !== 'denied') {
         Alert.alert('Sorry, we need camera roll permissions to make this work!');
     } else {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -42,42 +43,40 @@ const updateIsAddQuestion = (newValue, setIsAddQuestion) => {
 }
 
 // add quizz to the database
-// const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, resetState) => {
-//     console.log('add quizz to the database ', questions);
-//     const db = firebase.firestore();
-//     db.collection('quizzes').add({
-//         quizCreator: firebase.auth().currentUser.uid,
-//         name: quizName,
-//         description: quizDescription,
-//         photo: quizPhoto,
-//         questions: questions
-//     })
-//         .then(() => {
-//             console.log("Quiz added successfully");
-//             // resetState();  // reset state after quiz is added successfully
-//         })
-//         .catch((error) => {
-//             console.error("Error adding quiz: ", error);
-//         });
-
-//     // for (let i = 0; i < allSet.length; i++) {
-//     //     if (typeof allStates[i] === 'boolean') {
-//     //         allSet[i](false);
-//     //     }
-//     //     if (typeof allStates[i] === 'string') {
-//     //         allSet[i]('');
-//     //     }
-//     //     if (Array.isArray(allStates[i])) {
-//     //         allSet[i]([]);
-//     //     }
-//     // }
-
-// }
+const handleAddQuizz = (
+    quizName,
+    quizDescription,
+    quizPhoto,
+    questions,
+    timerEnabled,
+    timer,
+    resetState) => {
+    console.log('add quizz to the database ', questions);
+    const db = firebase.firestore();
+    db.collection('quizzes').add({
+        quizCreator: firebase.auth().currentUser.uid,
+        timer: timer,
+        name: quizName,
+        photo: quizPhoto,
+        questions: questions,
+        timerEnabled: timerEnabled,
+        description: quizDescription,
+        lowercaseName: quizName.toLowerCase(),
+    })
+        .then(() => {
+            console.log("Quiz added successfully");
+            // resetState();  // reset state after quiz is added successfully
+        })
+        .catch((error) => {
+            console.error("Error adding quiz: ", error);
+        });
+}
 
 
 export { handleAddPhoto, handleAddQuestion, updateIsAddQuestion }
 
 export default function CreateQuiz() {
+
     const resetState = () => {
         setIsAddQuestion(false);
         setQuestions([]);
@@ -85,24 +84,6 @@ export default function CreateQuiz() {
         setQuizDescription('');
         setQuizPhoto('');
     };
-    const handleAddQuizz = () => {
-        console.log('add quizz to the database ', questions);
-        const db = firebase.firestore();
-        db.collection('quizzes').add({
-            quizCreator: firebase.auth().currentUser.uid,
-            name: quizName,
-            description: quizDescription,
-            photo: quizPhoto,
-            questions: questions
-        })
-            .then(() => {
-                console.log("Quiz added successfully");
-                // resetState();  // reset state after quiz is added successfully
-            })
-            .catch((error) => {
-                console.error("Error adding quiz: ", error);
-            });
-    }
 
     const [quizName, setQuizName] = React.useState('');
     const [quizDescription, setQuizDescription] = React.useState('');
@@ -111,8 +92,6 @@ export default function CreateQuiz() {
     const [questions, setQuestions] = React.useState([]);
     // am creat liste cu state-urile si functiile de setare ale acestora pentru a le putea reseta dupa ce am adaugat un quiz
     // sunt folosite ca parametrii in functia handleAddQuizz
-    const allSet = [setIsAddQuestion, setQuestions, setQuizName, setQuizDescription, setQuizPhoto];
-    const allStates = [isAddQuestion, questions, quizName, quizDescription, quizPhoto];
 
     return (
         <View style={styles.containerMain}>
@@ -130,6 +109,21 @@ export default function CreateQuiz() {
                     <TouchableOpacity style={styles.button} title='Add Question' onPress={() => handleAddQuestion(setIsAddQuestion, isAddQuestion)} >
                         <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Add Question</Text>
                     </TouchableOpacity>
+                    <Text style={styles.labelText}>Timer Enabled</Text>
+                    <Switch
+                        value={timerEnabled}
+                        onValueChange={setTimerEnabled}
+                    />
+                    {timerEnabled && (
+                        <>
+                            <Text style={styles.labelText}>Timer</Text>
+                            <TextInput
+                                value={timer}
+                                onChangeText={setTimer}
+                                placeholder="Timer"
+                            />
+                        </>
+                    )}
 
                     {isAddQuestion ?
                         <Question
@@ -159,12 +153,8 @@ export default function CreateQuiz() {
                                     }
                                     )
                                 }
-                                {/* <Text style = {styles.answers}>Option 1: {question.options[0]}</Text>
-                                <Text style = {styles.answers}>Option 2: {question.options[1]}</Text>
-                                <Text style = {styles.answers}>Option 3: {question.options[2]}</Text>
-                                <Text style = {styles.answers}>Option 4: {question.options[3]}</Text> */}
-                                <Text style={styles.answers}>Timer: {question.timerEnabled}</Text>
-                                <Text style={styles.answers}>Sec: {question.timer}</Text>
+                               {/* <Text style={styles.answers}>Timer: {question.timerEnabled}</Text>
+                                <Text style={styles.answers}>Sec: {question.timer}</Text> */}
                                 <Text style={styles.answers}>Points: {question.points}</Text>
                                 {question.photo ? <Image source={{ uri: question.photo }} style={{ width: 200, height: 200 }} /> : null}
                                 <TouchableOpacity style={styles.button} title="Delete Question" onPress={() => {
@@ -179,7 +169,7 @@ export default function CreateQuiz() {
                     }
                     )}
 
-                    <TouchableOpacity style={styles.button} title="Save Quiz" onPress={handleAddQuizz} >
+                    <TouchableOpacity style={styles.button} title="Save Quiz" onPress={handleAddQuizz(quizName, quizDescription, quizPhoto, questions, timerEnabled, timer, resetState)} >
                         <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Save Quiz</Text>
                     </TouchableOpacity>
                 </View>
