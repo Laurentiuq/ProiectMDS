@@ -3,15 +3,17 @@ import React from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import Question from './question';
 import firebase from 'firebase/compat/app';
+
 // import { Firestore } from 'react-native-firebase/firestore';
 import styles from '../styles/createQuizStyles';
+// import RNFS from 'react-native-fs';
+import 'firebase/compat/storage';
 
 
 const handleAddPhoto = async (setQuizPhoto) => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     console.log(status);
-    // if (status !=='granted') TODO: fix this
-    if (status !== 'denied') {
+    if (status !== 'granted' && status !== 'denied') {
         Alert.alert('Sorry, we need camera roll permissions to make this work!');
     } else {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -26,6 +28,17 @@ const handleAddPhoto = async (setQuizPhoto) => {
     }
 }
 
+const uploadImageToFirebase = async (uri, quizName) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const filename = `${quizName}_${Date.now()}`; // generate a unique name
+    const ref = firebase.storage().ref().child(filename);
+    await ref.put(blob);
+
+    // Get and return the download URL
+    const downloadURL = await ref.getDownloadURL();
+    return downloadURL;
+}
 
 const handleAddQuestion = (setIsAddQuestion, isAddQuestion) => {
     if (isAddQuestion) {
@@ -43,15 +56,21 @@ const updateIsAddQuestion = (newValue, setIsAddQuestion) => {
 }
 
 // add quizz to the database
-const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, timerEnabled, timer, allSet, allStates) => {
+const handleAddQuizz = async (quizName, quizDescription, quizPhoto, questions, timerEnabled, timer, allSet, allStates) => {
     console.log('add quizz to the database');
     const db = firebase.firestore();
+
+    let photoURL = '';
+    if (quizPhoto) {
+        photoURL = await uploadImageToFirebase(quizPhoto, quizName);
+    }
+
     db.collection('quizzes').add({
         quizCreator: firebase.auth().currentUser.uid,
         name: quizName,
         lowercaseName: quizName.toLowerCase(),
         description: quizDescription,
-        photo: quizPhoto,
+        photo: photoURL,
         questions: questions,
         timerEnabled: timerEnabled,
         timer: timer
@@ -67,7 +86,6 @@ const handleAddQuizz = (quizName, quizDescription, quizPhoto, questions, timerEn
             allSet[i]([]);
         }
     }
-
 }
  
 

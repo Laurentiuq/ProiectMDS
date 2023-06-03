@@ -94,7 +94,8 @@ export default function TakeQuizScreen({ route }) {
         <Text style={styles.description}>{quiz.description}</Text>
 
         {/* Uses the timer defined above */}
-        <Timer duration={quiz.timer} onTimeout={handleTimeout} />
+        {quiz.timerEnabled ? <Timer duration={quiz.timer} onTimeout={handleTimeout}/> : null}
+
 
         {/* For each question  */}
         {quiz.questions.map((question, questionIndex) => {
