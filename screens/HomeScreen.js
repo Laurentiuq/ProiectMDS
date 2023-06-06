@@ -46,7 +46,13 @@ export default function HomeScreen(props) {
     const displayName = userData.data().displayName;
     setDisplayName(displayName);
 
-
+    // const db = firebase.firestore();
+    const quizHistoryRef = db.collection('quiz_history');
+    quizHistoryRef.get().then((quizHistory) => {
+      quizHistory.docs.forEach((quiz) => {
+        console.log('nabil alhafez ', JSON.stringify(quiz.data()))
+      });
+    });
   }
   // Il folosim ca sa apelam functia anteriora pentru a obtine datele
   React.useEffect(() => {

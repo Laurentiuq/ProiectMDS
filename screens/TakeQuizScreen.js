@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
-
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 const Timer = ({ duration, onTimeout }) => {
   const [timer, setTimer] = useState(duration);
@@ -78,8 +79,56 @@ export default function TakeQuizScreen({ route }) {
     }
 
     setScore(totalScore);
+    try {
+      handleSaveQuizHistory(totalScore);
+    } catch (e) {
+      console.log(`error rrrrrrrr: ${e}`);
+    }
   };
 
+  const handleSaveQuizHistory = async (totalScore) => {
+    const db = firebase.firestore();
+    const uuid = firebase.auth().currentUser.uid;
+    if (totalScore > 0) {
+      console.log('uuid ',uuid);
+      const userRef = db.collection('users').doc(uuid);
+
+      await userRef.update({
+        points: firebase.firestore.FieldValue.increment(totalScore)
+      })
+        .then(() => {
+          console.log("Document successfully updated!");
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+        });
+    }
+    const quizHistoryRef = db.collection('quiz_history');
+    const mapOfLists = new Map();
+
+    selectedAnswers.forEach((item, index) => {
+      mapOfLists.set(index, item);
+    });
+
+    quiz.questions.forEach((question, index) => {
+      quiz.questions[index] = { ...question, userSelectedAnswers: selectedAnswers[index] }
+    });
+    const data = {
+      userId: uuid,  // or however you store the user id
+      quiz: quiz, // Store all the quiz data
+      dateTaken: firebase.firestore.FieldValue.serverTimestamp(),  // current time
+      totalScore: totalScore,  // final score
+      // You might want to store other information too
+    };
+    console.log('data ', data)
+    await quizHistoryRef.add(data)
+      .then((docRef) => {
+        console.log(`Quiz history added with ID: ${docRef.id}`);
+      })
+      .catch((error) => {
+        console.error("Error adding quiz history: ", error);
+      });
+  };
 
   // This function is called when the timer runs out
   // It sets the showAnswers variable to true, which will highlight the correct answers
@@ -101,7 +150,7 @@ export default function TakeQuizScreen({ route }) {
 
         {/* For each question  */}
         {quiz.questions.map((question, questionIndex) => {
-           const correctAnswerIndexes = question.correctAnswer.reduce(function (a, e, i) {
+          const correctAnswerIndexes = question.correctAnswer.reduce(function (a, e, i) {
             if (e === true) a.push(i.toString());
             return a;
           }, []);
