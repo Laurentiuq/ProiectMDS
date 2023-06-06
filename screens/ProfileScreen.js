@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-import storage from '@react-native-firebase/storage';
+import { uploadImage } from '../utils/fileUploader';
 
 import {
     View,
@@ -33,9 +32,11 @@ export default function ProfileScreen(props) {
 
 
     const handlePhoto = async () => {
-        const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        console.log(status);
+        // if (status !=='granted') TODO: fix this
         if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
+            Alert.alert('Sorry, we need camera roll permissions to make this work!');
         } else {
             let result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -43,42 +44,28 @@ export default function ProfileScreen(props) {
                 aspect: [4, 3],
                 quality: 1,
             });
+
             if (!result.cancelled) {
                 handleEditing();
                 setProfileImage(result.uri);
             }
         }
     }
-    const uploadProfileImage = async (uri) => {
-        // Get the current user's UID
-        const auth = getAuth();
-        const uid = auth.currentUser.uid;
 
-        // Create a reference to the user's profile image in Firebase Storage
-        const profileImageRef = storage().ref(`profileImages/${uid}`);
-
-        // Upload the image to Firebase Storage
-        await profileImageRef.putFile(uri);
-
-        // Get the uploaded image URL
-        const profileImageUrl = await profileImageRef.getDownloadURL();
-
-        return profileImageUrl;
-    };
     // Pentru a modifica datele profilului in baza de date
     const handleUpdateProfile = async () => {
         setIsLoading(true);
         const auth = getAuth();
         const uid = auth.currentUser.uid;
         const userRef = db.collection('users').doc(uid);
-        // const imageResult = await uploadProfileImage(profileImage).then(e => {
-        //     console.log('uploadProfileImage ', e)
-        // });
+        const imageResult = await uploadImage(profileImage);
+        console.log('uploadProfileImage imageResult ', imageResult)
+        if (!imageResult) imageResult = null;
 
         userRef.update({
             displayName: displayName,
             description: description,
-            // profileImage: imageResult,
+            profileImage: imageResult,
         }).then(() => {
             // setam inapoi editingul la false pentru a nu mai putea modifica datele
             setEditing(false);
@@ -140,7 +127,7 @@ export default function ProfileScreen(props) {
                 </View>
                 <View style={{ height: 16 }} ></View>
                 <Text style={{
-                    textAlign: 'left', width: '100%', color: 'white', fontWeight : 'bold'
+                    textAlign: 'left', width: '100%', color: 'white', fontWeight: 'bold'
                 }}>Number of points: {points}</Text>
                 <View style={{ height: 8 }} ></View>
 
@@ -188,7 +175,7 @@ export default function ProfileScreen(props) {
                     }]}
                     disabled={editing}
                     onPress={handleEditing}>
-                    <Text style = {{color: 'white', fontWeight:'bold'}}>Edit</Text>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Edit</Text>
 
                 </TouchableOpacity>
 
@@ -209,7 +196,7 @@ export default function ProfileScreen(props) {
                     {isLoading ? (
                         <ActivityIndicator size="large" color={styles.loader.color} />
                     ) : (
-                        <Text style = {{color: '#F16956', fontWeight: 'bold'}}>Save Changes</Text>
+                        <Text style={{ color: '#F16956', fontWeight: 'bold' }}>Save Changes</Text>
                     )}
 
 
