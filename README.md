@@ -241,7 +241,7 @@ describe('LoginScreen', () => {
     // });
 });
 ```
-**4. Test register screen
+**4. Test register screen**
 ```
 jest.mock('firebase/auth', () => {
   const originalModule = jest.requireActual('firebase/auth');
@@ -344,7 +344,7 @@ describe('RegisterScreen', () => {
   });
 });
 ```
-**5. 2. Test home screen
+**5. 2. Test home screen**
 ```
 jest.mock('expo-image-picker');
 jest.mock('@react-native-firebase/storage');
@@ -426,7 +426,7 @@ describe('HomeScreen', () => {
 
   });
 ```
-**6. Test profile screen
+**6. Test profile screen**
 ```
 const mockDb = {}; // Replace this with your mock database object
 
@@ -470,7 +470,7 @@ describe('ProfileScreen', () => {
 //   });
 });
 ```
-**7. Test create quiz
+**7. Test create quiz**
 ```
 jest.mock('expo-image-picker', () => ({
   requestCameraRollPermissionsAsync: jest.fn(),
@@ -529,7 +529,7 @@ describe('CreateQuiz', () => {
 
 });
 ```
-**8. Test settings creen
+**8. Test settings screen**
 ```
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -618,7 +618,7 @@ describe('SettingsScreen', () => {
       
 })
 ```
-**9. Test sidebar
+**9. Test sidebar**
 ```
 
 jest.mock("react-native-vector-icons/MaterialIcons", () => "Icon");
@@ -674,7 +674,7 @@ describe("<Navbar />", () => {
 
 });
 ```
-**10. Test title item
+**10. Test title item**
 ```
 describe('<TileItem />', () => {
     it('renders correctly', () => {
@@ -698,13 +698,122 @@ describe('<TileItem />', () => {
 ```
 
 ## Pull requsts for bug fixing
+DOVEZIIIIIIII!!!!
 
 ## Refactoring, code standarts
+DOVEZIIIIIIIIIIII!!!!!
 
 ## Comments explaining the code
+### In order to make our code more readable and easy to understand we sprinkled 🧚🏼‍♀️ some comments. Here's a few examples:
+- ProfileScreen.js
+```
+// Pentru a modifica datele profilului in baza de date
+    const handleUpdateProfile = async () => {
+        setIsLoading(true);
+        const auth = getAuth();
+        const uid = auth.currentUser.uid;
+        const userRef = db.collection('users').doc(uid);
+        const imageResult = await uploadImage(profileImage);
+        console.log('uploadProfileImage imageResult ', imageResult)
+        if (!imageResult) imageResult = null;
+
+        userRef.update({
+            displayName: displayName,
+            description: description,
+            profileImage: imageResult,
+        }).then(() => {
+            // setam inapoi editingul la false pentru a nu mai putea modifica datele
+            setEditing(false);
+            console.log("Document successfully updated!");
+        }).catch((error) => {
+            console.error("Error updating document: ", error);
+        });
+        setIsLoading(false);
+    }
+
+    // Functia care cauta datele despre utilizator in baza de date
+    const fetchData = async () => {
+        const auth = getAuth();
+        const uid = auth.currentUser.uid;
+        const userRef = db.collection('users').doc(uid);
+        const userData = await userRef.get();
+        const email = userData.data().email;
+        const displayName = userData.data().displayName;
+        const points = userData.data().points;
+        const description = userData.data().description;
+        const profileImage = userData.data().profileImage;
+        setEmail(email);
+        setDisplayName(displayName);
+        setPoints(points);
+        setDescription(description);
+        if (profileImage)
+            setProfileImage(profileImage);
+
+    }
+    // Il folosim ca sa apelam functia anteriora pentru a obtine datele
+    React.useEffect(() => {
+        fetchData();
+        console.log("useEffect");
+    }, []);
+
+    const handleEditing = () => {
+        setEditing(true);
+        console.log("editing");
+    }
+```
+- LoginOrSignupScreen.js
+```
+
+    // get the navigation object from useNavigation hook
+    const navigation = useNavigation();
+
+
+    // Redirect to HomeScreen if user logged in
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubcribe =
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    navigation.replace('Home');
+                }
+            })
+        return unsubcribe;
+    }, [])
+
+    // GO to register screen when press register button
+    const goToRegister = () => {
+        navigation.navigate('Register');
+    }
+
+```
+- TakeQuizScrenn.js
+```
+ // At every second, decrease the timer by 1
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer > 0) {
+        setTimer(timer - 1);
+      } else {
+        clearInterval(interval);
+        onTimeout();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer, onTimeout]);
+
+  // Time is passed in seconds, this function formats it to minutes and seconds
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
+
+```
 
 ## The usage of an AI tool meant to help with software development 
-
+In order to better our code, understand the sintax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
+DOVEZZIIIIIIIIIIIIIIIIIIIII!!!!!!!!!
 
 
 
