@@ -91,7 +91,7 @@ CE FAC TOATE ASTEA??????????????
 
 ## Testing
 BANUIESC CA AR TREBUI SA LE MAI DETALIEZ? IDFK HOW THO
-**1. Test welcome screen
+**1. Test welcome screen**
 ```
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),
@@ -124,7 +124,7 @@ describe('WelcomeScreen', () => {
         jest.clearAllMocks();
     });
 ```
-**2. Test login or sign up screen
+**2. Test login or sign up screen**
 ```
 jest.mock('@react-navigation/native', () => {
     return {
@@ -166,7 +166,7 @@ describe('LoginOrSignupScreen', () => {
     });
 });
 ```
-**3. Test login screen
+**3. Test login screen**
 ```
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
