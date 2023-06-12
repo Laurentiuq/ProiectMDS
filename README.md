@@ -1,4 +1,4 @@
-# Quiz App
+# Quiz App 🫰🏻 
 
 This is a mobile app (done in React Native) designed to provide users with a fun and interactive way to test their knowledge on various subjects they will encounter 
 throughout their college years. The intention behind it is to make it easier for students at University of Bucharest to revise or learn when they are 
@@ -51,11 +51,30 @@ In order to keep track of our progress and monitor our backlog we used Jira 👉
 - Add title, description, picture, questions and timer to quiz
 - Add answers, score and picture to questions 
 - Edit quiz
-- Delete quiz
+- Delete quiz.
 
 ### 4.How the app works and what it does
 When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
 
+### 5. App design 
+We opted for a simple, VERY orange 🍊  look inspired by this design 👉🏼 [here](https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213). 
+- ** App icon **
+- ** Welcome screen **
+- ** Home screen **
+- ** Profile screen **
+- ** Leaderboard screen **
+- ** JoinQuiz screen **
+- ** CreateQuiz screen ***
+- ** QuizBoard screen / My Quiz **
+- ** QuizBoard screen / General Quiz **
+- ** Settings screen **
+TRE SA PUN POZE!!!!!!!!!!!!!
+
+### 6. UML Use Case Diagram  
+POZAAAAAAAAAA!!!
+
+## Source control
+### [Branches]()
 
 
 
