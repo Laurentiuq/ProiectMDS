@@ -58,23 +58,652 @@ When you open up the app you will see the welcome screen where you can either lo
 
 ### 5. App design 
 We opted for a simple, VERY orange 🍊  look inspired by this design 👉🏼 [here](https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213). 
-- ** App icon **
-- ** Welcome screen **
-- ** Home screen **
-- ** Profile screen **
-- ** Leaderboard screen **
-- ** JoinQuiz screen **
-- ** CreateQuiz screen ***
-- ** QuizBoard screen / My Quiz **
-- ** QuizBoard screen / General Quiz **
-- ** Settings screen **
+- ** App icon
+- ** Welcome screen
+- ** Home screen
+- ** Profile screen
+- ** Leaderboard screen
+- ** JoinQuiz screen
+- ** CreateQuiz screen
+- ** QuizBoard screen / My Quiz
+- ** QuizBoard screen / General Quiz
+- ** Settings screen
 TRE SA PUN POZE!!!!!!!!!!!!!
 
 ### 6. UML Use Case Diagram  
 POZAAAAAAAAAA!!!
 
 ## Source control
-### [Branches]()
+
+### [Branches](https://github.com/Laurentiuq/ProiectMDS/branches/active)
+CE FAC TOATE ASTEA??????????????
+- feature/quiz-board
+- bug_fixing
+- search/else
+- test/user-management
+- join-quiz-feature
+- tests
+- feature/profile
+- feature/edit-profile
+- feature/login
+
+### [Commits](https://github.com/Laurentiuq/ProiectMDS/commits)
+
+## Testing
+BANUIESC CA AR TREBUI SA LE MAI DETALIEZ? IDFK HOW THO
+**1. Test welcome screen
+```
+jest.mock('@react-navigation/native', () => ({
+    ...jest.requireActual('@react-navigation/native'),
+    useNavigation: () => ({
+        navigate: jest.fn(),
+        replace: jest.fn(),
+    }),
+}));
+
+describe('WelcomeScreen', () => {
+    it('renders correctly', () => {
+        const { toJSON } = render(<WelcomeScreen />);
+        expect(toJSON()).toMatchSnapshot();
+    });
+
+    it('shows ActivityIndicator', () => {
+        const { getByTestId } = render(<WelcomeScreen />);
+        expect(getByTestId('activity-indicator')).toBeTruthy();
+    });
+
+    it('navigates to LoginOrSignupScreen after timeout', () => {
+        const mockNavigation = { navigate: jest.fn(), replace: jest.fn() };
+        jest.spyOn(require('@react-navigation/native'), 'useNavigation').mockReturnValue(mockNavigation);
+        jest.spyOn(global, 'setTimeout').mockImplementation((cb) => cb());
+        render(<WelcomeScreen />);
+        expect(mockNavigation.replace).toHaveBeenCalledWith('LoginOrSignupScreen');
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+```
+**2. Test login or sign up screen
+```
+jest.mock('@react-navigation/native', () => {
+    return {
+        useNavigation: jest.fn(() => ({ navigate: jest.fn(), replace: jest.fn() })),
+    };
+});
+
+jest.mock('firebase/auth', () => {
+  return {
+    getAuth: jest.fn(() => ({
+      onAuthStateChanged: jest.fn(),
+    })),
+  };
+});
+
+describe('LoginOrSignupScreen', () => {
+    it('renders correctly', () => {
+        const { toJSON } = render(<LoginOrSignupScreen />);
+        expect(toJSON()).toMatchSnapshot();
+    });
+
+
+    it('navigates to Login screen on button press', () => {
+        const mockNavigation = { navigate: jest.fn(), replace: jest.fn() };
+        jest.spyOn(require('@react-navigation/native'), 'useNavigation').mockReturnValue(mockNavigation);
+        const { getByTestId } = render(<LoginOrSignupScreen />);
+        fireEvent.press(getByTestId('login-button'));
+        expect(mockNavigation.navigate).toHaveBeenCalledWith('Login');
+    });
+
+
+
+    it('navigates to Register screen on button press', () => {
+        const mockNavigation = { navigate: jest.fn(), replace: jest.fn() };
+        jest.spyOn(require('@react-navigation/native'), 'useNavigation').mockReturnValue(mockNavigation);
+        const { getByTestId } = render(<LoginOrSignupScreen />);
+        fireEvent.press(getByTestId('register-button'));
+        expect(mockNavigation.navigate).toHaveBeenCalledWith('Register');
+    });
+});
+```
+**3. Test login screen
+```
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
+jest.mock('firebase/auth', () => {
+    return {
+        getAuth: jest.fn(() => ({
+            onAuthStateChanged: jest.fn(),
+        })),
+        signInWithEmailAndPassword: jest.fn(() => Promise.resolve('user')),
+    };
+});
+
+describe('LoginScreen', () => {
+    it('renders correctly', () => {
+        const { toJSON } = render(<LoginScreen />);
+        expect(toJSON()).toMatchSnapshot();
+    });
+
+    it('allows entering an email', () => {
+        const { getByPlaceholderText } = render(<LoginScreen />);
+        const input = getByPlaceholderText('Introduce your email');
+        fireEvent.changeText(input, 'test@test.com');
+        expect(input.props.value).toBe('test@test.com');
+    });
+
+    it('allows entering a password', () => {
+        const { getByPlaceholderText } = render(<LoginScreen />);
+        const input = getByPlaceholderText('Introduce your password');
+        fireEvent.changeText(input, 'password123');
+        expect(input.props.value).toBe('password123');
+    });
+
+    it('shows error for invalid email', async () => {
+        const { getByPlaceholderText, getByText } = render(<LoginScreen />);
+        const input = getByPlaceholderText('Introduce your email');
+        fireEvent.changeText(input, 'test');
+
+
+        fireEvent.press(getByText('Login'));
+        await waitFor(() => {
+            expect(getByText('Please enter a valid email address')).toBeDefined();
+        });
+    });
+
+    it('shows error for invalid password', async () => {
+        const { getByPlaceholderText, findByText, getByTestId } = render(<LoginScreen />);
+        const emailInput = getByPlaceholderText('Introduce your email');
+        fireEvent.changeText(emailInput, 'example@example.com');
+
+
+        const input = getByPlaceholderText('Introduce your password');
+        fireEvent.changeText(input, 'pass');
+
+        fireEvent.press(getByTestId('loginButton'));
+        const errorMessage = await findByText('Password must be at least 8 characters');
+        expect(errorMessage).toBeDefined();
+    });
+
+    it('toggles password visibility', () => {
+        const { getByText, getByPlaceholderText } = render(<LoginScreen />);
+        const input = getByPlaceholderText('Introduce your password');
+        expect(input.props.secureTextEntry).toBe(true);
+        fireEvent.press(getByText('Show'));
+        expect(input.props.secureTextEntry).toBe(false);
+    });
+
+    // it('navigates to ForgotPassword on button press', () => {
+    //     const mockNavigation = jest.fn();
+    //     const { getByText } = render(<LoginScreen navigation={{ navigate: mockNavigation }} />);
+    //     fireEvent.press(getByText('Forgot password'));
+    //     expect(mockNavigation).toHaveBeenCalledWith('ForgotPassword');
+    // });
+});
+```
+**4. Test register screen
+```
+jest.mock('firebase/auth', () => {
+  const originalModule = jest.requireActual('firebase/auth');
+  return {
+    ...originalModule,
+    createUserWithEmailAndPassword: jest.fn(() => Promise.resolve({
+      user: {
+        email: 'test@example.com',
+        uid: '123',
+      },
+    })),
+  };
+});
+
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: jest.fn(),
+}));
+
+jest.spyOn(Alert, 'alert');
+
+describe('RegisterScreen', () => {
+  const navigation = { navigate: jest.fn() };
+  useNavigation.mockImplementation(() => navigation);
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('renders correctly', () => {
+    const { getByPlaceholderText } = render(<RegisterScreen />);
+
+    expect(getByPlaceholderText('Email')).toBeTruthy();
+    expect(getByPlaceholderText('Password')).toBeTruthy();
+    expect(getByPlaceholderText('Confirm Password')).toBeTruthy();
+  });
+
+  it('updates state on email input', () => {
+    const { getByPlaceholderText } = render(<RegisterScreen />);
+    const emailInput = getByPlaceholderText('Email');
+
+    fireEvent.changeText(emailInput, 'test@example.com');
+
+    expect(emailInput.props.value).toBe('test@example.com');
+  });
+
+  it('updates state on password input', () => {
+    const { getByPlaceholderText } = render(<RegisterScreen />);
+    const passwordInput = getByPlaceholderText('Password');
+
+    fireEvent.changeText(passwordInput, 'password123');
+
+    expect(passwordInput.props.value).toBe('password123');
+  });
+
+  it('updates state on confirm password input', () => {
+    const { getByPlaceholderText } = render(<RegisterScreen />);
+    const confirmPasswordInput = getByPlaceholderText('Confirm Password');
+
+    fireEvent.changeText(confirmPasswordInput, 'password123');
+
+    expect(confirmPasswordInput.props.value).toBe('password123');
+  });
+
+  it('shows alert when passwords do not match', () => {
+    const mockedAlert = jest.fn();
+    global.alert = mockedAlert;
+  
+    const { getByPlaceholderText, getByText } = render(<RegisterScreen />);
+    const emailInput = getByPlaceholderText('Email');
+    fireEvent.changeText(emailInput, 'test@example.com');
+  
+    const passwordInput = getByPlaceholderText('Password');
+    const confirmPasswordInput = getByPlaceholderText('Confirm Password');
+  
+    fireEvent.changeText(passwordInput, 'password123');
+    fireEvent.changeText(confirmPasswordInput, 'password321');
+    fireEvent.press(getByText('Register')); 
+  
+    expect(mockedAlert).toHaveBeenCalledWith("Passwords don't match.");
+  });
+
+  it('calls handleSignUp function when button is pressed', async () => {
+    const { getByText, getByPlaceholderText } = render(<RegisterScreen />);
+    const emailInput = getByPlaceholderText('Email');
+    const passwordInput = getByPlaceholderText('Password');
+    const confirmPasswordInput = getByPlaceholderText('Confirm Password');
+    const button = getByText('Register');
+
+    fireEvent.changeText(emailInput, 'test@example.com');
+    fireEvent.changeText(passwordInput, 'password123');
+    fireEvent.changeText(confirmPasswordInput, 'password123');
+    fireEvent.press(button);
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    expect(createUserWithEmailAndPassword).toHaveBeenCalled();
+  });
+});
+```
+**5. 2. Test home screen
+```
+jest.mock('expo-image-picker');
+jest.mock('@react-native-firebase/storage');
+jest.mock('react-native-vector-icons/MaterialIcons', () => 'Icon');
+jest.mock('@react-native-firebase/storage', () => 'storage');
+jest.mock('firebase/compat/app');
+jest.mock('firebase/compat/firestore');
+jest.mock('@react-navigation/native');
+
+
+describe('HomeScreen', () => {
+    it('renders correctly with props', () => {
+      const db = {
+      };
+      const { getByText } = render(
+        <HomeScreen
+          route={{ params: { db: db } }}
+          navigation={{ navigate: jest.fn() }}
+        />
+      );
+      const someText = getByText('Nume:');
+      expect(someText).toBeTruthy();
+    });
+
+    test('navigates to CreateQuiz', async () => {
+        const mockNavigation = { push: jest.fn() };
+        const mockProps = {
+            route: { params: { db: {} } },
+            navigation: mockNavigation,
+        };
+        const { getByTestId } = render(<HomeScreen  {...mockProps} navigation={mockNavigation} />);
+
+        debug();
+        const createQuizButton = getByTestId('create-quiz-button');
+        fireEvent.press(createQuizButton);
+      });
+    
+    test('logout button works', async () => {
+        const mockNavigation = { push: jest.fn() };
+        const mockProps = {
+            route: { params: { db: {} } },
+            navigation: mockNavigation,
+        };
+        const { getByTestId } = render(<HomeScreen  {...mockProps} navigation={mockNavigation} />);
+        const logoutButton = getByTestId('logout-button');
+        fireEvent.press(logoutButton);
+        const consoleLogSpy = jest.spyOn(console, 'log');
+
+    });
+
+    test('settings button works', async () => {
+        const { getByTestId } = render(<IconButton />);
+        const settingsButton = getByTestId('settings-button');
+        fireEvent.press(settingsButton);
+        const consoleLogSpy = jest.spyOn(console, 'log');
+
+    });
+
+    test('handleSettingsPress works', async () => {
+        navigation = { push: jest.fn() };
+        handleSettingsPress(navigation);
+        const consoleLogSpy = jest.spyOn(console, 'log');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Settings pushed');
+
+    });
+
+    // test('render headerRight', async () => {
+    //   const mockNavigation = { push: jest.fn() };
+    //   const mockProps = {
+    //       route: { params: { db: {} } },
+    //       navigation: mockNavigation,
+    //   };
+
+    //   const { getByTestId, rerender } = render(<HomeScreen  {...mockProps} navigation={mockNavigation} />);
+    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
+    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
+    //   await waitFor(() => expect(getByTestId('header-right')).toBeTruthy(), { timeout: 10000 });
+    // });
+
+  });
+```
+**6. Test profile screen
+```
+const mockDb = {}; // Replace this with your mock database object
+
+describe('ProfileScreen', () => {
+  it('renders correctly', () => {
+    const { getByText, getByPlaceholderText,getByTestId } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
+    expect(getByText('Number of points:')).toBeTruthy();
+    expect(getByPlaceholderText('Email')).toBeTruthy();
+    expect(getByTestId('display-name-id')).toBeTruthy();
+    expect(getByTestId('description-id')).toBeTruthy();
+  });
+
+  it('updates state on display name input', () => {
+    const { getByTestId } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
+    const displayNameInput = getByTestId('display-name-id');
+    fireEvent.changeText(displayNameInput, 'John Doe');
+    expect(displayNameInput.props.value).toBe('');
+  });
+
+  it('updates state on description input', () => {
+    const { getByTestId } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
+    const descriptionInput = getByTestId('description-id');
+    fireEvent.changeText(descriptionInput, 'Lorem ipsum dolor sit amet');
+    expect(descriptionInput.props.value).toBe('');// TODO : should be the same
+  });
+
+//   it('triggers handleEditing function when edit button is pressed', () => {
+//     const { getByText } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
+//     const editButton = getByText('Edit');
+//     const handleEditingMock = jest.fn();
+//     fireEvent.press(editButton);
+//     expect(handleEditingMock).toHaveBeenCalled();
+//   });
+
+//   it('triggers handleUpdateProfile function when save changes button is pressed', () => {
+//     const { getByText } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
+//     const saveChangesButton = getByText('Save Changes');
+//     const handleUpdateProfileMock = jest.fn();
+//     fireEvent.press(saveChangesButton);
+//     expect(handleUpdateProfileMock).toHaveBeenCalled();
+//   });
+});
+```
+**7. Test create quiz
+```
+jest.mock('expo-image-picker', () => ({
+  requestCameraRollPermissionsAsync: jest.fn(),
+  launchImageLibraryAsync: jest.fn(),
+  MediaTypeOptions: jest.fn(),
+}));
+
+jest.mock()
+
+describe('CreateQuiz', () => {
+    test('render quiz name input', () => {
+        const {getByPlaceholderText} = render(<CreateQuiz />);
+        const quizNameInput = getByPlaceholderText('Quiz Name');
+        expect(quizNameInput).not.toBeNull();
+    });
+
+    it('requests camera roll permissions and launches image library', async () => {
+      ImagePicker.requestCameraRollPermissionsAsync.mockResolvedValueOnce({ status: 'granted' });
+      ImagePicker.launchImageLibraryAsync.mockResolvedValueOnce({ uri: 'test-uri', cancelled: false });
+      ImagePicker.MediaTypeOptions.mockResolvedValueOnce({ Images: 'test-images' });
+
+      const setQuizPhoto = jest.fn();
+      await handleAddPhoto(setQuizPhoto);
+  
+      expect(ImagePicker.requestCameraRollPermissionsAsync).toHaveBeenCalled();
+      expect(setQuizPhoto).toHaveBeenCalledWith('test-uri');
+    });
+
+    it('outputs an alert if camera roll permissions are not granted', async () => {
+      alertSpy = jest.spyOn(Alert, 'alert');
+      ImagePicker.requestCameraRollPermissionsAsync.mockResolvedValueOnce({ status: 'denied' });
+      ImagePicker.launchImageLibraryAsync.mockResolvedValueOnce({ uri: 'test-uri', cancelled: false });
+      ImagePicker.MediaTypeOptions.mockResolvedValueOnce({ Images: 'test-images' });
+      
+      const setQuizPhoto = jest.fn();
+      await handleAddPhoto(setQuizPhoto);
+  
+      expect(ImagePicker.requestCameraRollPermissionsAsync).toHaveBeenCalled();
+      expect(setQuizPhoto).not.toHaveBeenCalled();
+      expect(alertSpy).toHaveBeenCalledWith('Sorry, we need camera roll permissions to make this work!');
+    });
+
+    //test setIsAddQuestion
+
+    it('sets isAddQuestion to true', () => {
+      const setIsAddQuestion = jest.fn();
+      handleAddQuestion(setIsAddQuestion);
+      expect(setIsAddQuestion).toHaveBeenCalledWith(true);
+    });
+
+    it('sets isAddQuestion to false', () => {
+      const setIsAddQuestion = jest.fn();
+      updateIsAddQuestion(false, setIsAddQuestion);
+      expect(setIsAddQuestion).toHaveBeenCalledWith(false);
+    });
+
+});
+```
+**8. Test settings creen
+```
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock('expo-image-picker');
+jest.mock('@react-native-firebase/storage');
+jest.mock('react-native-vector-icons/MaterialIcons', () => 'Icon');
+jest.mock('@react-native-firebase/storage', () => 'storage');
+jest.mock('firebase/compat/app');
+jest.mock('firebase/compat/firestore');
+jest.mock('@react-navigation/native');
+
+
+describe('SettingsScreen', () => {
+    let wrapper;
+    beforeEach(() => {
+        wrapper = shallow(<SettingsScreen />);
+    });
+
+    it('renders a ScrollView component', () => {
+        expect(wrapper.find('ScrollView')).toHaveLength(1);
+    })
+
+    it('renders a TileItem component for updating account details', () => {
+        // console.log(wrapper.find('TileItem').at(0).props());
+        expect(wrapper.find('TileItem').at(0).props().mainText).toEqual('Update account details');
+        expect(wrapper.find('TileItem').at(0).props().subtitle).toEqual('Username, Location etc');
+        // expect(wrapper.find('TileItem').at(0).props().iconName).toEqual(require('../assets/arrowRight.png'));
+        expect(wrapper.find('TileItem').at(0).props().onIconPress).toBeDefined();
+
+    })
+
+    it('renders a TileItem component for changing login details', () => {
+        expect(wrapper.find('TileItem').at(1).prop('mainText')).toEqual('Change login details');
+        expect(wrapper.find('TileItem').at(1).prop('subtitle')).toEqual('Email, password');
+        expect(wrapper.find('TileItem').at(1).prop('onIconPress')).toBeDefined();
+
+    })
+
+    it('renders a TileItem component for changing quiz details', () => {
+        expect(wrapper.find('TileItem').at(2).prop('mainText')).toEqual('Change quiz details');
+        expect(wrapper.find('TileItem').at(2).prop('subtitle')).toEqual('Easy, medium, hard');
+        expect(wrapper.find('TileItem').at(2).prop('onIconPress')).toBeDefined();
+    })
+
+
+    const navigation = {
+        push: jest.fn(item => item),
+        navigate: jest.fn()
+    }
+
+    it('handleIconPress function is called when icon is pressed', () => {
+        handleIconPress('Profile', navigation);
+        expect(navigation.push).toHaveBeenCalled();
+        handleIconPress('UpdateLogin', navigation);
+        expect(navigation.push).toHaveBeenCalled();
+        handleIconPress('QuizSettings', navigation);
+        // expect(naviagtion.navigate).toHaveBeenCalled();
+    })
+
+    it('logs the correct message to the console', () => {
+        const spy = jest.spyOn(console, 'log');
+        handleIconPress('Profile', navigation);
+        expect(spy).toHaveBeenCalledWith('Icon pressed on Profile');
+        handleIconPress('UpdateLogin', navigation);
+        expect(spy).toHaveBeenCalledWith('Icon pressed on UpdateLogin');
+        handleIconPress('QuizSettings', navigation);
+        expect(spy).toHaveBeenCalledWith('Icon pressed on QuizSettings');
+    })
+
+    // test('calls onIconPress when icon is pressed', () => {
+    //     const onIconPressMock = jest.fn();
+    //     const TileItem = wrapper.find('TileItem').at(0);
+    //     TileItem.props().onIconPress = onIconPressMock;
+    //     TileItem.props().onIconPress();
+    //     expect(onIconPress).toHaveBeenCalled();
+    //     // expect(onIconPress).toHaveBeenCalled();
+    //   });
+
+
+    it('calls onIconPress with correct arguments when icon is pressed', () => {
+        const wrapper = shallow(<SettingsScreen />);
+        const TileItem = wrapper.find('TileItem').at(0);
+        const TouchableOpacity = TileItem.children().find('TouchableOpacity');
+        console.log(TileItem.children().debug());
+      });
+      
+})
+```
+**9. Test sidebar
+```
+
+jest.mock("react-native-vector-icons/MaterialIcons", () => "Icon");
+jest.mock("@react-navigation/native")
+
+
+describe("<Navbar />", () => {
+    it("renders correctly", () => {
+        const tree = renderer.create("<Navbar />").toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+    
+    it("should render the Home, Profile, and Leaderboard buttons", () => {
+        const { getByText } = render(<Navbar />);
+        expect(getByText("Home")).not.toBeNull();
+        expect(getByText("Profile")).not.toBeNull();
+        expect(getByText("Leaderboard")).not.toBeNull();
+    });
+
+    test('goToProfile', () => {
+        const navigation = { navigate: jest.fn() };
+        goToProfile(navigation);
+        expect(navigation.navigate).toHaveBeenCalledWith('Profile');
+    });
+
+    test('goToLeaderboard', () => {
+        const navigation = { navigate: jest.fn() };
+        goToLeaderboard(navigation);
+        expect(navigation.navigate).toHaveBeenCalledWith('Leaderboard');
+    });
+
+    test('goToHome', () => {
+        const navigation = { navigate: jest.fn() };
+        goToHome(navigation);
+        expect(navigation.navigate).toHaveBeenCalledWith('Home');
+    });
+
+
+
+
+    test('onPress', () => {
+        const navigation = { navigate: jest.fn() };
+        const wrapper = shallow(<Navbar />);
+        wrapper.find('TouchableOpacity').at(0).props().onPress();
+        wrapper.find('TouchableOpacity').at(1).props().onPress();
+        wrapper.find('TouchableOpacity').at(2).props().onPress();
+
+    });
+
+});
+```
+**10. Test title item
+```
+describe('<TileItem />', () => {
+    it('renders correctly', () => {
+        const tree = renderer.create('<TileItem />').toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    const mainText = 'mainText';
+    const subtitle = 'subtitle';
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('should render the mainText and subtitle', () => {
+        const { getByText } = render(<TileItem mainText={mainText} subtitle={subtitle} />);
+        expect(getByText(mainText)).not.toBeNull();
+        expect(getByText(subtitle)).not.toBeNull();
+    });
+
+});
+```
+
+## Pull requsts for bug fixing
+
+## Refactoring, code standarts
+
+## Comments explaining the code
+
+## The usage of an AI tool meant to help with software development 
 
 
 
