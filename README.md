@@ -19,7 +19,7 @@ With this app we hope to improve our users grades and make them happy!😊
 Once we are sure that our app is 100% responsive and all features are implemented and tested we will publish it on App Store/Play Store. 🧑🏼‍💻
 
 ## App description 
-### 1.User stories
+### 1. User stories
 1. As a user, I want to see the welcome page the first time I start the app
 2. As a user, I want to create an account to be able to save my progress and compare with others
 3. As a user, I want to log in using my username/mail and password
@@ -36,11 +36,11 @@ Once we are sure that our app is 100% responsive and all features are implemente
 14. As a user, I want to be able to see my quiz history, scores, and answers
 15. As an admin, I want to have acces to all the actions on a quiz.
 
-### 2.Backlog
+### 2. Backlog
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
   TRE SA INSEREZ POZE DREPT DOVADA!!!!!
 
-### 3.Starting features
+### 3. Starting features
 - Login / Register
 - See profile info (profile picture, number of points accumulated from quizzes, display name, email address, description)
 - Edit profile info (profile picture, display name, description)
@@ -53,24 +53,27 @@ In order to keep track of our progress and monitor our backlog we used Jira 👉
 - Edit quiz
 - Delete quiz.
 
-### 4.How the app works and what it does
+### 4. How the app works and what it does
 When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
 
-### 5. App design 
+### 5. What we used to build our app
+DE COMPLETAT!!!!!!!!!!!
+
+### 6. App design 
 We opted for a simple, VERY orange 🍊  look inspired by this design 👉🏼 [here](https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213). 
-- ** App icon
-- ** Welcome screen
-- ** Home screen
-- ** Profile screen
-- ** Leaderboard screen
-- ** JoinQuiz screen
-- ** CreateQuiz screen
-- ** QuizBoard screen / My Quiz
-- ** QuizBoard screen / General Quiz
-- ** Settings screen
+- **App icon**
+- **Welcome screen**
+- **Home screen**
+- **Profile screen**
+- **Leaderboard screen**
+- **JoinQuiz screen**
+- **CreateQuiz screen**
+- **QuizBoard screen / My Quiz**
+- **QuizBoard screen / General Quiz**
+- **Settings screen**
 TRE SA PUN POZE!!!!!!!!!!!!!
 
-### 6. UML Use Case Diagram  
+### 7. UML Use Case Diagram  
 POZAAAAAAAAAA!!!
 
 ## Source control
@@ -90,7 +93,6 @@ CE FAC TOATE ASTEA??????????????
 ### [Commits](https://github.com/Laurentiuq/ProiectMDS/commits)
 
 ## Testing
-BANUIESC CA AR TREBUI SA LE MAI DETALIEZ? IDFK HOW THO
 **1. Test welcome screen**
 ```
 jest.mock('@react-navigation/native', () => ({
@@ -697,14 +699,21 @@ describe('<TileItem />', () => {
 });
 ```
 
-## Pull requsts for bug fixing
-DOVEZIIIIIIII!!!!
+## Bugs and conflicts
+### For fixing bugs we created a different brach, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
+[Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da).
+### Conflicts 
+- [first conflict on Apr 25](https://github.com/Laurentiuq/ProiectMDS/commit/c798095d295db0e71140fabb4e7ea69f9a1c444a)
+- [second conflict on Apr 25](https://github.com/Laurentiuq/ProiectMDS/commit/cb7eff7718275e2160287c64cbd68342a4a694d3)
 
 ## Refactoring, code standarts
-DOVEZIIIIIIIIIIII!!!!!
+For refactoring we extracted methods or functions by breaking down large, complex methods into smaller, more manageable pieces that perform specific tasks, we renamed variables, functions, or classes using descriptive and meaningful names to improve code readability and understandability, we removed code duplication etc. A few examples:
+- [tests and refactorization](https://github.com/Laurentiuq/ProiectMDS/commit/bf0f7ce8d70dbc913557b733ffbdccced8f2cb49?diff=split#diff-cdb19b464fb98e7a322bdc831382ebcc18323fd8a428cc9c9df6c9ee68023a93)
+- [refactoring with __mocks__](https://github.com/Laurentiuq/ProiectMDS/commit/8fcacb5a86903d98c00f497d19c809d8226e1483#diff-8154eceaddecad29e1feba5c605ce8707e4e446e760e342f04073575bd21de16)
+- [settingsScreen tests and refactoring](https://github.com/Laurentiuq/ProiectMDS/commit/62a42ba4e19e09bb0698d1fd8074071614fa4cef#diff-cdb19b464fb98e7a322bdc831382ebcc18323fd8a428cc9c9df6c9ee68023a93)
 
 ## Comments explaining the code
-### In order to make our code more readable and easy to understand we sprinkled 🧚🏼‍♀️ some comments. Here's a few examples:
+### In order to make our code more readable and easy to understand we sprinkled 🧚🏼‍♀️ useful comments. Here's a few examples:
 - ProfileScreen.js
 ```
 // Pentru a modifica datele profilului in baza de date
