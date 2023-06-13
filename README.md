@@ -700,7 +700,7 @@ describe('<TileItem />', () => {
 ```
 
 ## Bugs and conflicts
-### For fixing bugs we created a different brach, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
+### For fixing bugs we created a different brach, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
 [Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da).
 ### Conflicts 
 - [first conflict on Apr 25](https://github.com/Laurentiuq/ProiectMDS/commit/c798095d295db0e71140fabb4e7ea69f9a1c444a)
