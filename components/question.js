@@ -4,7 +4,6 @@ import * as ImagePicker from 'expo-image-picker';
 import styles from '../styles/questionStyles';
 import { RadioButton } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { uploadImage } from '../utils/fileUploader';
 
 export default function Question(props) {
     const [question, setQuestion] = React.useState('');
@@ -59,7 +58,7 @@ export default function Question(props) {
     }
 
     const handleAddPhoto = async () => {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
             alert('Sorry, we need camera roll permissions to make this work!');
         } else {
@@ -75,10 +74,7 @@ export default function Question(props) {
         }
     }
 
-    const handleSubmit = async () => {
-
-        const imageResult = await uploadImage(photo);
-        console.log("upload image result", imageResult);
+    const handleSubmit = () => {
         // remove the last element of the options array if it is empty
         for (let i = 0; i < options.length; i++) {
             if (options[i] === '') {
@@ -92,7 +88,7 @@ export default function Question(props) {
             options,
             correctAnswer: correctAnswer.map(e =>  (e ? true : false) ),
             points:Number.parseInt(points),
-            photo: imageResult,
+            photo,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
         }
 
@@ -158,6 +154,51 @@ export default function Question(props) {
                 </View>
             ))}
 
+
+            {/* {answerType === 'multiple' ? (
+                options.map((option, index) => (
+                    <CheckBox
+                        key={index}
+                        title={`Option ${index + 1}`}
+                        checked={correctAnswers.includes(index)}
+                        onPress={() => handleCorrectAnswerChange(index, !correctAnswers.includes(index))}
+                    />
+                ))
+            ) : (
+                <>
+                    <Text style={styles.labelText}>Correct Answer</Text>
+                    <TextInput style={styles.inputTextNoBorder}
+                        value={correctAnswer}
+                        onChangeText={handleCorrectAnswerChange}
+                        placeholder="Correct Answer"
+                    />
+                </>
+            )} */}
+            {/* {options.map((option, index) => (
+                <TextInput style={styles.answerContainer}
+                    key={index}
+                    value={option}
+                    onChangeText={(value) => handleOptionChange(index, value)}
+                    onSubmitEditing={() => this.correctAnswer.focust()}
+                    placeholder={`Option ${index + 1}`}
+                />
+            ))} */}
+
+            {/* <Text style={styles.labelText}>Timer Enabled</Text>
+            <Switch
+                value={timerEnabled}
+                onValueChange={setTimerEnabled}
+            />
+            {timerEnabled && (
+                <>
+                    <Text style={styles.labelText}>Timer</Text>
+                    <TextInput
+                        value={timer}
+                        onChangeText={setTimer}
+                        placeholder="Timer"
+                    />
+                </>
+            )} */}
             <Text style={styles.labelText}>Points</Text>
             <TextInput
                 value={points}
