@@ -123,7 +123,7 @@ export default function TakeQuizScreen({ route}) {
       quiz.questions[index] = { ...question, userSelectedAnswers: selectedAnswers[index] }
     });
     const data = {
-      userId: uuid,  // or however you store the user id
+      userId: uuid,  
       quiz: quiz, // Store all the quiz data
       dateTaken: firebase.firestore.FieldValue.serverTimestamp(),  // current time
       totalScore: totalScore,  // final score
@@ -165,6 +165,7 @@ export default function TakeQuizScreen({ route}) {
 
           return (
             <View key={questionIndex} style={styles.questionContainer}>
+              <Image source={{ uri: question.photo }} style={{ width: 300, height: 200, alignSelf: 'center' }} />
               <Text style={styles.questionText}>Question: {question.question}</Text>
               {/*For each option we verifiy if it's selected and create a specific output.  */}
               {question.options.map((option, optionIndex) => {
@@ -202,7 +203,7 @@ export default function TakeQuizScreen({ route}) {
                 );
               })}
               {/* If the quiz was submitted and the question was not answered, show the correct answer. */}
-              {/* TODO -- maybe show correct answers in every case */}
+          
               {showAnswers && selectedAnswers[questionIndex].length === 0 && (
                 <View style={styles.correctAnswerContainer}>
                   <Text style={styles.correctAnswerText}>Correct Answer(s):</Text>
@@ -235,8 +236,6 @@ export default function TakeQuizScreen({ route}) {
 
         {quizTimeout && <Text style={styles.timeoutText}>Time's up! Quiz submitted.</Text>}
         <Text style={styles.scoreText}>Score: {score}</Text>
-
-        {/* Add other UI elements as needed */}
       </ScrollView>
     </View>
   );
