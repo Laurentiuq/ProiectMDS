@@ -904,9 +904,9 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 In order to improve our code, understand the syntax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/GPT_generateTEST.jpeg" alt="Image" width="800" height="900">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/GPT_generateTEST.jpeg" alt="Image" width="900">
    <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/ImagePickerChatGPT.jpeg" alt="Image" width="800" height="900">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/ImagePickerChatGPT.jpeg" alt="Image" width="900">
    <br> 
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/animationChatGPT.jpeg" alt="Image" width="800" height="900">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/animationChatGPT.jpeg" alt="Image" width="900">
    <br>
