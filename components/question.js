@@ -22,6 +22,7 @@ export default function Question(props) {
         setIsAddQuestion(newValue);
         props.onUpdate(newValue);
     }
+    
     const handleDeleteOption = (index) => {
         if (options.length > 1) {
             setOptions(options.filter((_, i) => i !== index));
