@@ -34,12 +34,21 @@ const Timer = ({ duration, onTimeout }) => {
   );
 };
 
-export default function TakeQuizScreen({ route }) {
+export default function TakeQuizScreen({ route}) {
+  const { reviewMode = false } = route.params; 
+
   const { quiz } = route.params;
-  const [selectedAnswers, setSelectedAnswers] = useState(Array(quiz.questions.length).fill([]));
-  const [score, setScore] = useState(0);
-  const [showAnswers, setShowAnswers] = useState(false);
+  // Initialize selectedAnswers depending on whether it's review mode or not
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    reviewMode
+      ? quiz.questions.map((q) => q.userSelectedAnswers)
+      : Array(quiz.questions.length).fill([])
+  );
+
+  // Similar changes for other states
+  const [showAnswers, setShowAnswers] = useState(reviewMode);
   const [quizTimeout, setQuizTimeout] = useState(false);
+  const [score, setScore] = useState(0);
 
   const handleAnswerSelection = (questionIndex, optionIndex) => {
     // adds or removes the optionIndex from the selectedAnswers array
@@ -90,7 +99,7 @@ export default function TakeQuizScreen({ route }) {
     const db = firebase.firestore();
     const uuid = firebase.auth().currentUser.uid;
     if (totalScore > 0) {
-      console.log('uuid ',uuid);
+      console.log('uuid ', uuid);
       const userRef = db.collection('users').doc(uuid);
 
       await userRef.update({
@@ -137,8 +146,9 @@ export default function TakeQuizScreen({ route }) {
     handleSubmitQuiz();
     setQuizTimeout(true);
   };
-
+  console.log('reviewMode ', reviewMode);
   return (
+
     <View style={styles.container}>
       <ScrollView>
         <Image source={{ uri: quiz.photo }} style={{ width: 200, height: 200 }} />
@@ -146,7 +156,7 @@ export default function TakeQuizScreen({ route }) {
         <Text style={styles.description}>{quiz.description}</Text>
 
         {/* Uses the timer defined above */}
-        <Timer duration={quiz.timer} onTimeout={handleTimeout} />
+        {!reviewMode && <Timer duration={quiz.timer} onTimeout={handleTimeout} />}
 
         {/* For each question  */}
         {quiz.questions.map((question, questionIndex) => {
@@ -211,16 +221,20 @@ export default function TakeQuizScreen({ route }) {
 
 
         {/* If the quiz was submited disable the Submit Quiz button and update the style */}
-        <TouchableOpacity
-          style={[
-            styles.submitButton,
-            { backgroundColor: showAnswers ? styles.disabledButtonColor : styles.submitButtonColor },
-          ]}
-          onPress={handleSubmitQuiz}
-          disabled={showAnswers}
-        >
-          <Text style={styles.submitButtonText}>Submit Quiz</Text>
-        </TouchableOpacity>
+        {/* If the quiz was submited disable the Submit Quiz button and update the style */}
+        {!reviewMode && (
+          <TouchableOpacity
+            style={[
+              styles.submitButton,
+              { backgroundColor: showAnswers ? styles.disabledButtonColor : styles.submitButtonColor },
+            ]}
+            onPress={handleSubmitQuiz}
+            disabled={showAnswers}
+          >
+            <Text style={styles.submitButtonText}>Submit Quiz</Text>
+          </TouchableOpacity>
+        )}
+
         {quizTimeout && <Text style={styles.timeoutText}>Time's up! Quiz submitted.</Text>}
         <Text style={styles.scoreText}>Score: {score}</Text>
 

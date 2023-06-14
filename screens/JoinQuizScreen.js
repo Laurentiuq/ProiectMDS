@@ -62,8 +62,11 @@ export default function JoinQuizScreen(props) {
 
   const handleQuizStart = (quiz) => {
     // Navigate to the QuizScreen
-    const quizData = quiz;
-    navigation.navigate('TakeQuiz', { quiz: quizData });
+    // const quizData = quiz;
+    navigation.navigate('TakeQuiz', {
+      quiz: quiz,
+      reviewMode: false,
+  });
   };
 
   useEffect(() => {
@@ -78,6 +81,7 @@ export default function JoinQuizScreen(props) {
           <TouchableOpacity onPress={() => handleQuizStart(quiz)} style={styles.startButton}>
             <Text style={styles.buttonText}>Take Quiz</Text>
           </TouchableOpacity>
+          <View style={{height:10}}></View>
           <TouchableOpacity onPress={() => handleQuizDelete(quiz.id)} style={styles.startButton}>
             <Text style={styles.buttonText}>Delete Quiz</Text>
           </TouchableOpacity>

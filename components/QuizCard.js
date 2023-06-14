@@ -3,13 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, Image, Alert, ScrollView, Touchable, TouchableOpacity, Switch } from 'react-native'
 
 import { StyleSheet } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 
 export function QuizCard({ item }) {
     const { quiz, totalScore } = item;
     const [isExpanded, setIsExpanded] = useState(false);
+    const navigation = useNavigation();
 
-    const handlePress = () => setIsExpanded(!isExpanded);
+    const handlePress = (quiz) => {
+        console.log('handlePress quiz ', quiz);
+        navigation.navigate('TakeQuiz', {
+            quiz: quiz,
+            reviewMode: true,
+        });
+    };
 
     const renderQuestionAnswer = (question, index) => (
         <View key={index} style={{ marginBottom: 16, flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', }}>
@@ -27,7 +35,7 @@ export function QuizCard({ item }) {
     );
 
     return (
-        <TouchableOpacity style={styles.card} onPress={handlePress}>
+        <TouchableOpacity style={styles.card} onPress={() => handlePress(quiz)}>
             <Text style={styles.text}>{quiz.name}</Text>
             {quiz.photo && <Image style={styles.image} source={{ uri: quiz.photo }} />}
             <Text style={styles.text}>Score: {totalScore}</Text>
@@ -52,7 +60,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5
+        elevation: 5,
+        marginBottom:10,
     },
     image: {
         width: '100%',
