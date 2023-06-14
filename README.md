@@ -71,50 +71,50 @@ DE COMPLETAT!!!!!!!!!!!
 We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [here](<https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213>).
 
 - **Loading screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg)
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="200" height="100">
+
 - **Welcome screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg)
 
 - **Login/Register screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg)
 
 - **Forgot password screen**
 - ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg)
 
 - **Home screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-37-544_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-37-544_host.exp.exponent.jpg)
 
 - **Profile screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg)
 
 - **Leaderboard screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg)
 
 - **JoinQuiz screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg)
-~[](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-02-643_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg)
+  ~[](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-02-643_host.exp.exponent.jpg)
 
 - **TakeQuiz screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-09-760_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-26-751_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-09-760_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-26-751_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg)
 
 - **CreateQuiz screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-49-238_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-53-541_host.exp.exponent.jpg)
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-02-334_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-49-238_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-53-541_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-02-334_host.exp.exponent.jpg)
 
 - **QuizBoard screen / My Quiz**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg)
 
 - **QuizBoard screen / General Quiz**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg)
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg)
 
 - **Settings screen**
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg)
-
+  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg)
 
 ### 7. UML Use Case Diagram
 
