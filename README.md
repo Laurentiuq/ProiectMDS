@@ -819,7 +819,3 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 In order to improve our code, understand the syntax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
 DOVEZZIIIIIIIIIIIIIIIIIIIII!!!!!!!!!
-![GPT_solve_error_test](https://github.com/Laurentiuq/ProiectMDS/assets/99676849/9b1ed0c1-9456-4eff-b717-4866dfebb0a9)
-
-![GPT_generateTEST](https://github.com/Laurentiuq/ProiectMDS/assets/99676849/57758584-07f0-42b1-9fb8-7784e27ce0b5)
-
