@@ -42,7 +42,8 @@ Once we are sure that our app is 100% responsive and all features are implemente
 ### 2. Backlog
 
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
-![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png)
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="400" height="600">
 
 ### 3. Starting features
 
@@ -64,9 +65,10 @@ When you open up the app you will see the welcome screen where you can either lo
 
 ### 5. How we build our app
 - All you need to know about building a React Native app:
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="300" height="300">
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp2.png" alt="Image" width="300" height="300">
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp3.png" alt="Image" width="300" height="300">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="400" height="400">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp2.png" alt="Image" width="400" height="400">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp3.png" alt="Image" width="400" height="400">
   
 - How to run the app: Android Studio comes with an emulator that allows you to test your app on various virtual Android devices with different screen sizes, resolutions, and hardware configurations. You can also connect physical Android devices for testing.
 - Database: Firebase provides a real-time NoSQL database that allows you to store and sync data in real-time across multiple clients. It enables you to build collaborative applications like chat apps, live dashboards, and multiplayer games. Here's the code for the connection with the database (you can find in the App.js file):
@@ -81,21 +83,30 @@ const Stack = createNativeStackNavigator();
 const db = firebase.firestore();//and here
 ```
 And here's how the database looks:
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="300" height="300">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="400" height="600">
 
 ### 6. App design
 
 We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [here](<https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213>).
 
 - **Loading screen**
+  <br>
   <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
 
 - **Welcome screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+   <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+     <br>
+
 
 - **Login/Register screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg" alt="Image" width="300" height="600">
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
+
 
 - **Forgot password screen**
  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg" alt="Image" width="300" height="600">
