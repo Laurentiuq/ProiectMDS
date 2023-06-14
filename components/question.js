@@ -36,7 +36,7 @@ export default function Question(props) {
     const handleOptionChange = (index, value) => {
         const newOptions = [...options];
         newOptions[index] = value;
-
+        setCorrectAnswer([...correctAnswer, false]);
         if (index === options.length - 1 && value !== '') {
             newOptions.push('');
         }
@@ -55,7 +55,11 @@ export default function Question(props) {
                 if (idx !== index) newCorrectAnswer[idx] = false;
             })
         }
+        setCorrectAnswer(newCorrectAnswer);
+        
+        console.log("newCorrectAnswer ", correctAnswer);
     }
+
 
     const handleAddPhoto = async () => {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
