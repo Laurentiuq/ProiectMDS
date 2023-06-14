@@ -5,6 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import Sidebar from '../components/sidebar.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+const handleQuizBoard = (navigation) => {
+  navigation.push('QuizBoard');
+
+}
+
 const handleLogout = (navigation) => {
   const auth = getAuth();
   auth.signOut().then(() => {
@@ -13,7 +18,7 @@ const handleLogout = (navigation) => {
 }
 
 const IconButton = ({ onPress }) => (
-  <TouchableOpacity testID = "settings-button" onPress={onPress} style={{ padding: 8 }}>
+  <TouchableOpacity testID="settings-button" onPress={onPress} style={{ padding: 8 }}>
     <Icon name="settings" size={24} color="#000" />
   </TouchableOpacity>
 );
@@ -24,10 +29,10 @@ const handleSettingsPress = (navigation) => {
 
 };
 
-export { handleLogout, IconButton, handleSettingsPress}
+export { handleLogout, IconButton, handleSettingsPress }
 
 export default function HomeScreen(props) {
-  
+
   const db = props.route.params.db;
   const [displayName, setDisplayName] = React.useState('');
   const navigation = useNavigation();
@@ -41,7 +46,13 @@ export default function HomeScreen(props) {
     const displayName = userData.data().displayName;
     setDisplayName(displayName);
 
-
+    // const db = firebase.firestore();
+    const quizHistoryRef = db.collection('quiz_history');
+    quizHistoryRef.get().then((quizHistory) => {
+      quizHistory.docs.forEach((quiz) => {
+        console.log('nabil alhafez ', JSON.stringify(quiz.data()))
+      });
+    });
   }
   // Il folosim ca sa apelam functia anteriora pentru a obtine datele
   React.useEffect(() => {
@@ -82,29 +93,38 @@ export default function HomeScreen(props) {
               </TouchableOpacity>
             </View>
 
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity testID='create-quiz-button'
-        onPress = {() => {
-          navigation.navigate('CreateQuiz')
-        }}
-        style = {[styles.button, styles.buttonOutline]}>
-        <Text style={styles.buttonOutlineText}>Create a quiz</Text>
-        </TouchableOpacity>
-      
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity testID='logout-button'
-        onPress = {() => handleLogout(navigation)}
-        style = {[styles.button, styles.buttonOutline]}>
-        <Text style={styles.buttonOutlineText}>Logout</Text>
-        </TouchableOpacity>
-      
-     </View>
-     </View>
-   </View>
-   </View>
-   </View>
-   </>
-   
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity testID='create-quiz-button'
+                onPress={() => {
+                  navigation.navigate('CreateQuiz')
+                }}
+                style={[styles.button, styles.buttonOutline]}>
+                <Text style={styles.buttonOutlineText}>Create a quiz</Text>
+              </TouchableOpacity>
+
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity testID='quiz-board-button'
+                  onPress={() => handleQuizBoard(navigation)}
+                  style={[styles.button, styles.buttonOutline]}>
+                  <Text style={styles.buttonOutlineText}>Quiz Board</Text>
+                </TouchableOpacity>
+
+              </View>
+
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity testID='logout-button'
+                  onPress={() => handleLogout(navigation)}
+                  style={[styles.button, styles.buttonOutline]}>
+                  <Text style={styles.buttonOutlineText}>Logout</Text>
+                </TouchableOpacity>
+
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </>
+
   )
 }
 
