@@ -91,16 +91,22 @@ export default function Question(props) {
             photo,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
         }
-        // set the isAddQuestion variable to false so that the form is not rendered
-        // onLocalIsAddQuestion(false);
-        // add qurstion to the questions array
 
-        // props.setQuestions([...props.questions, newQuestion]);
-        props.setQuestions(prevQuestions => [...prevQuestions, newQuestion]);
 
-        console.log("props.questions ", props.questions)
+        // add question to the questions array
+        props.setQuestions([...props.questions, newQuestion]);
+        // reset the form
+        setQuestion('');
+        setOptions(['']);
+        setCorrectAnswer('');
+        setTimerEnabled(false);
+        setTimer(0);
+        setPoints(0);
+        setPhoto('');
+        console.log(props.questions)
+        console.log(newQuestion);
 
-        console.log("newQuestion ", newQuestion);
+
     }
 
     return (
