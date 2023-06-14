@@ -1,13 +1,13 @@
-# Quiz App 🫰🏻 
+# Quiz App 🫰🏻
 
-This is a mobile app (done in React Native) designed to provide users with a fun and interactive way to test their knowledge on various subjects they will encounter 
-throughout their college years. The intention behind it is to make it easier for students at University of Bucharest to revise or learn when they are 
+This is a mobile app (done in React Native) designed to provide users with a fun and interactive way to test their knowledge on various subjects they will encounter
+throughout their college years. The intention behind it is to make it easier for students at University of Bucharest to revise or learn when they are
 preparing for "sesiune".
 Imagine you are studying for your next exam in Computer Networking and you'd like to evaluate yourself on how much you know so far. You can just open the
-quiz app, login or register, select "join a quiz" and take as many quizzes as you feel like in order to better your understanding of the subject. The 
-quizzes can either have generic questions that are meant to test your general knowledge about the basic concepts of that certain subject, or they can 
-include questions from past exams. 
-With this app we hope to improve our users grades and make them happy!😊 
+quiz app, login or register, select "join a quiz" and take as many quizzes as you feel like in order to better your understanding of the subject. The
+quizzes can either have generic questions that are meant to test your general knowledge about the basic concepts of that certain subject, or they can
+include questions from past exams.
+With this app we hope to improve our users grades and make them happy!😊
 
 ## [App demo](https://www.youtube.com/watch?v=FWsIpYMRW84&ab_channel=Laurentiu)
 
@@ -16,10 +16,13 @@ With this app we hope to improve our users grades and make them happy!😊
 - idk YET
 
 ## Installing
+
 Once we are sure that our app is 100% responsive and all features are implemented and tested we will publish it on App Store/Play Store. 🧑🏼‍💻
 
-## App description 
+## App description
+
 ### 1. User stories
+
 1. As a user, I want to see the welcome page the first time I start the app
 2. As a user, I want to create an account to be able to save my progress and compare with others
 3. As a user, I want to log in using my username/mail and password
@@ -37,30 +40,36 @@ Once we are sure that our app is 100% responsive and all features are implemente
 15. As an admin, I want to have acces to all the actions on a quiz.
 
 ### 2. Backlog
+
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
-  TRE SA INSEREZ POZE DREPT DOVADA!!!!!
+TRE SA INSEREZ POZE DREPT DOVADA!!!!!
 
 ### 3. Starting features
+
 - Login / Register
 - See profile info (profile picture, number of points accumulated from quizzes, display name, email address, description)
 - Edit profile info (profile picture, display name, description)
 - Join a quiz
 - See quiz history and progress
-- See leaderboard 
+- See leaderboard
 - Create quiz
 - Add title, description, picture, questions and timer to quiz
-- Add answers, score and picture to questions 
+- Add answers, score and picture to questions
 - Edit quiz
 - Delete quiz.
 
 ### 4. How the app works and what it does
+
 When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
 
 ### 5. What we used to build our app
+
 DE COMPLETAT!!!!!!!!!!!
 
-### 6. App design 
-We opted for a simple, VERY orange 🍊  look inspired by this design 👉🏼 [here](https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213). 
+### 6. App design
+
+We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [here](<https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213>).
+
 - **App icon**
 - **Welcome screen**
 - **Home screen**
@@ -71,15 +80,18 @@ We opted for a simple, VERY orange 🍊  look inspired by this design 👉🏼 [
 - **QuizBoard screen / My Quiz**
 - **QuizBoard screen / General Quiz**
 - **Settings screen**
-TRE SA PUN POZE!!!!!!!!!!!!!
+  TRE SA PUN POZE!!!!!!!!!!!!!
 
-### 7. UML Use Case Diagram  
+### 7. UML Use Case Diagram
+
 POZAAAAAAAAAA!!!
 
 ## Source control
 
 ### [Branches](https://github.com/Laurentiuq/ProiectMDS/branches/active)
+
 CE FAC TOATE ASTEA??????????????
+
 - feature/quiz-board
 - bug_fixing
 - search/else
@@ -93,7 +105,9 @@ CE FAC TOATE ASTEA??????????????
 ### [Commits](https://github.com/Laurentiuq/ProiectMDS/commits)
 
 ## Testing
+
 **1. Test welcome screen**
+
 ```
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),
@@ -126,7 +140,9 @@ describe('WelcomeScreen', () => {
         jest.clearAllMocks();
     });
 ```
+
 **2. Test login or sign up screen**
+
 ```
 jest.mock('@react-navigation/native', () => {
     return {
@@ -168,7 +184,9 @@ describe('LoginOrSignupScreen', () => {
     });
 });
 ```
+
 **3. Test login screen**
+
 ```
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -237,7 +255,9 @@ describe('LoginScreen', () => {
 
 });
 ```
+
 **4. Test register screen**
+
 ```
 jest.mock('firebase/auth', () => {
   const originalModule = jest.requireActual('firebase/auth');
@@ -305,18 +325,18 @@ describe('RegisterScreen', () => {
   it('shows alert when passwords do not match', () => {
     const mockedAlert = jest.fn();
     global.alert = mockedAlert;
-  
+
     const { getByPlaceholderText, getByText } = render(<RegisterScreen />);
     const emailInput = getByPlaceholderText('Email');
     fireEvent.changeText(emailInput, 'test@example.com');
-  
+
     const passwordInput = getByPlaceholderText('Password');
     const confirmPasswordInput = getByPlaceholderText('Confirm Password');
-  
+
     fireEvent.changeText(passwordInput, 'password123');
     fireEvent.changeText(confirmPasswordInput, 'password321');
-    fireEvent.press(getByText('Register')); 
-  
+    fireEvent.press(getByText('Register'));
+
     expect(mockedAlert).toHaveBeenCalledWith("Passwords don't match.");
   });
 
@@ -340,7 +360,9 @@ describe('RegisterScreen', () => {
   });
 });
 ```
+
 **5. 2. Test home screen**
+
 ```
 jest.mock('expo-image-picker');
 jest.mock('@react-native-firebase/storage');
@@ -377,7 +399,7 @@ describe('HomeScreen', () => {
         const createQuizButton = getByTestId('create-quiz-button');
         fireEvent.press(createQuizButton);
       });
-    
+
     test('logout button works', async () => {
         const mockNavigation = { push: jest.fn() };
         const mockProps = {
@@ -409,7 +431,9 @@ describe('HomeScreen', () => {
 
   });
 ```
+
 **6. Test profile screen**
+
 ```
 const mockDb = {}; // Replace this with your mock database object
 
@@ -438,7 +462,9 @@ describe('ProfileScreen', () => {
 
 });
 ```
+
 **7. Test create quiz**
+
 ```
 jest.mock('expo-image-picker', () => ({
   requestCameraRollPermissionsAsync: jest.fn(),
@@ -462,7 +488,7 @@ describe('CreateQuiz', () => {
 
       const setQuizPhoto = jest.fn();
       await handleAddPhoto(setQuizPhoto);
-  
+
       expect(ImagePicker.requestCameraRollPermissionsAsync).toHaveBeenCalled();
       expect(setQuizPhoto).toHaveBeenCalledWith('test-uri');
     });
@@ -472,10 +498,10 @@ describe('CreateQuiz', () => {
       ImagePicker.requestCameraRollPermissionsAsync.mockResolvedValueOnce({ status: 'denied' });
       ImagePicker.launchImageLibraryAsync.mockResolvedValueOnce({ uri: 'test-uri', cancelled: false });
       ImagePicker.MediaTypeOptions.mockResolvedValueOnce({ Images: 'test-images' });
-      
+
       const setQuizPhoto = jest.fn();
       await handleAddPhoto(setQuizPhoto);
-  
+
       expect(ImagePicker.requestCameraRollPermissionsAsync).toHaveBeenCalled();
       expect(setQuizPhoto).not.toHaveBeenCalled();
       expect(alertSpy).toHaveBeenCalledWith('Sorry, we need camera roll permissions to make this work!');
@@ -497,7 +523,9 @@ describe('CreateQuiz', () => {
 
 });
 ```
+
 **8. Test settings screen**
+
 ```
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -570,10 +598,12 @@ describe('SettingsScreen', () => {
         const TouchableOpacity = TileItem.children().find('TouchableOpacity');
         console.log(TileItem.children().debug());
       });
-      
+
 })
 ```
+
 **9. Test sidebar**
+
 ```
 
 jest.mock("react-native-vector-icons/MaterialIcons", () => "Icon");
@@ -585,11 +615,11 @@ describe("<Navbar />", () => {
         const tree = renderer.create("<Navbar />").toJSON();
         expect(tree).toMatchSnapshot();
     });
-    
+
     afterEach(() => {
         jest.clearAllMocks();
     });
-    
+
     it("should render the Home, Profile, and Leaderboard buttons", () => {
         const { getByText } = render(<Navbar />);
         expect(getByText("Home")).not.toBeNull();
@@ -626,7 +656,9 @@ describe("<Navbar />", () => {
 
 });
 ```
+
 **10. Test title item**
+
 ```
 describe('<TileItem />', () => {
     it('renders correctly', () => {
@@ -650,21 +682,30 @@ describe('<TileItem />', () => {
 ```
 
 ## Bugs and conflicts
-### For fixing bugs we created a different brach, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
+
+### For fixing bugs we created a different branch, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
+
 [Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da).
-### Conflicts 
+
+### Conflicts
+
 - [first conflict on Apr 25](https://github.com/Laurentiuq/ProiectMDS/commit/c798095d295db0e71140fabb4e7ea69f9a1c444a)
 - [second conflict on Apr 25](https://github.com/Laurentiuq/ProiectMDS/commit/cb7eff7718275e2160287c64cbd68342a4a694d3)
 
 ## Refactoring, code standarts
+
 For refactoring we extracted methods or functions by breaking down large, complex methods into smaller, more manageable pieces that perform specific tasks, we renamed variables, functions, or classes using descriptive and meaningful names to improve code readability and understandability, we removed code duplication etc. A few examples:
+
 - [tests and refactorization](https://github.com/Laurentiuq/ProiectMDS/commit/bf0f7ce8d70dbc913557b733ffbdccced8f2cb49?diff=split#diff-cdb19b464fb98e7a322bdc831382ebcc18323fd8a428cc9c9df6c9ee68023a93)
-- [refactoring with __mocks__](https://github.com/Laurentiuq/ProiectMDS/commit/8fcacb5a86903d98c00f497d19c809d8226e1483#diff-8154eceaddecad29e1feba5c605ce8707e4e446e760e342f04073575bd21de16)
+- [refactoring with **mocks**](https://github.com/Laurentiuq/ProiectMDS/commit/8fcacb5a86903d98c00f497d19c809d8226e1483#diff-8154eceaddecad29e1feba5c605ce8707e4e446e760e342f04073575bd21de16)
 - [settingsScreen tests and refactoring](https://github.com/Laurentiuq/ProiectMDS/commit/62a42ba4e19e09bb0698d1fd8074071614fa4cef#diff-cdb19b464fb98e7a322bdc831382ebcc18323fd8a428cc9c9df6c9ee68023a93)
 
 ## Comments explaining the code
+
 ### In order to make our code more readable and easy to understand we sprinkled 🧚🏼‍♀️ useful comments. Here's a few examples:
+
 - ProfileScreen.js
+
 ```
 // Pentru a modifica datele profilului in baza de date
     const handleUpdateProfile = async () => {
@@ -720,7 +761,9 @@ For refactoring we extracted methods or functions by breaking down large, comple
         console.log("editing");
     }
 ```
+
 - LoginOrSignupScreen.js
+
 ```
 
     // get the navigation object from useNavigation hook
@@ -745,7 +788,9 @@ For refactoring we extracted methods or functions by breaking down large, comple
     }
 
 ```
+
 - TakeQuizScrenn.js
+
 ```
  // At every second, decrease the timer by 1
   useEffect(() => {
@@ -770,16 +815,7 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 ```
 
-## The usage of an AI tool meant to help with software development 
+## The usage of an AI tool meant to help with software development
+
 In order to better our code, understand the sintax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
 DOVEZZIIIIIIIIIIIIIIIIIIIII!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
