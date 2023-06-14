@@ -769,8 +769,8 @@ describe('<TileItem />', () => {
 
 ### For fixing bugs we created a different branch, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
 
-[Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da)
-[Fixed Question Form Does Not Clear After Adding a Question](https://github.com/Laurentiuq/ProiectMDS/commit/d76c876284f5e7139f362c1ec7c53ab7ccdd2fd5).
+- [Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da)
+- [Fixed Question Form Does Not Clear After Adding a Question](https://github.com/Laurentiuq/ProiectMDS/commit/d76c876284f5e7139f362c1ec7c53ab7ccdd2fd5).
 
 ### Conflicts
 
@@ -904,9 +904,9 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 In order to improve our code, understand the syntax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/GPT_generateTEST.jpeg" alt="Image" width="800" height="800">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/GPT_generateTEST.jpeg" alt="Image" width="800" height="900">
    <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/ImagePickerChatGPT.jpeg" alt="Image" width="800" height="800">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/ImagePickerChatGPT.jpeg" alt="Image" width="800" height="900">
    <br> 
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/animationChatGPT.jpeg" alt="Image" width="800" height="800">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/animationChatGPT.jpeg" alt="Image" width="800" height="900">
    <br>
