@@ -13,7 +13,7 @@ With this app we hope to improve our users grades and make them happy!😊
 
 ## Requirements
 
-- idk YET
+- At least Android 5.0 Lollipop and iOS 10.0
 
 ## Installing
 
@@ -43,7 +43,7 @@ Once we are sure that our app is 100% responsive and all features are implemente
 
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="400" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="600" height="400">
 
 ### 3. Starting features
 
@@ -84,7 +84,7 @@ const db = firebase.firestore();//and here
 ```
 And here's how the database looks:
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="400" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="600" height="400">
 
 ### 6. App design
 
@@ -109,34 +109,64 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 
 
 - **Forgot password screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
+
 
 - **Home screen**
+    <br>
   <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-37-544_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
+
 
 - **Profile screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
+
 
 - **Leaderboard screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+   <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+     <br>
+
 
 - **JoinQuiz screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+
 
 - **TakeQuiz screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+
 
 - **CreateQuiz screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+    <br>
+
 
 - **QuizBoard screen / My Quiz**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+
 
 - **QuizBoard screen / General Quiz**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+
 
 - **Settings screen**
- <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <br>
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+   <br>
+
 
 ### 7. UML Use Case Diagram
 
