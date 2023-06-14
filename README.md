@@ -789,7 +789,7 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 ```
 
-- TakeQuizScrenn.js
+- TakeQuizScreen.js
 
 ```
  // At every second, decrease the timer by 1
@@ -817,7 +817,7 @@ For refactoring we extracted methods or functions by breaking down large, comple
 
 ## The usage of an AI tool meant to help with software development
 
-In order to better our code, understand the sintax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
+In order to improve our code, understand the syntax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
 DOVEZZIIIIIIIIIIIIIIIIIIIII!!!!!!!!!
 ![GPT_solve_error_test](https://github.com/Laurentiuq/ProiectMDS/assets/99676849/9b1ed0c1-9456-4eff-b717-4866dfebb0a9)
 
