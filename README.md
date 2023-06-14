@@ -42,7 +42,7 @@ Once we are sure that our app is 100% responsive and all features are implemente
 ### 2. Backlog
 
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
-TRE SA INSEREZ POZE DREPT DOVADA!!!!!
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png)
 
 ### 3. Starting features
 
@@ -818,4 +818,6 @@ For refactoring we extracted methods or functions by breaking down large, comple
 ## The usage of an AI tool meant to help with software development
 
 In order to improve our code, understand the syntax for React Native and fix bugs we used both GitHub Copilot and chatGPT 🦾🤖
-DOVEZZIIIIIIIIIIIIIIIIIIIII!!!!!!!!!
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/GPT_generateTEST.jpeg)
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/ImagePickerChatGPT.jpeg)
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/animationChatGPT.jpeg)
