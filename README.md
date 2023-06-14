@@ -84,7 +84,7 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 
 ### 7. UML Use Case Diagram
 
-POZAAAAAAAAAA!!!
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/UML/UML%20Use%20Cases.png)
 
 ## Source control
 
@@ -92,15 +92,15 @@ POZAAAAAAAAAA!!!
 
 CE FAC TOATE ASTEA??????????????
 
-- feature/quiz-board
-- bug_fixing
+- feature/quiz-board -> branch for QuizBoard screen
+- bug_fixing -> branch for bug fixing
 - search/else
-- test/user-management
-- join-quiz-feature
-- tests
-- feature/profile
-- feature/edit-profile
-- feature/login
+- test/user-management -> branch for tests regarding user-management
+- join-quiz-feature -> branch for JoinQuiz screen
+- tests -> branch for tests
+- feature/profile -> branch for Profile screen
+- feature/edit-profile -> branch for EditProfile screen
+- feature/login -> branch for Login screen
 
 ### [Commits](https://github.com/Laurentiuq/ProiectMDS/commits)
 
