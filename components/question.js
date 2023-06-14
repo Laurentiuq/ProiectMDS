@@ -65,11 +65,17 @@ export default function Question(props) {
             points,
             photo
         }
-        // set the isAddQuestion variable to false so that the form is not rendered
-        // onLocalIsAddQuestion(false);
-        // add qurstion to the questions array
-        props.setQuestions([...props.questions, newQuestion]);
 
+        // add question to the questions array
+        props.setQuestions([...props.questions, newQuestion]);
+        // reset the form
+        setQuestion('');
+        setOptions(['']);
+        setCorrectAnswer('');
+        setTimerEnabled(false);
+        setTimer(0);
+        setPoints(0);
+        setPhoto('');
         console.log(props.questions)
         console.log(newQuestion);
     }
