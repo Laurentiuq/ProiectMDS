@@ -48,7 +48,7 @@ export default function TakeQuizScreen({ route}) {
   // Similar changes for other states
   const [showAnswers, setShowAnswers] = useState(reviewMode);
   const [quizTimeout, setQuizTimeout] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(reviewMode?quiz.totalScore:0);
 
   const handleAnswerSelection = (questionIndex, optionIndex) => {
     // adds or removes the optionIndex from the selectedAnswers array
@@ -129,7 +129,6 @@ export default function TakeQuizScreen({ route}) {
       totalScore: totalScore,  // final score
       // You might want to store other information too
     };
-    console.log('data ', data)
     await quizHistoryRef.add(data)
       .then((docRef) => {
         console.log(`Quiz history added with ID: ${docRef.id}`);
@@ -146,7 +145,6 @@ export default function TakeQuizScreen({ route}) {
     handleSubmitQuiz();
     setQuizTimeout(true);
   };
-  console.log('reviewMode ', reviewMode);
   return (
 
     <View style={styles.container}>

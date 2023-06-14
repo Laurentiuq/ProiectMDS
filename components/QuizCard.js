@@ -12,9 +12,8 @@ export function QuizCard({ item }) {
     const navigation = useNavigation();
 
     const handlePress = (quiz) => {
-        console.log('handlePress quiz ', quiz);
         navigation.navigate('TakeQuiz', {
-            quiz: quiz,
+            quiz: {...quiz,totalScore},
             reviewMode: true,
         });
     };
