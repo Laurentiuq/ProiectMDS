@@ -12,11 +12,9 @@ With this app we hope to improve our users grades and make them happy!😊
 ## [App demo](https://www.youtube.com/watch?v=FWsIpYMRW84&ab_channel=Laurentiu)
 
 ## Requirements
-
-- At least Android 5.0 Lollipop and iOS 10.0
+At least Android 5.0 Lollipop and iOS 10.0
 
 ## Installing
-
 Once we are sure that our app is 100% responsive and all features are implemented and tested we will publish it on App Store/Play Store. 🧑🏼‍💻
 
 ## App description
