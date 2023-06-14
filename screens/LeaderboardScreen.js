@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
 import Sidebar from '../components/sidebar.js';
+import LottieView from 'lottie-react-native';
+import animation from '../assets/4768-trophy.json';
+ 
 
 export default function LeaderboardScreen(props) {
     const db = props.route.params.db;
@@ -42,6 +45,9 @@ export default function LeaderboardScreen(props) {
     }
     return (
         <View style = {{backgroundColor: '#F16956', flex:1,  height: 100}}>
+            <View style={styles.animationContainer}>
+              <LottieView source={animation} autoPlay loop />
+            </View>
 
             <View style = {styles.textContainer}>
             <Text style = {styles.textLeaderboard}>  {String.fromCodePoint(0x1F3C6)} Quizzez Leaderboard  {String.fromCodePoint(0x1F3C6)}</Text> 
@@ -68,6 +74,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
     },
+
+    animationContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 200,
+        marginVertical: 20,
+      },
 
     textLeaderboard: 
     {
