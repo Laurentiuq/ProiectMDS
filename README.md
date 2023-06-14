@@ -71,7 +71,7 @@ DE COMPLETAT!!!!!!!!!!!
 We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [here](<https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213>).
 
 - **Loading screen**
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="200" height="100">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="300" height="200">
 
 - **Welcome screen**
   ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg)
