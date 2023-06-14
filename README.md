@@ -62,59 +62,70 @@ In order to keep track of our progress and monitor our backlog we used Jira 👉
 
 When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
 
-### 5. What we used to build our app
+### 5. How we build our app
+- All you need to know about building a React Native app:
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="300" height="300">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp2.png" alt="Image" width="300" height="300">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp3.png" alt="Image" width="300" height="300">
+  
+- How to run the app: Android Studio comes with an emulator that allows you to test your app on various virtual Android devices with different screen sizes, resolutions, and hardware configurations. You can also connect physical Android devices for testing.
+- Database: Firebase provides a real-time NoSQL database that allows you to store and sync data in real-time across multiple clients. It enables you to build collaborative applications like chat apps, live dashboards, and multiplayer games. Here's the code for the connection with the database (you can find in the App.js file):
+```
+import firebase from 'firebase/compat';//here
+import 'firebase/compat/firestore';//here
+import TakeQuizScreen from './screens/TakeQuizScreen';
+import QuizBoard from './screens/QuizBoard';
 
-DE COMPLETAT!!!!!!!!!!!
+
+const Stack = createNativeStackNavigator();
+const db = firebase.firestore();//and here
+```
+And here's how the database looks:
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="300" height="300">
 
 ### 6. App design
 
 We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [here](<https://www.figma.com/file/kTc9kHRRnQmNL1vPLFNVbp/Queezy---Quiz-App-UI-Kit-(Community)?type=design&node-id=237-213>).
 
 - **Loading screen**
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="300" height="200">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-27-27-429_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Welcome screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-05-734_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Login/Register screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-13-866_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-10-744_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Forgot password screen**
-- ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-21-17-912_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Home screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-37-544_host.exp.exponent.jpg)
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-37-544_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Profile screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-43-169_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Leaderboard screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-31-54-980_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **JoinQuiz screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg)
-  ~[](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-02-643_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **TakeQuiz screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-09-760_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-26-751_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **CreateQuiz screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-49-238_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-17-53-541_host.exp.exponent.jpg)
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-02-334_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-37-08-497_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **QuizBoard screen / My Quiz**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **QuizBoard screen / General Quiz**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 - **Settings screen**
-  ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg)
+ <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-35-04-280_host.exp.exponent.jpg" alt="Image" width="300" height="600">
 
 ### 7. UML Use Case Diagram
 
@@ -123,8 +134,6 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 ## Source control
 
 ### [Branches](https://github.com/Laurentiuq/ProiectMDS/branches/active)
-
-CE FAC TOATE ASTEA??????????????
 
 - feature/quiz-board -> branch for QuizBoard screen
 - bug_fixing -> branch for bug fixing
