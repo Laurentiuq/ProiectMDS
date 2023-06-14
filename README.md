@@ -235,12 +235,6 @@ describe('LoginScreen', () => {
         expect(input.props.secureTextEntry).toBe(false);
     });
 
-    // it('navigates to ForgotPassword on button press', () => {
-    //     const mockNavigation = jest.fn();
-    //     const { getByText } = render(<LoginScreen navigation={{ navigate: mockNavigation }} />);
-    //     fireEvent.press(getByText('Forgot password'));
-    //     expect(mockNavigation).toHaveBeenCalledWith('ForgotPassword');
-    // });
 });
 ```
 **4. Test register screen**
@@ -413,19 +407,6 @@ describe('HomeScreen', () => {
 
     });
 
-    // test('render headerRight', async () => {
-    //   const mockNavigation = { push: jest.fn() };
-    //   const mockProps = {
-    //       route: { params: { db: {} } },
-    //       navigation: mockNavigation,
-    //   };
-
-    //   const { getByTestId, rerender } = render(<HomeScreen  {...mockProps} navigation={mockNavigation} />);
-    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
-    //   // rerender(<HomeScreen  {...mockProps} navigation={mockNavigation} />)
-    //   await waitFor(() => expect(getByTestId('header-right')).toBeTruthy(), { timeout: 10000 });
-    // });
-
   });
 ```
 **6. Test profile screen**
@@ -455,21 +436,6 @@ describe('ProfileScreen', () => {
     expect(descriptionInput.props.value).toBe('');// TODO : should be the same
   });
 
-//   it('triggers handleEditing function when edit button is pressed', () => {
-//     const { getByText } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
-//     const editButton = getByText('Edit');
-//     const handleEditingMock = jest.fn();
-//     fireEvent.press(editButton);
-//     expect(handleEditingMock).toHaveBeenCalled();
-//   });
-
-//   it('triggers handleUpdateProfile function when save changes button is pressed', () => {
-//     const { getByText } = render(<ProfileScreen route={{ params: { db: mockDb } }} />);
-//     const saveChangesButton = getByText('Save Changes');
-//     const handleUpdateProfileMock = jest.fn();
-//     fireEvent.press(saveChangesButton);
-//     expect(handleUpdateProfileMock).toHaveBeenCalled();
-//   });
 });
 ```
 **7. Test create quiz**
@@ -555,10 +521,8 @@ describe('SettingsScreen', () => {
     })
 
     it('renders a TileItem component for updating account details', () => {
-        // console.log(wrapper.find('TileItem').at(0).props());
         expect(wrapper.find('TileItem').at(0).props().mainText).toEqual('Update account details');
         expect(wrapper.find('TileItem').at(0).props().subtitle).toEqual('Username, Location etc');
-        // expect(wrapper.find('TileItem').at(0).props().iconName).toEqual(require('../assets/arrowRight.png'));
         expect(wrapper.find('TileItem').at(0).props().onIconPress).toBeDefined();
 
     })
@@ -588,7 +552,6 @@ describe('SettingsScreen', () => {
         handleIconPress('UpdateLogin', navigation);
         expect(navigation.push).toHaveBeenCalled();
         handleIconPress('QuizSettings', navigation);
-        // expect(naviagtion.navigate).toHaveBeenCalled();
     })
 
     it('logs the correct message to the console', () => {
@@ -600,16 +563,6 @@ describe('SettingsScreen', () => {
         handleIconPress('QuizSettings', navigation);
         expect(spy).toHaveBeenCalledWith('Icon pressed on QuizSettings');
     })
-
-    // test('calls onIconPress when icon is pressed', () => {
-    //     const onIconPressMock = jest.fn();
-    //     const TileItem = wrapper.find('TileItem').at(0);
-    //     TileItem.props().onIconPress = onIconPressMock;
-    //     TileItem.props().onIconPress();
-    //     expect(onIconPress).toHaveBeenCalled();
-    //     // expect(onIconPress).toHaveBeenCalled();
-    //   });
-
 
     it('calls onIconPress with correct arguments when icon is pressed', () => {
         const wrapper = shallow(<SettingsScreen />);
@@ -661,9 +614,6 @@ describe("<Navbar />", () => {
         goToHome(navigation);
         expect(navigation.navigate).toHaveBeenCalledWith('Home');
     });
-
-
-
 
     test('onPress', () => {
         const navigation = { navigate: jest.fn() };
