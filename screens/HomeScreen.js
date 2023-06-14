@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
 import { getAuth } from 'firebase/auth'
 import { useNavigation } from '@react-navigation/native';
@@ -35,6 +35,7 @@ export default function HomeScreen(props) {
 
   const db = props.route.params.db;
   const [displayName, setDisplayName] = React.useState('');
+  const [profileImage, setProfileImage] = React.useState(null); 
   const navigation = useNavigation();
 
   // Functia care cauta datele despre utilizator in baza de date
@@ -44,13 +45,15 @@ export default function HomeScreen(props) {
     const userRef = db.collection('users').doc(uid);
     const userData = await userRef.get();
     const displayName = userData.data().displayName;
+    const profileImage = userData.data().profileImage;
     setDisplayName(displayName);
+    setProfileImage(profileImage);
 
     // const db = firebase.firestore();
     const quizHistoryRef = db.collection('quiz_history');
     quizHistoryRef.get().then((quizHistory) => {
       quizHistory.docs.forEach((quiz) => {
-        console.log('nabil alhafez ', JSON.stringify(quiz.data()))
+        // console.log('nabil alhafez ', JSON.stringify(quiz.data()))
       });
     });
   }
@@ -78,7 +81,7 @@ export default function HomeScreen(props) {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
           <View style={styles.inputContainer}>
-
+            <Image style={{ width: 100, height: 100, borderRadius: 100, marginBottom: 10 }} source={{ uri: profileImage }} />
             <Text style={{ color: 'rgb(225, 105, 86)' }}>Nume:{displayName}</Text>
 
             <Text style={{ color: 'rgb(225, 105, 86)', fontWeight: 'bold', textAlign: 'left' }}>What do you want to do?</Text>
