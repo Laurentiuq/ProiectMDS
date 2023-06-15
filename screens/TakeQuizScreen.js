@@ -2,23 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
+import { useRef } from 'react';
+import { useCallback } from "react";
 
 const Timer = ({ duration, onTimeout }) => {
   const [timer, setTimer] = useState(duration);
+  const timerRef = useRef(timer);
+  const intervalId = useRef(); // Use ref instead of state
 
-  // At every second, decrease the timer by 1
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (timer > 0) {
-        setTimer(timer - 1);
+    timerRef.current = timer;
+  }, [timer]);
+
+  useEffect(() => {
+    intervalId.current = setInterval(() => { // Set interval ID in ref
+      if (timerRef.current > 0) {
+        timerRef.current = timerRef.current - 1;
+        setTimer(timerRef.current);
       } else {
-        clearInterval(interval);
+        clearInterval(intervalId.current); // Use ref here
         onTimeout();
       }
     }, 1000);
 
-    return () => clearInterval(interval);
-  }, [timer, onTimeout]);
+    return () => clearInterval(intervalId.current); // Use ref here
+  }, [onTimeout]);
 
   // Time is passed in seconds, this function formats it to minutes and seconds
   const formatTime = (time) => {
@@ -34,8 +42,8 @@ const Timer = ({ duration, onTimeout }) => {
   );
 };
 
-export default function TakeQuizScreen({ route}) {
-  const { reviewMode = false } = route.params; 
+export default function TakeQuizScreen({ route }) {
+  const { reviewMode = false } = route.params;
 
   const { quiz } = route.params;
   // Initialize selectedAnswers depending on whether it's review mode or not
@@ -48,7 +56,8 @@ export default function TakeQuizScreen({ route}) {
   // Similar changes for other states
   const [showAnswers, setShowAnswers] = useState(reviewMode);
   const [quizTimeout, setQuizTimeout] = useState(false);
-  const [score, setScore] = useState(reviewMode?quiz.totalScore:0);
+  const [score, setScore] = useState(reviewMode ? quiz.totalScore : 0);
+  const [intervalId, setIntervalId] = useState(null); // Add this state
 
   const handleAnswerSelection = (questionIndex, optionIndex) => {
     // adds or removes the optionIndex from the selectedAnswers array
@@ -67,6 +76,10 @@ export default function TakeQuizScreen({ route}) {
   // It also sets the showAnswers variable to true, which will highlight the correct answers
   const handleSubmitQuiz = () => {
     setShowAnswers(true);
+
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
 
     let totalScore = 0;
     for (let i = 0; i < quiz.questions.length; i++) {
@@ -99,7 +112,6 @@ export default function TakeQuizScreen({ route}) {
     const db = firebase.firestore();
     const uuid = firebase.auth().currentUser.uid;
     if (totalScore > 0) {
-      console.log('uuid ', uuid);
       const userRef = db.collection('users').doc(uuid);
 
       await userRef.update({
@@ -123,7 +135,7 @@ export default function TakeQuizScreen({ route}) {
       quiz.questions[index] = { ...question, userSelectedAnswers: selectedAnswers[index] }
     });
     const data = {
-      userId: uuid,  
+      userId: uuid,
       quiz: quiz, // Store all the quiz data
       dateTaken: firebase.firestore.FieldValue.serverTimestamp(),  // current time
       totalScore: totalScore,  // final score
@@ -141,10 +153,10 @@ export default function TakeQuizScreen({ route}) {
   // This function is called when the timer runs out
   // It sets the showAnswers variable to true, which will highlight the correct answers
 
-  const handleTimeout = () => {
+  const handleTimeout = useCallback(() => {
     handleSubmitQuiz();
     setQuizTimeout(true);
-  };
+  }, [handleSubmitQuiz]);
   return (
 
     <View style={styles.container}>
@@ -153,8 +165,7 @@ export default function TakeQuizScreen({ route}) {
         <Text style={styles.title}>{quiz.name}</Text>
         <Text style={styles.description}>{quiz.description}</Text>
 
-        {/* Uses the timer defined above */}
-        {!reviewMode && <Timer duration={quiz.timer} onTimeout={handleTimeout} />}
+        {(!reviewMode && !showAnswers) &&  <Timer duration={quiz.timer} onTimeout={handleTimeout} />}
 
         {/* For each question  */}
         {quiz.questions.map((question, questionIndex) => {
@@ -203,7 +214,7 @@ export default function TakeQuizScreen({ route}) {
                 );
               })}
               {/* If the quiz was submitted and the question was not answered, show the correct answer. */}
-          
+
               {showAnswers && selectedAnswers[questionIndex].length === 0 && (
                 <View style={styles.correctAnswerContainer}>
                   <Text style={styles.correctAnswerText}>Correct Answer(s):</Text>
