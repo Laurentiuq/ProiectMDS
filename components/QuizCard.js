@@ -36,7 +36,7 @@ export function QuizCard({ item }) {
     return (
         <TouchableOpacity style={styles.card} onPress={() => handlePress(quiz)}>
             <Text style={styles.text}>{quiz.name}</Text>
-            {quiz.photo && <Image style={styles.image} source={{ uri: quiz.photo }} />}
+            {quiz.photo!=='' && <Image style={styles.image} source={{ uri: quiz.photo }} />}
             <Text style={styles.text}>Score: {totalScore}</Text>
             {isExpanded &&
                 quiz.questions.map((question, index) => renderQuestionAnswer(question, index))}

@@ -135,8 +135,6 @@ export default function Question(props) {
 
             {options.map((option, index) => (
                 <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
-
-
                     <TextInput style={styles.answerContainer}
                         value={option}
                         onChangeText={(value) => handleOptionChange(index, value)}

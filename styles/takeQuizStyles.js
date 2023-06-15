@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 
     optionButton: {
         padding: 10,
+        borderColor: 'black',
         borderRadius: 8,
         marginBottom: 10,
         borderWidth: 5,
@@ -40,10 +41,11 @@ const styles = StyleSheet.create({
     },
     optionText: {
         color: 'black',
+        borderColor: 'black',
     },
     
     selectedBorderColor: '#F16956',
-    
+    borderColor: 'black',
     correctBackgroundColor: 'green',
     incorrectBackgroundColor: 'red',
     correctNotSelectedBackgroundColor: 'yellow',

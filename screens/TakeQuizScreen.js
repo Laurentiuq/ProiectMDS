@@ -149,7 +149,7 @@ export default function TakeQuizScreen({ route}) {
 
     <View style={styles.container}>
       <ScrollView>
-        <Image source={{ uri: quiz.photo }} style={{ width: 200, height: 200 }} />
+        {quiz.photo && <Image source={{ uri: quiz.photo }} style={{ width: 200, height: 200, alignSelf:"center" }} />}
         <Text style={styles.title}>{quiz.name}</Text>
         <Text style={styles.description}>{quiz.description}</Text>
 
@@ -165,7 +165,7 @@ export default function TakeQuizScreen({ route}) {
 
           return (
             <View key={questionIndex} style={styles.questionContainer}>
-              <Image source={{ uri: question.photo }} style={{ width: 300, height: 200, alignSelf: 'center' }} />
+              {question.photo && <Image source={{ uri: question.photo }} style={{ width: 300, height: 200, alignSelf: 'center' }} />}
               <Text style={styles.questionText}>Question: {question.question}</Text>
               {/*For each option we verifiy if it's selected and create a specific output.  */}
               {question.options.map((option, optionIndex) => {
