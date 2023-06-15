@@ -9,6 +9,12 @@ quizzes can either have generic questions that are meant to test your general kn
 include questions from past exams.
 With this app we hope to improve our users' grades and make them happy!😊
 
+### Team Members
+Alhafez Nabil <br/>
+Ghetoiu Gheorghe-Laurentiu <br/>
+Merealbe Cris-Briana <br/>
+Nechita Maria-Ilinca
+
 ## [App demo](https://youtu.be/4fbnvrg93LQ)
 
 ## Requirements
