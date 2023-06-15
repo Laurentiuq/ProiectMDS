@@ -3,7 +3,7 @@ import React from 'react'
 import Sidebar from '../components/sidebar.js';
 import LottieView from 'lottie-react-native';
 import animation from '../assets/4768-trophy.json';
- 
+import { getAuth } from 'firebase/auth';
 
 export default function LeaderboardScreen(props) {
     const db = props.route.params.db;
@@ -20,25 +20,33 @@ export default function LeaderboardScreen(props) {
         // get every user from db and add it to the users list
         let users = [];
         snapshot.forEach(doc => {
-            users.push(doc.data());
+            if(doc.data().email !== "admin@info.ro"){
+                users.push(doc.data());
+            }
         });
         // sort the list and update state
         users.sort((a, b) => b.points - a.points);
         setUsers(users);
+        console.log("users ", users)
     }
 
     // to call the fetchData function
+    let currentUser;
     React.useEffect(() => {
         fetchData();
+        currentUser = getAuth().currentUser;
+        console.log("currentUser ", currentUser)
     }, []);
-
 
     // output the user on the screen
     const RenderUsers = () => {
+        const currentUserIndex = users.findIndex(currentUser => currentUser.email === getAuth().currentUser.email);
         return users.map((user, index) => {
+            const isCurrentUser = index === currentUserIndex;
             return(
                 <View key={index}>
-                    <Text  style = {styles.text}>{index + 1}.  {user.displayName}: {user.points}</Text>
+                    <Text  style={[styles.text, isCurrentUser && styles.currentUser]}>
+                        {index + 1}.  {user.displayName}: {user.points}</Text>
                 </View>
             )
         })
@@ -88,5 +96,13 @@ const styles = StyleSheet.create({
          color:'#F9E0DD', 
          fontWeight:'bold', 
          fontSize: 20, 
-         margin:10}
+         margin:10},
+        
+    currentUser: {
+        color: '#F9E000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 10,
+    }
 })
