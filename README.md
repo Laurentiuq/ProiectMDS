@@ -9,7 +9,7 @@ quizzes can either have generic questions that are meant to test your general kn
 include questions from past exams.
 With this app we hope to improve our users grades and make them happy!😊
 
-## [App demo](https://www.youtube.com/watch?v=FWsIpYMRW84&ab_channel=Laurentiu)
+## [App demo](https://youtu.be/4fbnvrg93LQ)
 
 ## Requirements
 At least Android 5.0 Lollipop and iOS 10.0
