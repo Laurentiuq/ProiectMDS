@@ -41,7 +41,7 @@ Once we are sure that our app is 100% responsive and all features are implemente
 
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="800" height="500">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="900" height="450">
 
 ### 3. Starting features
 
