@@ -190,8 +190,9 @@ export default function TakeQuizScreen({ route }) {
                 const shouldHighlightCorrectNotSelected =
                   showAnswers && !isSelected && isCorrectAnswer;
                 // Initialize the border color and background color
-                let borderColor = isSelected ? styles.selectedBorderColor : 'transparent';
+                let borderColor = isSelected ? styles.selectedBorderColor : 'black';
                 let backgroundColor = 'transparent';
+                let borderWidth = 2;
                 // If the quiz was submitted, set the background color to green or red depending on the answer
                 // If the quiz was submitted and the option is correct but not selected, set the background color to yellow
                 if (shouldHighlightAnswer) {
