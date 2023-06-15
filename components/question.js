@@ -125,10 +125,9 @@ export default function Question(props) {
         setQuestion('');
         setOptions(['']);
         setCorrectAnswer('');
-        setTimerEnabled(false);
-        setTimer(0);
         setPoints(0);
         setPhoto('');
+
         console.log(props.questions)
         console.log(newQuestion);
 
