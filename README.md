@@ -41,7 +41,7 @@ Once we are sure that our app is 100% responsive and all features are implemente
 
 In order to keep track of our progress and monitor our backlog we used Jira 👉🏼 [here](https://mdsproiect.atlassian.net/jira/software/projects/PRC/boards/2/backlog).
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="600" height="400">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/jira.png" alt="Image" width="800" height="500">
 
 ### 3. Starting features
 
@@ -64,9 +64,9 @@ When you open up the app you will see the welcome screen where you can either lo
 ### 5. How we build our app
 - All you need to know about building a React Native app:
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="400" height="400">
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp2.png" alt="Image" width="400" height="400">
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp3.png" alt="Image" width="400" height="400">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="600" height="500">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp2.png" alt="Image" width="600" height="500">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp3.png" alt="Image" width="600" height="500">
   
 - How to run the app: Android Studio comes with an emulator that allows you to test your app on various virtual Android devices with different screen sizes, resolutions, and hardware configurations. You can also connect physical Android devices for testing.
 - Database: Firebase provides a real-time NoSQL database that allows you to store and sync data in real-time across multiple clients. It enables you to build collaborative applications like chat apps, live dashboards, and multiplayer games. Here's the code for the connection with the database (you can find in the App.js file):
@@ -82,7 +82,7 @@ const db = firebase.firestore();//and here
 ```
 And here's how the database looks:
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="600" height="400">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/MDS-firebase.jpeg" alt="Image" width="800" height="500">
 
 ### 6. App design
 
