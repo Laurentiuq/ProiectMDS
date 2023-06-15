@@ -10,6 +10,7 @@ export function QuizCard({ item }) {
     const { quiz, totalScore } = item;
     const [isExpanded, setIsExpanded] = useState(false);
     const navigation = useNavigation();
+    const placeholderProfileImage = 'https://via.placeholder.com/250';
 
     const handlePress = (quiz) => {
         navigation.navigate('TakeQuiz', {
@@ -18,6 +19,9 @@ export function QuizCard({ item }) {
         });
     };
 
+    console.log('placeholderProfileImage ',placeholderProfileImage);
+    console.log('quiz.photo ',quiz.photo);
+    console.log('quiz.photo??placeholderProfileImage ',quiz.photo??placeholderProfileImage);
     const renderQuestionAnswer = (question, index) => (
         <View key={index} style={{ marginBottom: 16, flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', }}>
             <Text>{question.question}</Text>
@@ -36,7 +40,7 @@ export function QuizCard({ item }) {
     return (
         <TouchableOpacity style={styles.card} onPress={() => handlePress(quiz)}>
             <Text style={styles.text}>{quiz.name}</Text>
-            {quiz.photo && <Image style={styles.image} source={{ uri: quiz.photo }} />}
+            {quiz.photo && <Image style={styles.image} source={{ uri: quiz.photo??placeholderProfileImage }} />}
             <Text style={styles.text}>Score: {totalScore}</Text>
             {isExpanded &&
                 quiz.questions.map((question, index) => renderQuestionAnswer(question, index))}
