@@ -75,14 +75,36 @@ export default function Question(props) {
     }
 
     const handleSubmit = () => {
+
+        if (!question) {
+            alert('You have to fill in the question');
+            return;
+        }
         // remove the last element of the options array if it is empty
         for (let i = 0; i < options.length; i++) {
             if (options[i] === '') {
                 options.splice(i, 1);
             }
         }
+        const hasAnswers = options.length > 0;
+        const hasCorrectAnswer = correctAnswer.some(answer => answer);
+    
+        if (!hasAnswers) {
+            alert('Please add at least one answer for the question.');
+            return;
+        }
 
+        const isAllAnswersFieldsAreFilledIn = options.every(optoin => optoin.length > 0);
+        if (!isAllAnswersFieldsAreFilledIn) {
+            alert('Please do not leave any answer without filling in');
+            return;
+        }
         
+        if (!hasCorrectAnswer) {
+            alert('Please select at least one correct answer for the question.');
+            return;
+        }
+    
         const newQuestion = {
             question,
             options,
@@ -91,17 +113,15 @@ export default function Question(props) {
             photo,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
         }
-        // set the isAddQuestion variable to false so that the form is not rendered
-        // onLocalIsAddQuestion(false);
-        // add qurstion to the questions array
-
-        // props.setQuestions([...props.questions, newQuestion]);
+    
+        // add question to the questions array
         props.setQuestions(prevQuestions => [...prevQuestions, newQuestion]);
-
+    
         console.log("props.questions ", props.questions)
-
+    
         console.log("newQuestion ", newQuestion);
     }
+    
 
     return (
         <KeyboardAvoidingView style={styles.container}>
