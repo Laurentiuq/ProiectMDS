@@ -7,7 +7,7 @@ Imagine you are studying for your next exam in Computer Networking and you'd lik
 quiz app, login or register, select "join a quiz" and take as many quizzes as you feel like in order to better your understanding of the subject. The
 quizzes can either have generic questions that are meant to test your general knowledge about the basic concepts of that certain subject, or they can
 include questions from past exams.
-With this app we hope to improve our users grades and make them happy!😊
+With this app we hope to improve our users' grades and make them happy!😊
 
 ## [App demo](https://youtu.be/4fbnvrg93LQ)
 
@@ -46,7 +46,7 @@ In order to keep track of our progress and monitor our backlog we used Jira 👉
 ### 3. Starting features
 
 - Login / Register
-- See profile info (profile picture, number of points accumulated from quizzes, display name, email address, description)
+- See profile info (profile picture, number of points won from quizzes, display name, email address, description)
 - Edit profile info (profile picture, display name, description)
 - Join a quiz
 - See quiz history and progress
@@ -59,9 +59,9 @@ In order to keep track of our progress and monitor our backlog we used Jira 👉
 
 ### 4. How the app works and what it does
 
-When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
+When you open up the app you will see the welcome screen where you can either login or register. After login you will be redirected to the home screen where you can do the following: join a quiz, create quiz, view your quiz board or logout. From the home screen you can access your profile, the leaderboard and settings. Your profile will have your profile picture (editable), the number of points won from quizzes, a display name (editable), your email address and a short description (editable). The leaderboard will show the users with the most number of points. When you want to join a quiz you will be redirected to JoinQuiz screen, where you can find all quizzes available. When you choose to create a new quiz you will be redirected to CreateQuiz screen where you will be prompted to add a title, short description (optional), picture (optional), as many questions as you want (at least one, they cand also be multiple choice) and a timer (you can leave it turned off). The QuizBoard screen has two sections. One where you can see all info about the quizzes you created and one where you can see your quiz history and check your asnwers and your score. The settings menu allows you to update your account details, change login details and edit your own quizzes. The logout button will take you back to the welcome screen.
 
-### 5. How we build our app
+### 5. How we built our app
 - All you need to know about building a React Native app:
   <br>
   <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/screenshots/buildApp1.png" alt="Image" width="600" height="500">
@@ -765,7 +765,7 @@ describe('<TileItem />', () => {
 
 ## Bugs and conflicts
 
-### For fixing bugs we created a different branch, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's an example of a bug we fixed:
+### For fixing bugs we created a different branch, [bug_fixing](https://github.com/Laurentiuq/ProiectMDS/tree/bug_fixing), where we would commit the code with the bug fixed, we would look over the changes and finally merge the pull request to the main branch. Here's a few examples:
 
 - [Edit profile only one character input solved](https://github.com/Laurentiuq/ProiectMDS/commit/67170c8e6f4b54412016cef959bf2bdf440a74da)
 - [Fixed Question Form Does Not Clear After Adding a Question](https://github.com/Laurentiuq/ProiectMDS/commit/d76c876284f5e7139f362c1ec7c53ab7ccdd2fd5).
