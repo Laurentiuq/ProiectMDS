@@ -57,7 +57,7 @@ export default function Question(props) {
             })
         }
         setCorrectAnswer(newCorrectAnswer);
-        
+
         console.log("newCorrectAnswer ", correctAnswer);
     }
 
@@ -79,6 +79,7 @@ export default function Question(props) {
         }
     }
 
+
     const handleSubmit = async () => {
 
         const imageResult = await uploadImage(photo);
@@ -89,13 +90,30 @@ export default function Question(props) {
                 options.splice(i, 1);
             }
         }
+        const hasAnswers = options.length > 0;
+        const hasCorrectAnswer = correctAnswer.some(answer => answer);
 
-        
+        if (!hasAnswers) {
+            alert('Please add at least one answer for the question.');
+            return;
+        }
+
+        const isAllAnswersFieldsAreFilledIn = options.every(optoin => optoin.length > 0);
+        if (!isAllAnswersFieldsAreFilledIn) {
+            alert('Please do not leave any answer without filling in');
+            return;
+        }
+
+        if (!hasCorrectAnswer) {
+            alert('Please select at least one correct answer for the question.');
+            return;
+        }
+
         const newQuestion = {
             question,
             options,
-            correctAnswer: correctAnswer.map(e =>  (e ? true : false) ),
-            points:Number.parseInt(points),
+            correctAnswer: correctAnswer.map(e => (e ? true : false)),
+            points: Number.parseInt(points),
             photo: imageResult,
             isMultipleChoice: (multipleAnswers && correctAnswer.filter(answer => answer).length > 1)
         }
@@ -116,6 +134,7 @@ export default function Question(props) {
 
 
     }
+
 
     return (
         <KeyboardAvoidingView style={styles.container}>
