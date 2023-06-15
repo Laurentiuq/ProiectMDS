@@ -132,13 +132,13 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 
 - **JoinQuiz screen**
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-18-21-351_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/JoinQuiz.png" alt="Image" width="300" height="600">
    <br>
 
 
 - **TakeQuiz screen**
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-14-23-36-38-851_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/TakeQuiz.png" alt="Image" width="300" height="600">
    <br>
 
 
@@ -150,13 +150,13 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 
 - **QuizBoard screen / My Quiz**
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-19-23-591_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/QuizBoard_MyQuiz.png" alt="Image" width="300" height="600">
    <br>
 
 
 - **QuizBoard screen / General Quiz**
   <br>
-  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/Screenshot_2023-06-15-00-20-39-899_host.exp.exponent.jpg" alt="Image" width="300" height="600">
+  <img src="https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/App_Screenshots/QuizBoard_GeneralQuiz.png" alt="Image" width="300" height="600">
    <br>
 
 
