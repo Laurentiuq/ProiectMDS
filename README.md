@@ -176,6 +176,10 @@ We opted for a simple, VERY orange 🍊 look inspired by this design 👉🏼 [h
 
 ![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/UML/UML%20Use%20Cases.png)
 
+### UML Classes
+
+![](https://github.com/Laurentiuq/ProiectMDS/blob/main/documentatie/UML/UML%20CLasses.png)
+
 ## Source control
 
 ### [Branches](https://github.com/Laurentiuq/ProiectMDS/branches/active)
